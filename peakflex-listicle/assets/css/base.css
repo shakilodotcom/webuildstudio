@@ -1,0 +1,71 @@
+/* Page base: reset + typography the listicle sections inherit. */
+html {
+  box-sizing: border-box;
+  height: 100%;
+  font-size: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 100%;
+  min-height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  background: #fff;
+  color: rgba(18, 18, 18, 0.9);
+  font-family: Poppins, sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  letter-spacing: 0.06em;
+}
+
+@media (min-width: 750px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+h1,
+h2,
+h3 {
+  word-break: break-word;
+}
+
+a {
+  text-decoration: none;
+}
+
+img,
+video {
+  vertical-align: bottom;
+}
+
+img {
+  max-width: 100%;
+}
+
+button {
+  color: rgb(18, 18, 18);
+}
+
+summary {
+  position: relative;
+}
+
+.product-form__submit {
+  font-size: 19px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+div:empty {
+  display: none;
+}
