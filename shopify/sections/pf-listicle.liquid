@@ -30,6 +30,13 @@
 :where(.pfl-page) .product-form__submit{font-size:19px}
 :where(.pfl-page) .hidden{display:none !important}
 :where(.pfl-page) div:empty{display:none}
+
+/* Bundle picker keeps DropMagic's own typography. */
+.pfl-dmb{margin-top:4px;font-family:Inter,sans-serif;font-size:16px;line-height:1.6;letter-spacing:normal;color:var(--dm-foreground);background:none}
+.pfl-dmb img{max-width:none}
+.pfl-dmb dm-bundle-units [data-bundle-unit]{flex-wrap:nowrap}
+.pfl-dmb dm-bundle-units select:not([data-unit-proxy]){flex:1 1 auto;min-width:0}
+.pfl-dmb dm-bundle-units [data-unit-opt]{flex:0 0 auto;flex-wrap:nowrap}
 .pfl{--pfl-accent:#1f5fcf;--pfl-navy:#0b2e59;--pfl-cta:#c25204;--pfl-cta-fg:#ffffff;--pfl-ink:#121212;--pfl-body:#3a3f47;--pfl-muted:#6b7280;--pfl-line:#e8ebf0;font-family:Poppins,sans-serif;color:var(--pfl-ink);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}.pfl *,.pfl *:before,.pfl *:after{box-sizing:border-box}:where(.pfl) :where(h1,h2,h3,p,ul){margin:0}:where(.pfl) :where(img,video,svg){display:block;max-width:100%}.pfl button{font-family:inherit;letter-spacing:normal}.pfl [hidden]{display:none!important}.pfl-wrap{max-width:940px;margin:0 auto;padding-left:20px;padding-right:20px}.pfl-bar{background:var(--bar-bg,#0b2e59);color:var(--bar-fg,#ffffff);padding:11px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 12px;font-size:13px;font-weight:500;letter-spacing:.03em;line-height:1.4;text-align:center}.pfl-bar__label{color:var(--bar-label,#ffd36b);font-weight:700;letter-spacing:.1em}.pfl-bar__dot{width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.45}.pfl-bar strong{font-weight:700;font-variant-numeric:tabular-nums}.pfl-intro{padding-top:calc(var(--pt,56px) * .6);padding-bottom:calc(var(--pb,20px) * .6)}.pfl .pfl-intro__title{font-family:Poppins,sans-serif;font-size:clamp(26px,2.8vw,37px);line-height:1.24;font-weight:700;letter-spacing:-.015em;color:var(--pfl-ink);margin:0 0 16px}.pfl-intro__summary{font-size:clamp(15.5px,1.15vw,16.5px);line-height:1.55;color:var(--pfl-body)}.pfl-intro__summary strong,.pfl-intro__summary b{font-weight:600;color:var(--pfl-ink)}.pfl-intro__summary a{color:var(--pfl-accent)}.pfl-intro__rule{height:1px;background:var(--pfl-line);margin-top:clamp(22px,2.6vw,32px)}@media(min-width:760px){.pfl-intro{padding-top:var(--pt,56px);padding-bottom:var(--pb,20px)}}.pfl-reasons{padding-top:calc(var(--pt,0px) * .6);padding-bottom:calc(var(--pb,40px) * .6)}@media(min-width:760px){.pfl-reasons{padding-top:var(--pt,0px);padding-bottom:var(--pb,40px)}}.pfl-row{display:flex;align-items:center;gap:clamp(16px,3vw,40px);padding:clamp(14px,2vw,22px) 0}.pfl-row__media{position:relative;flex:0 0 var(--mw-d,340px);width:var(--mw-d,340px);max-width:100%;aspect-ratio:1/1;border-radius:var(--mr,16px);overflow:hidden;background:#eef1f5}.pfl-row__media--contain{background:#fff}.pfl-row__media--border{border:1px solid #eef1f5}.pfl-row__media img,.pfl-row__media video,.pfl-row__media svg{width:100%;height:100%;object-fit:var(--fit,cover);object-position:var(--pos,center)}.pfl-row__media svg{background:#eef1f5}.pfl-row__text{flex:1 1 0;min-width:0;order:1}.pfl-row__media{order:0}.pfl-row--right .pfl-row__media{order:2}.pfl-eyebrow{margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:.12em;line-height:1.4;text-transform:uppercase;color:var(--pfl-accent)}.pfl-eyebrow__num{color:var(--pfl-num,var(--pfl-accent));font-weight:700}.pfl .pfl-row__title{font-family:Poppins,sans-serif;font-size:clamp(21px,1.9vw,25px);line-height:1.3;font-weight:600;letter-spacing:-.01em;color:var(--pfl-ink);margin:0 0 10px}.pfl-row__body,.pfl-row__body p{font-size:clamp(15.5px,1.15vw,16.5px);line-height:1.55;color:var(--pfl-body)}.pfl-row__body p+p{margin-top:12px}.pfl-row__body strong,.pfl-row__body b{font-weight:600;color:var(--pfl-ink)}.pfl-row__body a{color:var(--pfl-accent)}@media(min-width:760px)and (max-width:899px){.pfl-row__media{flex-basis:var(--mw-t,280px);width:var(--mw-t,280px)}}@media(max-width:759px){.pfl-row{flex-direction:column;align-items:stretch;gap:14px}.pfl-row__text{display:contents}.pfl-row__head{order:1}.pfl-row__media{order:2;flex:none;width:100%;aspect-ratio:var(--ar-m,5/4)}.pfl-row__body{order:3}.pfl .pfl-row__title{margin:0}.pfl-reasons--natural .pfl-row__media{aspect-ratio:auto}.pfl-reasons--natural .pfl-row__media img{height:auto}}.pfl-callout{margin:clamp(18px,2.6vw,32px) 0 clamp(8px,2vw,20px);background:var(--co-bg,#fffaea);border:1px solid var(--co-border,#f2e4b3);border-radius:18px;padding:clamp(22px,3vw,32px) clamp(20px,3vw,40px);text-align:center}.pfl-callout__text{font-size:clamp(18px,1.8vw,22px);line-height:1.45;font-weight:600;color:var(--pfl-ink)}.pfl-callout svg{margin:12px auto 0;color:var(--pfl-accent)}.pfl-offer{background:var(--pfl-offer-bg,#f6f7fb);padding:clamp(40px,5.5vw,72px) 20px}.pfl-offer__inner{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,3.5vw,48px);align-items:start}@media(max-width:899px){.pfl-offer__inner{grid-template-columns:minmax(0,1fr);max-width:640px}}@media(min-width:900px){.pfl-gal--sticky{position:sticky;top:var(--pfl-sticky-top,24px)}}.pfl-gal__main{position:relative;aspect-ratio:1/1;background:var(--pfl-gal-bg,#f5f3fe);border:1px solid #e7e9f0;border-radius:20px;overflow:hidden}.pfl-gal__slide{position:absolute;top:0;right:0;bottom:0;left:0}.pfl-gal__slide img,.pfl-gal__slide video,.pfl-gal__slide iframe,.pfl-gal__slide svg{width:100%;height:100%;object-fit:var(--pfl-gal-fit,contain);border:0}.pfl-gal__arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:#ffffffeb;box-shadow:0 4px 14px #0b2e5926;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;color:var(--pfl-ink)}.pfl-gal__arrow--prev{left:12px}.pfl-gal__arrow--next{right:12px}.pfl-gal__thumbs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:12px}.pfl-gal__thumb{padding:0;border-radius:12px;overflow:hidden;border:2px solid #e7e9f0;background:#fff;cursor:pointer;aspect-ratio:1/1}.pfl-gal__thumb.is-active{border-color:var(--pfl-navy)}.pfl-gal__thumb img{width:100%;height:100%;object-fit:cover}.pfl-buy{background:#fff;border:1px solid #e7e9f0;border-radius:20px;padding:clamp(18px,2.6vw,32px)}.pfl-pill{display:inline-block;background:#eef3fb;color:var(--pfl-navy);font-size:13px;font-weight:500;line-height:1.4;padding:6px 12px;border-radius:999px}.pfl-pill strong,.pfl-pill b{font-weight:700;color:#a34503}.pfl .pfl-buy__title{font-family:Poppins,sans-serif;font-size:clamp(24px,2.1vw,29px);line-height:1.2;font-weight:700;letter-spacing:-.015em;color:var(--pfl-ink);margin:14px 0 8px}.pfl-rating{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--pfl-body)}.pfl-rating__stars{display:inline-flex;gap:2px;color:#f5a623}.pfl-rating strong{font-weight:600;color:var(--pfl-ink)}.pfl-rating a{color:inherit}.pfl-price{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;margin:16px 0 4px}.pfl-price__now{font-size:30px;font-weight:700;line-height:1.2}.pfl-price__was{font-size:17px;color:var(--pfl-muted)}.pfl-price__save{background:#fdebdf;color:#8f3b02;font-size:12.5px;font-weight:700;padding:4px 10px;border-radius:999px}.pfl-offerhead{margin:18px 0 4px;padding-top:18px;border-top:1px solid #eef0f4}.pfl-offerhead__title{margin-bottom:4px;font-size:20px;font-weight:700;color:var(--pfl-accent)}.pfl-offerhead__text{font-size:14.5px;line-height:1.55;color:var(--pfl-body)}.pfl-tier{position:relative;margin-top:14px;border-radius:14px;border:1.5px solid #e2e5eb;background:#fff}.pfl-tier.is-selected{border-color:var(--pfl-navy);background:#f4f7fc}.pfl-tier__head{width:100%;display:flex;align-items:center;gap:12px;padding:15px 16px;border:0;border-radius:14px;background:transparent;cursor:pointer;text-align:left;color:var(--pfl-ink)}.pfl-tier__radio{width:20px;height:20px;flex-shrink:0;border-radius:50%;border:2px solid #b8c0cc;display:flex;align-items:center;justify-content:center}.pfl-tier__radio span{width:10px;height:10px;border-radius:50%;background:transparent}.pfl-tier.is-selected .pfl-tier__radio{border-color:var(--pfl-navy)}.pfl-tier.is-selected .pfl-tier__radio span{background:var(--pfl-navy)}.pfl-tier__text{flex:1;min-width:0}.pfl-tier__title{display:block;font-size:15.5px;font-weight:600;line-height:1.35}.pfl-tier__sub{display:block;margin-top:2px;font-size:13px;line-height:1.4;color:var(--pfl-muted)}.pfl-tier__price{flex-shrink:0;text-align:right;line-height:1.35}.pfl-tier__price span{display:block;font-size:16.5px;font-weight:700}.pfl-tier__price s{display:block;font-size:12.5px;color:var(--pfl-muted)}.pfl-tier__badge{position:absolute;top:-10px;right:14px;background:var(--pfl-navy);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.06em;line-height:1.4;padding:3px 9px;border-radius:999px}.pfl-tier__body{padding:0 16px 16px}.pfl-pickhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px;padding-top:12px;border-top:1px solid #e3e8f0;font-size:12.5px;font-weight:600;color:var(--pfl-body)}.pfl-pickhead--plain{border-top:0;padding-top:0;margin-top:16px}.pfl-sg{display:inline-flex;align-items:center;gap:5px;flex-shrink:0;padding:4px 0;border:0;background:none;font-size:12.5px;font-weight:500;color:var(--pfl-accent);text-decoration:underline;text-underline-offset:2px;cursor:pointer}.pfl-rows{display:flex;flex-direction:column;gap:8px}.pfl-rows__row{display:flex;align-items:center;gap:8px}.pfl-rows__num{width:22px;flex-shrink:0;font-size:13px;font-weight:600;color:var(--pfl-muted)}.pfl-sel{position:relative;flex:1 1 0;min-width:0}.pfl-sel--1{flex-grow:1.45}.pfl-sel select{width:100%;min-height:44px;margin:0;appearance:none;-webkit-appearance:none;border:1.5px solid #e2e5eb;border-radius:10px;padding:10px 30px 10px 12px;font-family:inherit;font-size:13.5px;line-height:1.3;color:var(--pfl-ink);background:#fff;cursor:pointer;box-shadow:none}.pfl-sel select:focus-visible{outline:2px solid var(--pfl-accent);outline-offset:1px}.pfl-sel svg{position:absolute;right:9px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--pfl-muted)}.pfl-rows__row.is-unavailable select{border-color:#e0a1a1}@media(max-width:759px){.pfl-tier__head{padding:15px 12px}.pfl-tier__body{padding:0 12px 16px}.pfl-sel select{font-size:16px;padding:10px 24px 10px 9px}.pfl-sel svg{right:7px}}.pfl-err{margin-top:12px;padding:10px 12px;border-radius:10px;background:#fdecec;color:#a12020;font-size:13.5px;line-height:1.45}.pfl-atc{position:relative;width:100%;min-height:64px;margin-top:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:13px 20px 12px;border:0;border-radius:12px;background:var(--pfl-cta);color:var(--pfl-cta-fg);cursor:pointer;transition:filter .15s ease}.pfl-atc:hover{filter:brightness(.94)}.pfl-atc:focus-visible{outline:2px solid var(--pfl-navy);outline-offset:2px}.pfl-atc[disabled]{opacity:.6;cursor:not-allowed}.pfl-atc__main{font-size:20px;font-weight:700;letter-spacing:.03em;line-height:1.2}.pfl-atc__sub{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;line-height:1.3;opacity:.92}.pfl-atc__spinner{display:none;position:absolute;left:50%;top:50%;width:22px;height:22px;margin:-11px 0 0 -11px;border:2.5px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:pfl-spin .7s linear infinite}.pfl-atc.is-loading .pfl-atc__main,.pfl-atc.is-loading .pfl-atc__sub{visibility:hidden}.pfl-atc.is-loading .pfl-atc__spinner{display:block}@keyframes pfl-spin{to{transform:rotate(360deg)}}.pfl-pay{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:6px}.pfl-pay__icon{width:38px;height:24px}.pfl-timer{margin-top:14px;text-align:center;font-size:14px;font-weight:500}.pfl-timer strong{color:#c62828;font-weight:700;font-variant-numeric:tabular-nums}.pfl-chip{display:flex;align-items:center;justify-content:center;margin-top:14px;padding:12px 6px;border-radius:12px;background:#f6f7fb;font-size:13.5px;line-height:1.4;color:var(--pfl-body);text-align:center}.pfl-chip__part{padding:0 12px}.pfl-chip__sep{width:1px;height:18px;flex-shrink:0;background:#d5d9e0}.pfl-chip strong,.pfl-chip b{font-weight:700;color:var(--pfl-ink)}.pfl-chip .pfl-chip__risk{color:#c62828}.pfl-guarantee{margin-top:12px;text-align:center;font-size:13px;line-height:1.5;color:var(--pfl-muted)}.pfl-videos{margin-top:22px;padding-top:18px;border-top:1px solid #eef0f4}.pfl-videos__head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.pfl-videos__title{font-size:14px;font-weight:600}.pfl-videos__nav{display:flex;gap:8px}.pfl-round{width:40px;height:40px;border-radius:50%;border:1.5px solid #e2e5eb;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;color:var(--pfl-ink)}.pfl-videos__track{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-radius:14px}.pfl-videos__track::-webkit-scrollbar{display:none}.pfl-vcard{position:relative;flex:0 0 136px;height:242px;scroll-snap-align:start;border:0;border-radius:14px;overflow:hidden;padding:0;cursor:pointer;background:#e9edf2}.pfl-vcard img{width:100%;height:100%;object-fit:cover}.pfl-vcard__play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:#fffffff0;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px #0b2e5940;color:var(--pfl-navy)}.pfl-vcard__chip{position:absolute;left:8px;bottom:8px;background:#0b2e59e0;color:#fff;font-size:11px;font-weight:500;line-height:1.3;padding:4px 9px;border-radius:999px}.pfl-dialog{border:0;padding:0;margin:auto;background:transparent;max-width:none;max-height:none;overflow:visible;color:var(--pfl-ink)}.pfl-dialog::backdrop{background:#0b14238c}.pfl-dialog--size{width:min(780px,94vw)}.pfl-dialog__box{position:relative;background:#fff;border-radius:18px;padding:clamp(10px,2vw,20px);box-shadow:0 24px 60px #0b142347}.pfl-dialog__box img{width:100%;height:auto;border-radius:10px}.pfl-dialog--video{width:min(380px,92vw)}.pfl-dialog__video{width:100%;aspect-ratio:9/16;max-height:84vh;object-fit:contain;background:#000;border-radius:16px}.pfl-dialog__close{position:absolute;top:8px;right:8px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:#f3f5f8;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;color:var(--pfl-ink)}.pfl-dialog--video .pfl-dialog__close{background:#fffffff0}.pfl-cmts{background:var(--cm-bg,#ffffff);padding:clamp(40px,5.5vw,72px) 20px}.pfl-cmts__inner{max-width:760px;margin:0 auto}.pfl .pfl-cmts__title{font-family:Poppins,sans-serif;font-size:clamp(21px,1.9vw,25px);line-height:1.3;font-weight:700;letter-spacing:-.01em;color:var(--pfl-ink);margin:0;padding-bottom:14px;border-bottom:1px solid var(--pfl-line)}.pfl-cm{display:flex;gap:12px;padding:18px 0;border-bottom:1px solid #eef0f4}.pfl-av{width:40px;height:40px;flex-shrink:0;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:13.5px;font-weight:600;background:var(--av-bg,#e8f0fc);color:var(--av-fg,#0b2e59)}.pfl-av img{width:100%;height:100%;object-fit:cover}.pfl-av--sm{width:32px;height:32px;font-size:11px;font-weight:700}.pfl-cm__main{flex:1;min-width:0}.pfl-cm__meta{display:flex;flex-wrap:wrap;align-items:center;gap:2px 8px}.pfl-cm__name{font-size:14.5px;font-weight:600;color:var(--pfl-ink)}.pfl-cm__badge{color:var(--pfl-accent)}.pfl-cm__time{font-size:12.5px;color:#8a919c}.pfl-cm__text{margin-top:3px;font-size:14.5px;line-height:1.55;color:#2f343b}.pfl-cm__actions{display:flex;gap:18px;margin-top:7px;font-size:12.5px;font-weight:600;color:var(--pfl-muted)}.pfl-cm__reply{display:flex;gap:10px;margin-top:14px}.pfl-cm__reply .pfl-cm__name,.pfl-cm__reply .pfl-cm__text{font-size:14px}.pfl-cmts__more{display:flex;justify-content:center;margin-top:24px}.pfl-btn-outline{min-height:46px;padding:11px 24px;border-radius:12px;border:1.5px solid #d5d9e0;background:#fff;color:var(--pfl-ink);font-size:14.5px;font-weight:600;cursor:pointer}@media(max-width:759px){.pfl-cm{gap:10px}.pfl-av{width:36px;height:36px}.pfl-av--sm{width:28px;height:28px}}.pfl-foot{background:var(--ft-bg,#f6f7fb);padding:clamp(32px,4vw,48px) 20px;border-top:1px solid var(--pfl-line)}.pfl-foot__inner{max-width:940px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}.pfl-foot__logo{width:var(--logo-w,140px);height:auto}.pfl-foot__copy{font-size:13px;font-weight:600}.pfl-foot__links{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:4px 8px;font-size:13px;color:var(--pfl-body)}.pfl-foot__links li+li:before{content:"-";margin-right:8px}.pfl-foot__links a{color:inherit;text-decoration:none}.pfl-foot__links a:hover{text-decoration:underline}.pfl-foot__disc,.pfl-foot__disc p{max-width:820px;font-size:12px;line-height:1.6;color:#5b6470}
 
 .pfl-row__num{color:var(--pfl-num,var(--pfl-accent))}.pfl .pfl-buy__title{font-size:clamp(26px,2.3vw,32px);margin:8px 0 0}.pfl-pill+.pfl-buy__title,.pfl-pill+.pfl-rating{margin-top:14px}.pfl-rating__text{font-size:15px;color:var(--pfl-ink)}.pfl-text{margin-top:10px}.pfl-text,.pfl-text p{font-size:15.5px;line-height:1.6;color:var(--pfl-body)}.pfl-text p+p{margin-top:8px}.pfl-text strong,.pfl-text b{font-weight:600;color:var(--pfl-ink)}.pfl-proof{display:flex;align-items:center;gap:8px;margin-top:16px}.pfl-proof__img{width:var(--proof-w,150px);height:auto;flex-shrink:0}.pfl-proof__copy{min-width:0}.pfl-proof__title{font-size:15px;font-weight:700;line-height:1.3;color:var(--pfl-navy)}.pfl-proof__text{margin-top:2px;font-size:13px;line-height:1.35;color:#5f5e5a}.pfl-acc{margin-top:14px}.pfl-acc--box{border:1px solid #d5dbe5;border-radius:16px;background:#fff}.pfl-acc__sum{list-style:none;display:flex;align-items:center;gap:10px;padding:14px 16px;cursor:pointer;font-size:15.5px;font-weight:500;color:var(--pfl-navy)}.pfl-acc__sum::-webkit-details-marker{display:none}.pfl-acc__sum::marker{content:""}.pfl-acc__icon{width:22px;height:22px;flex-shrink:0;object-fit:contain}.pfl-acc__title{flex:1;min-width:0}.pfl-acc__chev{flex-shrink:0;color:var(--pfl-muted);transition:transform .2s ease}.pfl-acc[open] .pfl-acc__chev{transform:rotate(180deg)}.pfl-acc__body{padding:0 16px 16px;font-size:14.5px;line-height:1.65;color:var(--pfl-body)}.pfl-acc__body p+p{margin-top:10px}.pfl-acc__body a{color:var(--pfl-accent)}.pfl-accs{margin-top:22px;border-bottom:1px solid var(--pfl-line)}.pfl-accs .pfl-acc--line{margin-top:0;border-top:1px solid var(--pfl-line)}.pfl-acc--line .pfl-acc__sum{padding:16px 2px;font-weight:600;color:var(--pfl-ink)}.pfl-acc--line .pfl-acc__icon{color:var(--pfl-ink)}.pfl-acc--line .pfl-acc__body{padding:0 2px 16px}.pfl-pickhead--sg{justify-content:flex-end;margin:14px 0 0}.pfl-app{margin-top:16px}.pfl-form{display:block}.pfl-form .pfl-atc{margin-bottom:0}.pfl-atc.loading .pfl-atc__main,.pfl-atc.loading .pfl-atc__sub{visibility:hidden}.pfl-atc .loading-overlay__spinner{position:absolute;left:50%;top:50%;width:24px;height:24px;margin:-12px 0 0 -12px}.pfl-atc .loading-overlay__spinner.hidden{display:none}.pfl-atc .spinner{width:24px;height:24px}.pfl-atc .spinner .path{stroke:currentColor}.pfl-form .pfl-err:not([hidden]){display:block}.pfl-sticky{position:fixed;left:0;right:0;bottom:0;z-index:90;background:var(--st-bg,#ffffff);border-top:1px solid #e3e7ee;box-shadow:0 -6px 24px #0b142314;padding:10px 16px calc(10px + env(safe-area-inset-bottom));transition:transform .25s ease}.pfl-sticky.is-hidden{transform:translateY(110%)}.pfl-sticky__inner{max-width:1040px;margin:0 auto;display:flex;align-items:center;gap:16px}.pfl-sticky__info{flex:1;min-width:0;display:flex;align-items:center;gap:12px}.pfl-sticky__img{width:52px;height:52px;border-radius:10px;object-fit:contain;background:#f5f3fe;border:1px solid #ebe8f7;flex-shrink:0}.pfl-sticky__copy{min-width:0}.pfl-sticky__title{font-size:15px;font-weight:600;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pfl-sticky__meta{display:flex;align-items:center;gap:6px;margin-top:2px;font-size:13px;color:var(--pfl-body)}.pfl-sticky__meta .pfl-rating__stars svg{width:14px;height:14px}.pfl-sticky__btn{flex:0 0 auto;min-width:300px;min-height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:10px 24px;border:0;border-radius:12px;background:var(--st-btn,#c25204);color:var(--st-btn-fg,#ffffff);cursor:pointer}.pfl-sticky__btn:hover{filter:brightness(.94)}.pfl-sticky__btn:focus-visible{outline:2px solid var(--pfl-navy);outline-offset:2px}.pfl-sticky__main{font-size:17px;font-weight:700;letter-spacing:.01em;line-height:1.2;text-transform:none}.pfl-sticky__sub{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:500;opacity:.92}.pfl-sticky__title{font-size:17px;font-weight:700;letter-spacing:-.01em}.pfl-sticky__title strong{color:var(--st-btn,#c25204)}.pfl-sticky__subtitle{display:flex;align-items:center;gap:7px;margin-top:2px;font-size:13px;line-height:1.35;color:var(--pfl-body)}.pfl-sticky__dot{width:8px;height:8px;flex-shrink:0;border-radius:50%;background:#e8590c;animation:pfl-pulse 1.8s ease-out infinite}@keyframes pfl-pulse{0%{box-shadow:0 0 #e8590c73}70%{box-shadow:0 0 0 7px #e8590c00}to{box-shadow:0 0 #e8590c00}}@media(prefers-reduced-motion:reduce){.pfl-sticky__dot{animation:none}}@media(max-width:759px){.pfl-sticky{padding:8px 12px calc(8px + env(safe-area-inset-bottom))}.pfl-sticky__inner{gap:10px}.pfl-sticky__img,.pfl-sticky__meta{display:none}.pfl-sticky__title{font-size:15px;line-height:1.25;white-space:normal}.pfl-sticky__subtitle{font-size:12px;gap:6px}.pfl-sticky__btn{min-width:0;min-height:50px;padding:10px 16px}.pfl-sticky__main{font-size:14.5px;letter-spacing:.01em}.pfl-sticky--btn-only .pfl-sticky__info{display:none}.pfl-sticky--btn-only .pfl-sticky__btn{flex:1 1 auto;width:100%;min-height:52px;padding:10px 16px}.pfl-sticky--btn-only .pfl-sticky__main{font-size:17px}}@media(max-width:359px){.pfl-sticky__main{font-size:13px}.pfl-sticky__btn{padding:10px 12px}.pfl-sticky--btn-only .pfl-sticky__main{font-size:16px}}@media(max-width:420px){.pfl-proof__img{width:min(var(--proof-w,150px),120px)}}
@@ -262,7 +269,1032 @@
           <s class="pfl-price__was" data-pfl-price-was>{{ current_variant.compare_at_price | money }}</s>
           <span class="pfl-price__save" data-pfl-price-save>{% if current_variant.compare_at_price > current_variant.price %}SAVE {{ current_variant.compare_at_price | minus: current_variant.price | times: 100 | divided_by: current_variant.compare_at_price | floor }}%{% endif %}</span>
         </div><div class="pfl-pickhead pfl-pickhead--plain pfl-pickhead--sg"><button type="button" class="pfl-sg" data-pfl-open="pfl-size-{{ section.id }}-offer" aria-haspopup="dialog">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="19" height="8" rx="1.5"/><path d="M7 8v3M11 8v4M15 8v3M19 8v4"/></svg>Size guide</button></div><div class="pfl-app" >{%- for block in section.blocks -%}{%- if block.type == '@app' -%}{% render block %}{%- endif -%}{%- endfor -%}</div><product-form
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="19" height="8" rx="1.5"/><path d="M7 8v3M11 8v4M15 8v3M19 8v4"/></svg>Size guide</button></div><div class="pfl-app" >{%- if section.settings.show_bundle -%}{{ 'dm-theme.css' | asset_url | stylesheet_tag }}{{ 'dm-theme-vars.css' | asset_url | stylesheet_tag }}<div class="pfl-dmb" data-theme-combination="0"><dm-bundle
+  
+data-dm-product-id="{{ product.id }}"
+data-bars="{&quot;currency&quot;:&quot;USD&quot;,&quot;items&quot;:[{&quot;id&quot;:&quot;bxgy-tier-1&quot;,&quot;title&quot;:&quot;Buy 1, get 1 Free&quot;,&quot;isPreselected&quot;:true,&quot;type&quot;:&quot;bxgy&quot;,&quot;buyQty&quot;:1,&quot;getQty&quot;:1,&quot;priceType&quot;:&quot;fullPrice&quot;,&quot;discountValue&quot;:0,&quot;getPriceType&quot;:&quot;percent&quot;,&quot;getDiscountValue&quot;:100},{&quot;id&quot;:&quot;bxgy-tier-2&quot;,&quot;title&quot;:&quot;Buy 2, get 2 Free&quot;,&quot;badge&quot;:&quot;Most Popular&quot;,&quot;isPreselected&quot;:false,&quot;type&quot;:&quot;bxgy&quot;,&quot;buyQty&quot;:2,&quot;getQty&quot;:2,&quot;priceType&quot;:&quot;fullPrice&quot;,&quot;discountValue&quot;:0,&quot;getPriceType&quot;:&quot;percent&quot;,&quot;getDiscountValue&quot;:100}]}"
+  data-flex-direction="column"
+  
+  data-flex-gap="3"
+  
+  data-flex-align="stretch"
+  
+data-flex-columns="auto"
+  
+  
+  style="--dm-card-ring-color: color-mix(in oklch, var(--dm-border), var(--dm-foreground) 22%);--dm-card-ring-width: 1px;--dm-radio-border-color: var(--dm-primary);"
+  data-mt="3"
+  
+  
+>
+  {%- assign pfb_tier = current_variant.price | times: 1 -%}{%- assign pfb_unit_cmp = current_variant.compare_at_price | default: current_variant.price -%}{%- if pfb_unit_cmp < current_variant.price -%}{%- assign pfb_unit_cmp = current_variant.price -%}{%- endif -%}{%- assign pfb_cmp = pfb_unit_cmp | times: 2 -%}{%- assign pfb_save = pfb_cmp | minus: pfb_tier -%}{%- assign pfb_pct = pfb_save | times: 100 | divided_by: pfb_cmp | floor -%}<div
+  data-atom-type="card"
+  
+  
+data-bundle-bar data-bar-id="bxgy-tier-1" data-active="false"
+
+  data-card-padding="4"
+  
+  data-card-radius="md"
+data-shadow="none"
+  data-flex-direction="column"
+  
+  data-flex-gap="3"
+  
+  data-flex-align="stretch"
+  
+  data-flex-justify="start"
+  
+  data-flex-columns="auto"
+  
+  data-flex-wrap="nowrap"
+  
+  data-custom-position
+  style="--dm-custom-position: relative;"
+  
+  
+  
+>
+  <div
+  data-atom-type="group"
+  
+  data-flex-direction="row"
+  
+  data-flex-gap="3"
+  
+  data-flex-align="center"
+  
+  data-flex-justify="start"
+  
+  data-flex-columns="auto"
+  
+  data-flex-wrap="nowrap"
+  
+  
+  
+  
+  
+  
+><span
+  data-atom-type="radio-indicator"
+  data-radio-size="md"
+  
+  
+  aria-hidden="true"
+  
+></span>
+
+
+
+<div
+  data-atom-type="group"
+  
+  data-flex-direction="column"
+  
+  data-flex-gap="0"
+  
+  data-flex-align="start"
+  
+  data-flex-justify="start"
+  
+  data-flex-columns="auto"
+  
+  data-flex-wrap="nowrap"
+  
+  data-custom-min-width
+  style="flex-grow: 1;--dm-custom-min-width: 0;"
+  
+  
+  
+><div
+  data-atom-type="group"
+  
+  data-flex-direction="row"
+  
+  data-flex-gap="2"
+  
+  data-flex-align="center"
+  
+  data-flex-justify="start"
+  
+  data-flex-columns="auto"
+  
+  data-flex-wrap="wrap"
+  
+  
+  
+  
+  
+  
+>
+  <p
+  data-atom-type="text"
+  
+  data-bind="bundle.title"
+  
+  data-text-type="content"
+  data-text-tag="p"
+  data-text-align="left"
+  
+  data-text-size="content-lg"
+  
+  data-text-weight="bold"
+  
+  data-text-decoration="none"
+  
+  style="--dm-text-color: inherit;"
+  
+  
+  
+>Buy 1, get 1 Free</p><span
+  data-atom-type="badge"
+  data-badge-variant="primary"
+  data-badge-size="sm"
+  data-badge-radius="xl"
+  
+  style="border-radius: 9999px;
+"
+  
+  
+  
+>
+  <span
+  data-atom-type="text"
+  
+  
+  
+  data-text-type="content"
+  data-text-tag="span"
+  data-text-align="left"
+  
+  data-text-size="content-xs"
+  
+  data-text-weight="bold"
+  
+  data-text-decoration="none"
+  
+  style="--dm-text-color: inherit;"
+  
+  
+  
+>SAVE <span class="dm-hl" data-bind="bundle.discount_percentage">{{ pfb_pct }}%</span></span>
+</span>
+
+
+</div>
+
+
+
+
+  
+
+</div>
+
+
+
+<div
+  data-atom-type="group"
+  
+  data-flex-direction="column"
+  
+  data-flex-gap="0"
+  
+  data-flex-align="end"
+  
+  data-flex-justify="start"
+  
+  data-flex-columns="auto"
+  
+  data-flex-wrap="nowrap"
+  
+  
+  style="flex-shrink: 0;"
+  
+  
+  
+><p
+  data-atom-type="text"
+  
+  data-bind="bundle.tier_price"
+  
+  data-text-type="content"
+  data-text-tag="p"
+  data-text-align="right"
+  
+  data-text-size="content-xl"
+  
+  data-text-weight="bold"
+  
+  data-text-decoration="none"
+  
+  style="--dm-text-color: var(--dm-foreground);"
+  
+  
+  
+>{{ pfb_tier | money }}</p>
+
+
+<p
+  data-atom-type="text"
+  
+  data-bind="bundle.compare_at"
+  
+  data-text-type="content"
+  data-text-tag="p"
+  data-text-align="right"
+  
+  data-text-size="content-md"
+  
+  data-text-weight="normal"
+  
+  data-text-decoration="line-through"
+  
+  style="--dm-text-color: var(--dm-muted-foreground);"
+  
+  
+  
+>{{ pfb_cmp | money }}</p>
+
+
+
+  
+
+</div>
+
+
+
+
+  
+
+</div>
+
+
+
+<dm-bundle-units
+  data-flex-direction="column"
+  
+  data-flex-gap="2"
+  
+  data-bundle-units-size="md"
+  data-bar-id="bxgy-tier-1"
+  
+  
+  
+  
+  
+><div
+        data-bundle-unit
+        data-unit-index="0"
+        data-bar-id="bxgy-tier-1"
+        data-unit-role="buy"
+        data-flex-direction="row"
+        data-flex-align="center"
+        data-flex-gap="2"
+      ><span data-bundle-unit-media><img
+            data-bundle-unit-thumb
+            src="{{ product.featured_image | image_url: width: 96 }}"
+            alt=""
+            width="44"
+            height="44"
+            loading="lazy"
+          ><span data-bundle-unit-index>#1</span></span><select
+                data-dm-bundle-unit="bxgy-tier-1:0"
+                data-option-index="0"
+                data-dm-product-id="{{ product.id }}"
+                data-variant-option-name="{{ product.options_with_values[0].name | escape }}"
+                aria-label="{{ product.options_with_values[0].name | escape }}"
+                
+              >{%- for value in product.options_with_values[0].values -%}<option value="{{ value | escape }}"{% if current_variant.options[0] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>
+{%- if product.options.size > 1 -%}<select
+                data-dm-bundle-unit="bxgy-tier-1:0"
+                data-option-index="1"
+                data-dm-product-id="{{ product.id }}"
+                data-variant-option-name="{{ product.options_with_values[1].name | escape }}"
+                aria-label="{{ product.options_with_values[1].name | escape }}"
+                
+              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if current_variant.options[1] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- endif -%}
+</div><div
+        data-bundle-unit
+        data-unit-index="1"
+        data-bar-id="bxgy-tier-1"
+        data-unit-role="get"
+        data-flex-direction="row"
+        data-flex-align="center"
+        data-flex-gap="2"
+      ><span data-bundle-unit-media><img
+            data-bundle-unit-thumb
+            src="{{ product.featured_image | image_url: width: 96 }}"
+            alt=""
+            width="44"
+            height="44"
+            loading="lazy"
+          ><span data-bundle-unit-index>#2</span></span><select
+                data-dm-bundle-unit="bxgy-tier-1:1"
+                data-option-index="0"
+                data-dm-product-id="{{ product.id }}"
+                data-variant-option-name="{{ product.options_with_values[0].name | escape }}"
+                aria-label="{{ product.options_with_values[0].name | escape }}"
+                
+              >{%- for value in product.options_with_values[0].values -%}<option value="{{ value | escape }}"{% if current_variant.options[0] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>
+{%- if product.options.size > 1 -%}<select
+                data-dm-bundle-unit="bxgy-tier-1:1"
+                data-option-index="1"
+                data-dm-product-id="{{ product.id }}"
+                data-variant-option-name="{{ product.options_with_values[1].name | escape }}"
+                aria-label="{{ product.options_with_values[1].name | escape }}"
+                
+              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if current_variant.options[1] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- endif -%}
+</div></dm-bundle-units>
+
+
+
+
+  
+
+</div>
+
+
+
+{%- assign pfb_tier = current_variant.price | times: 2 -%}{%- assign pfb_unit_cmp = current_variant.compare_at_price | default: current_variant.price -%}{%- if pfb_unit_cmp < current_variant.price -%}{%- assign pfb_unit_cmp = current_variant.price -%}{%- endif -%}{%- assign pfb_cmp = pfb_unit_cmp | times: 4 -%}{%- assign pfb_save = pfb_cmp | minus: pfb_tier -%}{%- assign pfb_pct = pfb_save | times: 100 | divided_by: pfb_cmp | floor -%}<div
+  data-atom-type="card"
+  
+  
+data-bundle-bar data-bar-id="bxgy-tier-2" data-active="false"
+
+  data-card-padding="4"
+  
+  data-card-radius="md"
+data-shadow="none"
+  data-flex-direction="column"
+  
+  data-flex-gap="3"
+  
+  data-flex-align="stretch"
+  
+  data-flex-justify="start"
+  
+  data-flex-columns="auto"
+  
+  data-flex-wrap="nowrap"
+  
+  data-custom-position data-custom-padding-top
+  style="--dm-custom-position: relative;--dm-custom-padding-top: var(--dm-space-6);"
+  
+  
+  
+>
+  <div
+  data-atom-type="group"
+  
+  data-flex-direction="row"
+  
+  data-flex-gap="0"
+  
+  data-flex-align="center"
+  
+  data-flex-justify="center"
+  
+  data-flex-columns="auto"
+  
+  data-flex-wrap="nowrap"
+  
+  data-custom-top data-custom-right data-custom-padding data-custom-z-index data-custom-position
+  style="--dm-custom-top: -8px;--dm-custom-right: 12px;--dm-custom-padding: 0 8px;--dm-custom-z-index: 2;--dm-custom-position: absolute;background-size: 8px 8px;background-image: linear-gradient(to bottom right, transparent 49.5%, color-mix(in oklch, var(--dm-primary) 70%, black) 50%), linear-gradient(to bottom left, transparent 49.5%, color-mix(in oklch, var(--dm-primary) 70%, black) 50%);background-repeat: no-repeat;background-position: 0 0, 100% 0;"
+  
+  
+  
+><span
+  data-atom-type="badge"
+  data-badge-variant="default"
+  data-badge-size="sm"
+  data-badge-radius="none"
+  data-custom-padding
+  style="--dm-badge-bg: var(--dm-primary);--dm-badge-color: var(--dm-primary-foreground);--dm-custom-padding: var(--dm-space-1_5) var(--dm-space-2);border-bottom-left-radius: var(--dm-radius-sm);border-bottom-right-radius: var(--dm-radius-sm);
+"
+  
+  
+  
+>
+  <span
+  data-atom-type="text"
+  
+  
+  
+  data-text-type="content"
+  data-text-tag="span"
+  data-text-align="left"
+  
+  data-text-size="content-xs"
+  
+  data-text-weight="bold"
+  
+  data-text-decoration="none"
+  
+  style="--dm-text-color: inherit;"
+  
+  
+  
+>Most popular</span>
+
+
+
+  
+
+</span>
+
+
+
+
+  
+
+</div>
+
+
+
+<div
+  data-atom-type="group"
+  
+  data-flex-direction="row"
+  
+  data-flex-gap="3"
+  
+  data-flex-align="center"
+  
+  data-flex-justify="start"
+  
+  data-flex-columns="auto"
+  
+  data-flex-wrap="nowrap"
+  
+  
+  
+  
+  
+  
+><span
+  data-atom-type="radio-indicator"
+  data-radio-size="md"
+  
+  
+  aria-hidden="true"
+  
+></span>
+
+
+
+<div
+  data-atom-type="group"
+  
+  data-flex-direction="column"
+  
+  data-flex-gap="0"
+  
+  data-flex-align="start"
+  
+  data-flex-justify="start"
+  
+  data-flex-columns="auto"
+  
+  data-flex-wrap="nowrap"
+  
+  data-custom-min-width
+  style="flex-grow: 1;--dm-custom-min-width: 0;"
+  
+  
+  
+><div
+  data-atom-type="group"
+  
+  data-flex-direction="row"
+  
+  data-flex-gap="2"
+  
+  data-flex-align="center"
+  
+  data-flex-justify="start"
+  
+  data-flex-columns="auto"
+  
+  data-flex-wrap="wrap"
+  
+  
+  
+  
+  
+  
+>
+  <p
+  data-atom-type="text"
+  
+  data-bind="bundle.title"
+  
+  data-text-type="content"
+  data-text-tag="p"
+  data-text-align="left"
+  
+  data-text-size="content-lg"
+  
+  data-text-weight="bold"
+  
+  data-text-decoration="none"
+  
+  style="--dm-text-color: inherit;"
+  
+  
+  
+>Buy 2, get 2 Free</p><span
+  data-atom-type="badge"
+  data-badge-variant="primary"
+  data-badge-size="sm"
+  data-badge-radius="xl"
+  
+  style="border-radius: 9999px;
+"
+  
+  
+  
+>
+  <span
+  data-atom-type="text"
+  
+  
+  
+  data-text-type="content"
+  data-text-tag="span"
+  data-text-align="left"
+  
+  data-text-size="content-xs"
+  
+  data-text-weight="bold"
+  
+  data-text-decoration="none"
+  
+  style="--dm-text-color: inherit;"
+  
+  
+  
+>SAVE <span class="dm-hl" data-bind="bundle.discount_percentage">{{ pfb_pct }}%</span></span>
+</span>
+
+
+</div>
+
+
+
+<p
+  data-atom-type="text"
+  
+  
+  
+  data-text-type="content"
+  data-text-tag="p"
+  data-text-align="left"
+  
+  data-text-size="content-sm"
+  
+  data-text-weight="normal"
+  
+  data-text-decoration="none"
+  
+  style="--dm-text-color: var(--dm-muted-foreground);"
+  
+  
+  
+>Save <span class="dm-hl" data-bind="bundle.discount_value">{{ pfb_save | money }}</span></p>
+
+
+
+  
+
+</div>
+
+
+
+<div
+  data-atom-type="group"
+  
+  data-flex-direction="column"
+  
+  data-flex-gap="0"
+  
+  data-flex-align="end"
+  
+  data-flex-justify="start"
+  
+  data-flex-columns="auto"
+  
+  data-flex-wrap="nowrap"
+  
+  
+  style="flex-shrink: 0;"
+  
+  
+  
+><p
+  data-atom-type="text"
+  
+  data-bind="bundle.tier_price"
+  
+  data-text-type="content"
+  data-text-tag="p"
+  data-text-align="right"
+  
+  data-text-size="content-xl"
+  
+  data-text-weight="bold"
+  
+  data-text-decoration="none"
+  
+  style="--dm-text-color: var(--dm-foreground);"
+  
+  
+  
+>{{ pfb_tier | money }}</p>
+
+
+<p
+  data-atom-type="text"
+  
+  data-bind="bundle.compare_at"
+  
+  data-text-type="content"
+  data-text-tag="p"
+  data-text-align="right"
+  
+  data-text-size="content-md"
+  
+  data-text-weight="normal"
+  
+  data-text-decoration="line-through"
+  
+  style="--dm-text-color: var(--dm-muted-foreground);"
+  
+  
+  
+>{{ pfb_cmp | money }}</p>
+
+
+
+  
+
+</div>
+
+
+
+
+  
+
+</div>
+
+
+
+<dm-bundle-units
+  data-flex-direction="column"
+  
+  data-flex-gap="2"
+  
+  data-bundle-units-size="md"
+  data-bar-id="bxgy-tier-2"
+  
+  
+  
+  
+  
+><div
+        data-bundle-unit
+        data-unit-index="0"
+        data-bar-id="bxgy-tier-2"
+        data-unit-role="buy"
+        data-flex-direction="row"
+        data-flex-align="center"
+        data-flex-gap="2"
+      ><span data-bundle-unit-media><img
+            data-bundle-unit-thumb
+            src="{{ product.featured_image | image_url: width: 96 }}"
+            alt=""
+            width="44"
+            height="44"
+            loading="lazy"
+          ><span data-bundle-unit-index>#1</span></span><select
+                data-dm-bundle-unit="bxgy-tier-2:0"
+                data-option-index="0"
+                data-dm-product-id="{{ product.id }}"
+                data-variant-option-name="{{ product.options_with_values[0].name | escape }}"
+                aria-label="{{ product.options_with_values[0].name | escape }}"
+                
+              >{%- for value in product.options_with_values[0].values -%}<option value="{{ value | escape }}"{% if current_variant.options[0] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>
+{%- if product.options.size > 1 -%}<span data-unit-opt data-mode="text-button">
+                  <select
+                data-dm-bundle-unit="bxgy-tier-2:0"
+                data-option-index="1"
+                data-dm-product-id="{{ product.id }}"
+                data-variant-option-name="{{ product.options_with_values[1].name | escape }}"
+                aria-label="{{ product.options_with_values[1].name | escape }}"
+                data-unit-proxy
+              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if current_variant.options[1] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- for value in product.options_with_values[1].values -%}<button type="button" data-unit-value="{{ value | escape }}"{% if current_variant.options[1] == value %} data-selected{% endif %}>{{ value | escape }}</button>{%- endfor -%}</span>{%- endif -%}</div><div
+        data-bundle-unit
+        data-unit-index="1"
+        data-bar-id="bxgy-tier-2"
+        data-unit-role="buy"
+        data-flex-direction="row"
+        data-flex-align="center"
+        data-flex-gap="2"
+      ><span data-bundle-unit-media><img
+            data-bundle-unit-thumb
+            src="{{ product.featured_image | image_url: width: 96 }}"
+            alt=""
+            width="44"
+            height="44"
+            loading="lazy"
+          ><span data-bundle-unit-index>#2</span></span><select
+                data-dm-bundle-unit="bxgy-tier-2:1"
+                data-option-index="0"
+                data-dm-product-id="{{ product.id }}"
+                data-variant-option-name="{{ product.options_with_values[0].name | escape }}"
+                aria-label="{{ product.options_with_values[0].name | escape }}"
+                
+              >{%- for value in product.options_with_values[0].values -%}<option value="{{ value | escape }}"{% if current_variant.options[0] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>
+{%- if product.options.size > 1 -%}<span data-unit-opt data-mode="text-button">
+                  <select
+                data-dm-bundle-unit="bxgy-tier-2:1"
+                data-option-index="1"
+                data-dm-product-id="{{ product.id }}"
+                data-variant-option-name="{{ product.options_with_values[1].name | escape }}"
+                aria-label="{{ product.options_with_values[1].name | escape }}"
+                data-unit-proxy
+              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if current_variant.options[1] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- for value in product.options_with_values[1].values -%}<button type="button" data-unit-value="{{ value | escape }}"{% if current_variant.options[1] == value %} data-selected{% endif %}>{{ value | escape }}</button>{%- endfor -%}</span>{%- endif -%}</div><div
+        data-bundle-unit
+        data-unit-index="2"
+        data-bar-id="bxgy-tier-2"
+        data-unit-role="get"
+        data-flex-direction="row"
+        data-flex-align="center"
+        data-flex-gap="2"
+      ><span data-bundle-unit-media><img
+            data-bundle-unit-thumb
+            src="{{ product.featured_image | image_url: width: 96 }}"
+            alt=""
+            width="44"
+            height="44"
+            loading="lazy"
+          ><span data-bundle-unit-index>#3</span></span><select
+                data-dm-bundle-unit="bxgy-tier-2:2"
+                data-option-index="0"
+                data-dm-product-id="{{ product.id }}"
+                data-variant-option-name="{{ product.options_with_values[0].name | escape }}"
+                aria-label="{{ product.options_with_values[0].name | escape }}"
+                
+              >{%- for value in product.options_with_values[0].values -%}<option value="{{ value | escape }}"{% if current_variant.options[0] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>
+{%- if product.options.size > 1 -%}<span data-unit-opt data-mode="text-button">
+                  <select
+                data-dm-bundle-unit="bxgy-tier-2:2"
+                data-option-index="1"
+                data-dm-product-id="{{ product.id }}"
+                data-variant-option-name="{{ product.options_with_values[1].name | escape }}"
+                aria-label="{{ product.options_with_values[1].name | escape }}"
+                data-unit-proxy
+              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if current_variant.options[1] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- for value in product.options_with_values[1].values -%}<button type="button" data-unit-value="{{ value | escape }}"{% if current_variant.options[1] == value %} data-selected{% endif %}>{{ value | escape }}</button>{%- endfor -%}</span>{%- endif -%}</div><div
+        data-bundle-unit
+        data-unit-index="3"
+        data-bar-id="bxgy-tier-2"
+        data-unit-role="get"
+        data-flex-direction="row"
+        data-flex-align="center"
+        data-flex-gap="2"
+      ><span data-bundle-unit-media><img
+            data-bundle-unit-thumb
+            src="{{ product.featured_image | image_url: width: 96 }}"
+            alt=""
+            width="44"
+            height="44"
+            loading="lazy"
+          ><span data-bundle-unit-index>#4</span></span><select
+                data-dm-bundle-unit="bxgy-tier-2:3"
+                data-option-index="0"
+                data-dm-product-id="{{ product.id }}"
+                data-variant-option-name="{{ product.options_with_values[0].name | escape }}"
+                aria-label="{{ product.options_with_values[0].name | escape }}"
+                
+              >{%- for value in product.options_with_values[0].values -%}<option value="{{ value | escape }}"{% if current_variant.options[0] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>
+{%- if product.options.size > 1 -%}<span data-unit-opt data-mode="text-button">
+                  <select
+                data-dm-bundle-unit="bxgy-tier-2:3"
+                data-option-index="1"
+                data-dm-product-id="{{ product.id }}"
+                data-variant-option-name="{{ product.options_with_values[1].name | escape }}"
+                aria-label="{{ product.options_with_values[1].name | escape }}"
+                data-unit-proxy
+              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if current_variant.options[1] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- for value in product.options_with_values[1].values -%}<button type="button" data-unit-value="{{ value | escape }}"{% if current_variant.options[1] == value %} data-selected{% endif %}>{{ value | escape }}</button>{%- endfor -%}</span>{%- endif -%}</div></dm-bundle-units>
+
+
+
+<div
+  data-atom-type="group"
+  
+  data-flex-direction="column"
+  
+  data-flex-gap="0"
+  
+  data-flex-align="stretch"
+  
+  data-flex-justify="start"
+  
+  data-flex-columns="auto"
+  
+  data-flex-wrap="nowrap"
+  
+  data-dm-tag-bundle-booster
+  style="background: color-mix(in oklch, var(--dm-primary) 15%, var(--dm-card));"
+  
+  
+  
+><div
+  data-atom-type="group"
+  
+  data-flex-direction="row"
+  
+  data-flex-gap="2"
+  
+  data-flex-align="center"
+  
+  data-flex-justify="start"
+  
+  data-flex-columns="auto"
+  
+  data-flex-wrap="nowrap"
+  
+  data-dm-tag-bundle-booster-row
+  style="border-top: 1px solid color-mix(in oklch, var(--dm-primary) 25%, transparent);"
+  
+  
+  
+><span
+  data-atom-type="icon"
+  data-icon-size="sm"
+  data-icon-size-sm="xl"
+  
+  style="display: inline-flex; line-height: 0; --dm-icon-color: var(--dm-primary);"
+  
+  
+  
+><img src="https://cdn.dropmagic.ai/medias/4d77cf60-af2b-4fa7-9145-adfb5d3ccc9f.webp" alt="" loading="lazy"></span>
+
+
+
+<p
+  data-atom-type="text"
+  
+  
+  
+  data-text-type="content"
+  data-text-tag="p"
+  data-text-align="left"
+  
+  data-text-size="content-sm"
+  data-text-size-sm="content-xs"
+  data-text-weight="bold"
+  
+  data-text-decoration="none"
+  data-custom-min-width
+  style="--dm-text-color: hsla(0, 0%, 12.94%, 1);flex-grow: 1;--dm-custom-min-width: 0;"
+  
+  
+  
+>Stretching Strap With Your Order</p>
+
+
+<p
+  data-atom-type="text"
+  
+  
+  
+  data-text-type="content"
+  data-text-tag="p"
+  data-text-align="right"
+  
+  data-text-size="content-sm"
+  
+  data-text-weight="bold"
+  
+  data-text-decoration="none"
+  
+  style="--dm-text-color: var(--dm-primary);flex-shrink: 0;"
+  
+  
+  
+>FREE</p>
+
+
+
+  
+
+</div>
+
+
+
+<div
+  data-atom-type="group"
+  
+  data-flex-direction="row"
+  
+  data-flex-gap="2"
+  
+  data-flex-align="center"
+  
+  data-flex-justify="start"
+  
+  data-flex-columns="auto"
+  
+  data-flex-wrap="nowrap"
+  
+  data-dm-tag-bundle-booster-row
+  style="border-top: 1px solid color-mix(in oklch, var(--dm-primary) 25%, transparent);"
+  
+  
+  
+><span
+  data-atom-type="icon"
+  data-icon-size="sm"
+  data-icon-size-sm="xl"
+  
+  style="display: inline-flex; line-height: 0; --dm-icon-color: var(--dm-primary);"
+  
+  
+  
+><img src="https://cdn.dropmagic.ai/medias/c7691528-5f72-45cd-b661-70bbc425494d.webp" alt="" loading="lazy"></span>
+
+
+
+<p
+  data-atom-type="text"
+  
+  
+  
+  data-text-type="content"
+  data-text-tag="p"
+  data-text-align="left"
+  
+  data-text-size="content-sm"
+  data-text-size-sm="content-xs"
+  data-text-weight="bold"
+  
+  data-text-decoration="none"
+  data-custom-min-width
+  style="--dm-text-color: hsla(0, 0%, 12.94%, 1);flex-grow: 1;--dm-custom-min-width: 0;"
+  
+  
+  
+>Fit & Comfort Guide</p>
+
+
+<p
+  data-atom-type="text"
+  
+  
+  
+  data-text-type="content"
+  data-text-tag="p"
+  data-text-align="right"
+  
+  data-text-size="content-sm"
+  
+  data-text-weight="bold"
+  
+  data-text-decoration="none"
+  
+  style="--dm-text-color: var(--dm-primary);flex-shrink: 0;"
+  
+  
+  
+>FREE</p>
+
+
+
+  
+
+</div>
+
+
+
+
+  
+
+</div>
+
+
+
+
+  
+
+</div>
+
+
+
+
+  
+
+</dm-bundle>
+</div>{%- endif -%}{%- for block in section.blocks -%}{%- if block.type == '@app' -%}{% render block %}{%- endif -%}{%- endfor -%}</div><product-form
             id="ProductForm-{{ section.id }}-offer"
             class="product-form main-product-form pfl-form"
             data-section="{{ section.id }}-offer"
@@ -561,6 +1593,57 @@
 <script>
 (function(){if(window.__pflLoaded)return;window.__pflLoaded=!0;var DEADLINE_KEY="pfl-deadline-";function getDeadline(minutes){var key=DEADLINE_KEY+minutes,now=Date.now(),stored=0;try{stored=parseInt(window.sessionStorage.getItem(key)||"0",10)}catch(e){}if(!stored||stored<=now){stored=now+minutes*6e4;try{window.sessionStorage.setItem(key,String(stored))}catch(e){}}return stored}function pad(n){return n<10?"0"+n:String(n)}function tick(){for(var timers=document.querySelectorAll("[data-pfl-timer]"),i=0;i<timers.length;i++){var el=timers[i],minutes=parseInt(el.getAttribute("data-minutes")||"20",10)||20,left=Math.max(0,Math.round((getDeadline(minutes)-Date.now())/1e3));el.textContent=pad(Math.floor(left/60))+":"+pad(left%60)}}setInterval(tick,1e3);function initOffer(root){if(!root||root.getAttribute("data-pfl-ready"))return;root.setAttribute("data-pfl-ready","1");var variants=[],variantsEl=root.querySelector("[data-pfl-variants]");if(variantsEl)try{variants=JSON.parse(variantsEl.textContent)}catch(e){variants=[]}var tiers=Array.prototype.slice.call(root.querySelectorAll("[data-pfl-tier]")),priceNow=root.querySelector("[data-pfl-price-now]"),priceWas=root.querySelector("[data-pfl-price-was]"),priceSave=root.querySelector("[data-pfl-price-save]"),errorEl=root.querySelector("[data-pfl-error]"),atc=root.querySelector("[data-pfl-atc]");function showError(msg){errorEl&&(errorEl.textContent=msg,errorEl.hidden=!1)}function hideError(){errorEl&&(errorEl.hidden=!0)}function selectedTier(){for(var i=0;i<tiers.length;i++)if(tiers[i].classList.contains("is-selected"))return tiers[i];return null}function activeRows(){var scope=selectedTier()||root;return Array.prototype.slice.call(scope.querySelectorAll("[data-pfl-row]"))}function variantFor(row){var selects=Array.prototype.slice.call(row.querySelectorAll("select[data-option-index]"));if(!selects.length){for(var i=0;i<variants.length;i++)if(variants[i].available)return variants[i];return variants[0]}for(var j=0;j<variants.length;j++){var v=variants[j],match=selects.every(function(s){return v.options[parseInt(s.getAttribute("data-option-index"),10)]===s.value});if(match)return v}return null}function validate(){var ok=!0;return activeRows().forEach(function(row){var v=variantFor(row),bad=!v||!v.available;row.classList.toggle("is-unavailable",bad),bad&&(ok=!1)}),ok}function selectTier(tier){if(tiers.forEach(function(t){var on=t===tier;t.classList.toggle("is-selected",on);var btn=t.querySelector("[data-pfl-tier-btn]");btn&&btn.setAttribute("aria-checked",on?"true":"false");var body=t.querySelector("[data-pfl-tier-body]");body&&(body.hidden=!on)}),priceNow&&tier.getAttribute("data-price")&&(priceNow.textContent=tier.getAttribute("data-price")),priceWas){var cmp=tier.getAttribute("data-compare")||"";priceWas.textContent=cmp,priceWas.hidden=!cmp}if(priceSave){var save=tier.getAttribute("data-save")||"";priceSave.textContent=save,priceSave.hidden=!save}hideError(),validate()}tiers.forEach(function(t){var btn=t.querySelector("[data-pfl-tier-btn]");btn&&btn.addEventListener("click",function(){selectTier(t)})}),root._pflSelectTier=selectTier,root.addEventListener("change",function(e){e.target&&e.target.matches&&e.target.matches("select[data-option-index]")&&(hideError(),validate())}),validate(),atc&&atc.addEventListener("click",function(){hideError();for(var rows=activeRows(),counts={},order=[],i=0;i<rows.length;i++){var v=variantFor(rows[i]);if(!v||!v.available){rows[i].classList.add("is-unavailable"),showError(root.getAttribute("data-msg-unavailable")||"One of the selected options is sold out. Please choose another.");return}counts[v.id]||(counts[v.id]=0,order.push(v.id)),counts[v.id]+=1}if(order.length){var items=order.map(function(id){return{id:id,quantity:counts[id]}}),cart=document.querySelector("cart-drawer"),body={items:items};cart&&typeof cart.getSectionsToRender=="function"&&(body.sections=cart.getSectionsToRender().map(function(s){return s.id}),body.sections_url=window.location.pathname);var rootUrl=window.Shopify&&window.Shopify.routes&&window.Shopify.routes.root||"/";atc.classList.add("is-loading"),atc.disabled=!0,fetch(rootUrl+"cart/add.js",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json","X-Requested-With":"XMLHttpRequest"},body:JSON.stringify(body)}).then(function(res){return res.json().then(function(data){return{ok:res.ok,data:data}})}).then(function(r){var data=r.data||{};if(!r.ok||data.status){showError(data.description||data.message||root.getAttribute("data-msg-error")||"Could not add to cart. Please try again.");return}try{typeof publish=="function"&&typeof PUB_SUB_EVENTS!="undefined"&&publish(PUB_SUB_EVENTS.cartUpdate,{source:"pfl-offer",cartData:data})}catch(e){}cart&&data.sections&&typeof cart.renderContents=="function"?(cart.classList.remove("is-empty"),cart.renderContents(data)):window.location.href=window.routes&&window.routes.cart_url||rootUrl+"cart"}).catch(function(){showError(root.getAttribute("data-msg-error")||"Could not add to cart. Please try again.")}).finally(function(){atc.classList.remove("is-loading"),atc.disabled=!1})}});var gallery=root.querySelector("[data-pfl-gallery]");if(gallery){var slides=Array.prototype.slice.call(gallery.querySelectorAll("[data-pfl-slide]")),thumbs=Array.prototype.slice.call(gallery.querySelectorAll("[data-pfl-thumb]")),current=0,show=function(index){slides.length&&(current=(index+slides.length)%slides.length,slides.forEach(function(s,j){var on=j===current;if(!on){var vid=s.querySelector("video");vid&&vid.pause()}s.hidden=!on}),thumbs.forEach(function(t,j){t.classList.toggle("is-active",j===current),t.setAttribute("aria-current",j===current?"true":"false")}))};thumbs.forEach(function(t,j){t.addEventListener("click",function(){show(j)})});var prev=gallery.querySelector("[data-pfl-prev]"),next=gallery.querySelector("[data-pfl-next]");prev&&prev.addEventListener("click",function(){show(current-1)}),next&&next.addEventListener("click",function(){show(current+1)});var main=gallery.querySelector("[data-pfl-main]"),startX=null;main&&(main.addEventListener("touchstart",function(e){startX=e.touches[0].clientX},{passive:!0}),main.addEventListener("touchend",function(e){if(startX!==null){var dx=e.changedTouches[0].clientX-startX;Math.abs(dx)>40&&show(current+(dx<0?1:-1)),startX=null}}))}}function initComments(root){if(!root||root.getAttribute("data-pfl-ready"))return;root.setAttribute("data-pfl-ready","1");var threads=Array.prototype.slice.call(root.querySelectorAll("[data-pfl-thread]")),btn=root.querySelector("[data-pfl-more]");if(!btn)return;var expanded=!1;function limit(){var n=window.innerWidth<760?root.getAttribute("data-initial-mobile"):root.getAttribute("data-initial");return parseInt(n||"5",10)||5}function apply(){var n=limit();threads.forEach(function(t,i){t.hidden=!expanded&&i>=n}),btn.parentNode.hidden=threads.length<=n,btn.textContent=expanded?root.getAttribute("data-less-label"):root.getAttribute("data-more-label")}btn.addEventListener("click",function(){expanded=!expanded,apply()}),window.addEventListener("resize",apply),root._pflExpand=function(){expanded=!0,apply()},apply()}document.addEventListener("click",function(e){var target=e.target;if(!(!target||!target.closest)){var opener=target.closest("[data-pfl-open]");if(opener){var dlg=document.getElementById(opener.getAttribute("data-pfl-open"));dlg&&typeof dlg.showModal=="function"&&!dlg.open&&dlg.showModal();return}var card=target.closest("[data-pfl-video-src]");if(card){var vd=document.getElementById(card.getAttribute("data-pfl-dialog")),player=vd&&vd.querySelector("video");if(player&&typeof vd.showModal=="function"){player.src=card.getAttribute("data-pfl-video-src");var poster=card.getAttribute("data-pfl-video-poster");poster?player.setAttribute("poster",poster):player.removeAttribute("poster"),vd.open||vd.showModal();var p=player.play();p&&p.catch&&p.catch(function(){})}return}var closer=target.closest("[data-pfl-close]");if(closer){var cd=closer.closest("dialog");cd&&cd.close();return}if(target.matches&&target.matches("dialog.pfl-dialog")){target.close();return}var nav=target.closest("[data-pfl-scroll]");if(nav){var track=document.getElementById(nav.getAttribute("data-pfl-target"));if(track){var cardEl=track.firstElementChild,step=cardEl?cardEl.getBoundingClientRect().width+10:146;track.scrollBy({left:parseInt(nav.getAttribute("data-pfl-scroll"),10)*step,behavior:"smooth"})}}}}),document.addEventListener("close",function(e){var d=e.target;if(d&&d.matches&&d.matches("dialog.pfl-dialog")){var v=d.querySelector("video");v&&(v.pause(),v.removeAttribute("src"),v.load())}},!0);function initAll(scope){var s=scope||document;Array.prototype.forEach.call(s.querySelectorAll("[data-pfl-offer]"),initOffer),Array.prototype.forEach.call(s.querySelectorAll("[data-pfl-comments]"),initComments),tick()}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",function(){initAll()}):initAll(),document.addEventListener("shopify:section:load",function(e){initAll(e.target)}),document.addEventListener("shopify:block:select",function(e){var block=e.target;if(!(!block||!block.closest)){var tier=block.closest("[data-pfl-tier]"),offer=block.closest("[data-pfl-offer]");tier&&offer&&offer._pflSelectTier&&offer._pflSelectTier(tier);var thread=block.closest("[data-pfl-thread]"),comments=block.closest("[data-pfl-comments]");thread&&thread.hidden&&comments&&comments._pflExpand&&comments._pflExpand()}})})();
 (function(){if(window.__pflStickyLoaded)return;window.__pflStickyLoaded=!0;function initSticky(bar){if(!bar||bar.getAttribute("data-pfl-ready"))return;bar.setAttribute("data-pfl-ready","1");var action=bar.getAttribute("data-action")||"scroll",display=bar.getAttribute("data-display")||"always",target=document.getElementById(bar.getAttribute("data-target")||"offer"),hideOnTarget=bar.getAttribute("data-hide-on-target")==="true",btn=bar.querySelector("[data-pfl-sticky-btn]"),scrolled=display!=="after_scroll"||window.scrollY>400,targetVisible=!1;function update(){bar.classList.toggle("is-hidden",!scrolled||hideOnTarget&&targetVisible)}function pad(){document.body.style.paddingBottom=bar.offsetHeight+"px"}pad(),window.addEventListener("resize",pad),display==="after_scroll"&&window.addEventListener("scroll",function(){var s=window.scrollY>400;s!==scrolled&&(scrolled=s,update())},{passive:!0}),hideOnTarget&&target&&"IntersectionObserver"in window&&new IntersectionObserver(function(entries){targetVisible=entries[0].isIntersecting,update()},{threshold:.15}).observe(target),update(),btn&&btn.addEventListener("click",function(){if(action==="add"){var main=document.querySelector("[data-pfl-main-atc]");if(main&&!main.disabled){main.click();return}}target&&target.scrollIntoView({behavior:"smooth",block:"start"})})}document.addEventListener("shopify:section:unload",function(e){e.target&&e.target.querySelector&&e.target.querySelector("[data-pfl-sticky]")&&(document.body.style.paddingBottom="")});function initAll(scope){Array.prototype.forEach.call((scope||document).querySelectorAll("[data-pfl-sticky]"),initSticky)}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",function(){initAll()}):initAll(),document.addEventListener("shopify:section:load",function(e){initAll(e.target)})})();
+/* DropMagic-style bundle picker: card selection and text-button option toggles. */
+(function () {
+  if (window.__pflBundleLoaded) return;
+  window.__pflBundleLoaded = true;
+
+  function selectBar(bundle, card) {
+    bundle.querySelectorAll('[data-bundle-bar]').forEach(function (c) {
+      c.setAttribute('data-active', c === card ? 'true' : 'false');
+    });
+  }
+
+  function init(bundle) {
+    if (bundle.__pflReady) return;
+    bundle.__pflReady = true;
+    var cards = bundle.querySelectorAll('[data-bundle-bar]');
+    if (!cards.length) return;
+    var pre = null;
+    try {
+      var raw = JSON.parse(bundle.getAttribute('data-bars') || '[]');
+      (Array.isArray(raw) ? raw : raw.items || []).some(function (b) { return b.isPreselected && (pre = b.id); });
+    } catch (e) {}
+    var chosen = pre && bundle.querySelector('[data-bundle-bar][data-bar-id="' + pre + '"]');
+    selectBar(bundle, chosen || cards[0]);
+
+    bundle.addEventListener('click', function (e) {
+      var btn = e.target.closest('button[data-unit-value]');
+      if (btn && bundle.contains(btn)) {
+        var wrap = btn.closest('[data-unit-opt]');
+        var sel = wrap && wrap.querySelector('select');
+        if (sel && sel.value !== btn.getAttribute('data-unit-value')) {
+          sel.value = btn.getAttribute('data-unit-value');
+          sel.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      }
+      var card = e.target.closest('[data-bundle-bar]');
+      if (card && bundle.contains(card)) selectBar(bundle, card);
+    });
+
+    bundle.addEventListener('change', function (e) {
+      var wrap = e.target.closest && e.target.closest('[data-unit-opt]');
+      if (!wrap) return;
+      wrap.querySelectorAll('[data-unit-value]').forEach(function (b) {
+        if (b.getAttribute('data-unit-value') === e.target.value) b.setAttribute('data-selected', '');
+        else b.removeAttribute('data-selected');
+      });
+    });
+  }
+
+  function run() { document.querySelectorAll('.pfl-dmb dm-bundle').forEach(init); }
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', run) : run();
+})();
 /* Add to cart over AJAX and open the store's cart drawer instead of going to /cart. */
 (function () {
   if (window.__pflCartLoaded) return;
@@ -662,6 +1745,34 @@
     wrap.hidden = false;
   }
 
+  // Bundle picker: one line per unit, tagged so the store's "Quantity Breaks" discount applies.
+  function bundleItems(form) {
+    var offer = form.closest('.pfl-offer');
+    var card = offer && offer.querySelector('.pfl-dmb [data-bundle-bar][data-active="true"]');
+    if (!card) return null;
+    var variants = [];
+    try { variants = JSON.parse(offer.querySelector('[data-pfl-variants]').textContent); } catch (e) {}
+    var barId = card.getAttribute('data-bar-id');
+    var lines = [];
+    var units = card.querySelectorAll('[data-bundle-unit]');
+    for (var i = 0; i < units.length; i++) {
+      var picks = {};
+      units[i].querySelectorAll('select[data-option-index]').forEach(function (s) { picks[s.getAttribute('data-option-index')] = s.value; });
+      var v = variants.filter(function (x) {
+        return Object.keys(picks).every(function (k) { return x.options[+k] === picks[k]; });
+      })[0];
+      if (!v || !v.available) return { error: 'One of the selected options is sold out. Please choose another.' };
+      lines.push({ id: v.id, quantity: 1, properties: { _bundle_type: units[i].getAttribute('data-unit-role') || 'quantity-breaks', _bar_id: barId } });
+    }
+    lines.sort(function (a, b) { return (a.properties._bundle_type === 'get' ? 0 : 1) - (b.properties._bundle_type === 'get' ? 0 : 1); });
+    var merged = [];
+    lines.forEach(function (l) {
+      var same = merged.filter(function (m) { return m.id === l.id && JSON.stringify(m.properties) === JSON.stringify(l.properties); })[0];
+      same ? (same.quantity += 1) : merged.push(l);
+    });
+    return { items: merged };
+  }
+
   document.addEventListener('submit', function (e) {
     var form = e.target;
     if (!form.closest || !form.closest('.pfl-offer') || form.getAttribute('data-type') !== 'add-to-cart-form') return;
@@ -670,19 +1781,29 @@
 
     var btn = form.querySelector('[type="submit"]');
     if (!btn || btn.getAttribute('aria-disabled') === 'true') return;
+    var bundle = bundleItems(form);
+    if (bundle && bundle.error) { showError(form, bundle.error); return; }
     var wrap = form.closest('product-form') && form.closest('product-form').querySelector('.product-form__error-message-wrapper');
     if (wrap) wrap.hidden = true;
     setLoading(btn, true);
 
     var drawer = themeDrawer();
-    var body = new FormData(form);
-    if (drawer && typeof drawer.getSectionsToRender === 'function') {
-      body.append('sections', drawer.getSectionsToRender().map(function (s) { return s.id; }));
-      body.append('sections_url', window.location.pathname);
-      if (typeof drawer.setActiveElement === 'function') drawer.setActiveElement(document.activeElement);
+    var sections = drawer && typeof drawer.getSectionsToRender === 'function'
+      ? drawer.getSectionsToRender().map(function (s) { return s.id; }).join(',') : null;
+    if (sections && typeof drawer.setActiveElement === 'function') drawer.setActiveElement(document.activeElement);
+    var headers = { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' };
+    var body;
+    if (bundle) {
+      body = { items: bundle.items };
+      if (sections) { body.sections = sections; body.sections_url = window.location.pathname; }
+      body = JSON.stringify(body);
+      headers['Content-Type'] = 'application/json';
+    } else {
+      body = new FormData(form);
+      if (sections) { body.append('sections', sections); body.append('sections_url', window.location.pathname); }
     }
 
-    fetch(root + 'cart/add.js', { method: 'POST', headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' }, body: body })
+    fetch(root + 'cart/add.js', { method: 'POST', headers: headers, body: body })
       .then(function (r) { return r.json(); })
       .then(function (data) {
         if (data.status) { showError(form, data.description || data.message || 'Could not add to cart.'); return; }
@@ -728,6 +1849,13 @@
       "id": "product",
       "label": "Product",
       "info": "Supplies the gallery, variants, price and cart button. Defaults to the page's product on product templates."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bundle",
+      "label": "Show bundle picker",
+      "default": true,
+      "info": "DropMagic-style Buy 1 get 1 / Buy 2 get 2 picker. Needs the DropMagic theme files and its Quantity Breaks discount."
     }
   ],
   "blocks": [

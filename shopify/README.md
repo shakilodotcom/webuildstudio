@@ -18,9 +18,13 @@ Add to Cart posts to `/cart/add.js` and opens the cart drawer instead of going t
 
 Gallery and thumbnails (product media), variants, price, cart form and the sticky-bar image. On a product template with no product picked, it uses that page's product. Everything else (headlines, the 10 reasons, comments, footer, videos, review images) is static HTML in the file.
 
-## Size / side picker
+## Bundle picker
 
-The section has no built-in variant picker. Add to Cart sends the first available variant. To let shoppers choose, add a bundle or variant-picker app block (e.g. Kaching Bundles) to the section in the theme editor; it renders above the Add to Cart button.
+With **Show bundle picker** on (the default), the section shows the same bundle as the store's DropMagic product page: *Buy 1, get 1 Free* and *Buy 2, get 2 Free*, a size and side picker per unit, and the free-gift rows. Prices are computed from the picked product (tier price = paid units × price, compare-at = all units × compare-at price).
+
+Add to Cart sends one line per unit tagged `_bundle_type` (`buy`/`get`) and `_bar_id`, exactly like DropMagic, so the store's **Quantity Breaks** automatic discount makes the free units $0.
+
+It uses the DropMagic theme files `dm-theme.css` and `dm-theme-vars.css` for styling. Turn the setting off on stores without DropMagic; Add to Cart then sends the selected variant only, and an app block (for example Kaching Bundles) can be added instead.
 
 ## Media
 
