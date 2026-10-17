@@ -12,10 +12,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
 <style>
-/* Hide the theme header/footer like the original, but keep cart drawers usable. */
-.shopify-section-group-footer-group{display:none !important}
-.shopify-section-group-header-group{visibility:hidden !important;height:0 !important;min-height:0 !important;padding:0 !important;margin:0 !important;border:0 !important;position:relative;z-index:1000}
-.shopify-section-group-header-group :is(cart-drawer,cart-notification,[id*="CartDrawer" i],[id*="cart-drawer" i],[class*="cart-drawer" i],[class*="CartDrawer"],[class*="drawer--cart" i],[class*="mini-cart" i],[id*="mini-cart" i]){visibility:visible}
+/* Hide the theme header/footer like the original. Cart drawers that live in those
+   section groups (theme drawers, DropMagic, etc.) keep working: only everything around them is hidden. */
+:is(.shopify-section-group-header-group,.shopify-section-group-footer-group):not(:has(:is(cart-drawer,cart-notification,#CartDrawer,#cart-drawer,[data-sheet-open-on="cart"]))){display:none !important}
+:is(.shopify-section-group-header-group,.shopify-section-group-footer-group):has(:is(cart-drawer,cart-notification,#CartDrawer,#cart-drawer,[data-sheet-open-on="cart"])) :not(:is(cart-drawer,cart-notification,#CartDrawer,#cart-drawer,[data-sheet-open-on="cart"]),:is(cart-drawer,cart-notification,#CartDrawer,#cart-drawer,[data-sheet-open-on="cart"]) *,:has(:is(cart-drawer,cart-notification,#CartDrawer,#cart-drawer,[data-sheet-open-on="cart"]))){display:none !important}
 
 /* Base typography the listicle inherits, scoped to this section. */
 .pfl-page{background:#fff;color:rgba(18,18,18,.9);font-family:Poppins,sans-serif;font-size:15px;line-height:1.8;letter-spacing:.06em;overflow-x:clip}
@@ -568,6 +568,36 @@
 
   var root = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
 
+  // DropMagic's cart slider wraps window.fetch and opens itself after any /cart/add request.
+  function dropMagicDrawer() {
+    return document.querySelector('dm-sheet[data-sheet-open-on="cart"]');
+  }
+
+  // Horizon (and other new Shopify themes): <theme-drawer id="cart-drawer"> in its own section.
+  function horizonDrawer() {
+    var el = document.querySelector('theme-drawer#cart-drawer');
+    return el && typeof el.open === 'function' ? el : null;
+  }
+
+  function openHorizon(drawer) {
+    var section = drawer.closest('[id^="shopify-section-"]');
+    var id = section && section.id.replace(/^shopify-section-/, '');
+    var refresh = id
+      ? fetch(window.location.pathname + '?sections=' + encodeURIComponent(id), { headers: { Accept: 'application/json' } })
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            if (!data || typeof data[id] !== 'string') return;
+            var next = new DOMParser().parseFromString(data[id], 'text/html').getElementById(section.id);
+            if (next) section.innerHTML = next.innerHTML;
+          })
+          .catch(function () {})
+      : Promise.resolve();
+    return refresh.then(function () {
+      var live = document.querySelector('theme-drawer#cart-drawer');
+      if (live && typeof live.open === 'function') live.open();
+    });
+  }
+
   function themeDrawer() {
     var el = document.querySelector('cart-drawer, cart-notification');
     return el && typeof el.renderContents === 'function' ? el : null;
@@ -660,11 +690,22 @@
           .then(function (r) { return r.json(); })
           .then(function (cart) {
             announce(cart);
+            var dm = dropMagicDrawer();
+            if (dm) {
+              // DropMagic opens on its own; make sure it did.
+              setTimeout(function () {
+                if (dm.getAttribute('data-state') === 'open') return;
+                typeof dm.open === 'function' ? dm.open() : dm.setAttribute('data-state', 'open');
+              }, 1500);
+              return;
+            }
             if (drawer && data.sections) {
               drawer.classList.remove('is-empty');
               drawer.renderContents(data);
               return;
             }
+            var horizon = horizonDrawer();
+            if (horizon) return openHorizon(horizon);
             if (openAppDrawer() || clickCartIcon()) return;
             // Themes that open their drawer from an event.
             fire(['cart:open', 'cart-drawer:open', 'theme:cart:open', 'cart:toggle'], { cart: cart, source: 'pf-listicle' });

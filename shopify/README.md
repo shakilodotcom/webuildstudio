@@ -8,11 +8,11 @@
 2. **Customize** → open the page template you want → **Add section → PF listicle page**.
 3. In the section settings, pick the **Product**, then Save.
 
-The section hides the theme's header and footer on any page it is on, like the original. Cart drawers that live inside the header stay usable.
+The section hides the theme's header and footer on any page it is on, like the original. Cart drawers that live in the header or footer section groups (theme drawers, DropMagic's cart sheet) stay usable: only everything around them is hidden.
 
 ## Add to cart
 
-Add to Cart posts to `/cart/add.js` and opens the cart drawer instead of going to `/cart`. It tries, in order: a Dawn-style `<cart-drawer>`, cart app APIs (Rebuy Smart Cart, UpCart, Slide Cart and similar), the theme's cart icon, then common `cart:open` events.
+Add to Cart posts to `/cart/add.js` and opens the cart drawer instead of going to `/cart`. It tries, in order: DropMagic's cart sheet (opens itself), a Dawn-style `<cart-drawer>`, Horizon's `<theme-drawer id="cart-drawer">`, cart app APIs (Rebuy Smart Cart, UpCart, Slide Cart and similar), the theme's cart icon, then common `cart:open` events.
 
 ## What comes from the picked product
 
