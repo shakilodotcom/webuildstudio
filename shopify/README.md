@@ -1,27 +1,23 @@
-# PF listicle page for Shopify
+# PF listicle section for Shopify
 
-Two files, no theme dependencies:
-
-- `sections/pf-listicle.liquid` holds the whole page: markup, CSS and JavaScript inline.
-- `templates/product.pf-listicle.json` is a product template that shows only that section.
+`sections/pf-listicle.liquid` is the whole page as one section: markup, CSS and JavaScript inline, no theme dependencies.
 
 ## Install
 
-1. Online Store → Themes → ⋯ → **Edit code**.
-2. **Sections → Add a new section**, name it `pf-listicle`, and replace its contents with `sections/pf-listicle.liquid`.
-3. **Templates → Add a new template**, choose **product**, type JSON, name it `pf-listicle`, and replace its contents with `templates/product.pf-listicle.json`.
-4. Open the product → **Theme template** → `pf-listicle` → Save.
+1. Online Store → Themes → ⋯ → **Edit code** → **Sections → Add a new section**, name it `pf-listicle`, and replace its contents with the file.
+2. **Customize** → open the page template you want → **Add section → PF listicle page**.
+3. In the section settings, pick the **Product**, then Save.
 
-The page hides the theme's header and footer, like the original.
+The section hides the theme's header and footer on any page it is on, like the original.
 
-## What comes from the product
+## What comes from the picked product
 
-Gallery and thumbnails (product media), variants, price, cart form and the sticky-bar image. Everything else (headlines, the 10 reasons, comments, footer, videos, review images) is static HTML in the section file.
+Gallery and thumbnails (product media), variants, price, cart form and the sticky-bar image. On a product template with no product picked, it uses that page's product. Everything else (headlines, the 10 reasons, comments, footer, videos, review images) is static HTML in the file.
 
 ## Size / side picker
 
-The page has no built-in variant picker. Add to Cart sends the selected variant (by default the first available one). To let shoppers choose, add a bundle or variant-picker app block (e.g. Kaching Bundles) to the section in the theme editor; it renders above the Add to Cart button.
+The section has no built-in variant picker. Add to Cart sends the first available variant. To let shoppers choose, add a bundle or variant-picker app block (e.g. Kaching Bundles) to the section in the theme editor; it renders above the Add to Cart button.
 
 ## Media
 
-Static images and videos load from PeakFlex's Shopify CDN (`www.trypeakflex.com/cdn/...`). Replace those URLs in the section file when you swap in another product's content.
+Static images and videos load from PeakFlex's Shopify CDN (`www.trypeakflex.com/cdn/...`). Replace those URLs in the file when you swap in another product's content.

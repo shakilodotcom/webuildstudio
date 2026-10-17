@@ -1,8 +1,12 @@
 {% comment %}
   PF listicle page: the full knee-sleeve listicle as one section.
   Product data (gallery, variants, price, sticky bar image, cart form) comes from the
-  product this template is assigned to. Copy, review images and videos are static below.
+  product picked in the section settings. Copy, review images and videos are static below.
 {% endcomment %}
+{%- assign product = section.settings.product | default: product -%}
+{%- if product == blank and request.design_mode -%}
+  <p style="padding:40px 20px;text-align:center;font-family:sans-serif">Pick a product in this section's settings.</p>
+{%- endif -%}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -597,7 +601,7 @@ div:empty {
     style="--st-bg: #ffffff; --st-btn: #c25204; --st-btn-fg: #ffffff;"
   >
     <div class="pfl-sticky__inner">
-      <div class="pfl-sticky__info"><img src="{{ product.featured_image | image_url: width: 120 }}" alt="{{ product.title | escape }}" srcset="{{ product.featured_image | image_url: width: 120 }} 120w" width="120" height="120" loading="lazy" class="pfl-sticky__img">
+      <div class="pfl-sticky__info">{%- if product.featured_image -%}<img src="{{ product.featured_image | image_url: width: 120 }}" alt="{{ product.title | escape }}" srcset="{{ product.featured_image | image_url: width: 120 }} 120w" width="120" height="120" loading="lazy" class="pfl-sticky__img">{%- endif -%}
 <div class="pfl-sticky__copy">
           <p class="pfl-sticky__title">Get 50% OFF Today
 </p><p class="pfl-sticky__subtitle"><span class="pfl-sticky__dot" aria-hidden="true"></span>While supplies last
@@ -618,11 +622,14 @@ div:empty {
   "name": "PF listicle page",
   "tag": "div",
   "class": "pfl-page",
-  "enabled_on": {
-    "templates": [
-      "product"
-    ]
-  },
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product",
+      "info": "Supplies the gallery, variants, price and cart button. Defaults to the page's product on product templates."
+    }
+  ],
   "blocks": [
     {
       "type": "@app"
