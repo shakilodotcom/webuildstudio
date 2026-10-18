@@ -73,7 +73,6 @@
   /* Hero: maps scroll progress through the section onto the timeline */
   class HeistHero extends HTMLElement {
     connectedCallback() {
-      this.frames = [...this.querySelectorAll('[data-hand-frame]')];
       this.update = this.update.bind(this);
       this.mode = this.mode.bind(this);
       desktop.addEventListener('change', this.mode);
@@ -96,7 +95,6 @@
         window.addEventListener('resize', this.update);
         this.update();
       } else {
-        this.setFrame(this.frames.length - 1);
         this.toggleAttribute('data-story-visible', true);
       }
     }
@@ -111,23 +109,14 @@
         const p = clamp(-rect.top / travel);
         const story = range(p, 0.62, 0.9);
 
-        // Glass rises first, then the hand frames build the grip in place.
+        // The glass rises; the stacked hand layers rise as one and close on it.
         this.style.setProperty('--p', p.toFixed(4));
         this.style.setProperty('--intro', range(p, 0, 0.3).toFixed(4));
         this.style.setProperty('--glass', range(p, 0.04, 0.42).toFixed(4));
+        this.style.setProperty('--hands', range(p, 0.08, 0.6).toFixed(4));
         this.style.setProperty('--story', story.toFixed(4));
         this.toggleAttribute('data-story-visible', story > 0.5);
-
-        const frameProgress = range(p, 0.4, 0.74);
-        const frame = frameProgress <= 0 ? -1 : Math.ceil(frameProgress * this.frames.length) - 1;
-        this.setFrame(Math.min(this.frames.length - 1, frame));
       });
-    }
-
-    setFrame(index) {
-      if (index === this.activeFrame) return;
-      this.activeFrame = index;
-      this.frames.forEach((frame, i) => frame.classList.toggle('is-active', i === index));
     }
   }
 

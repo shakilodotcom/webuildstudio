@@ -55,21 +55,41 @@
       %}
     </div>
 
-    <div class="heist-hero__hands" aria-hidden="true">
+    {%- comment -%}
+      Hand layers are cut-outs that stack into one hand: the last (full hand)
+      sits behind the glass, the earlier ones (fingers, palm) sit in front so
+      the hand grips it. Two containers let the glass sit between them.
+    {%- endcomment -%}
+    <div class="heist-hero__hands heist-hero__hands--back" aria-hidden="true">
       {%- for block in hand_frames -%}
-        <figure
-          class="heist-hero__hand{% if forloop.last %} heist-hero__hand--final{% endif %}"
-          data-hand-frame
-          {{ block.shopify_attributes }}
-        >
-          {% render 'heist-image',
-            image: block.settings.image,
-            class: 'heist-hero__hand-image',
-            sizes: '(max-width: 749px) 92vw, 50vw',
-            placeholder: 'lifestyle-2',
-            label: 'Hand frame'
-          %}
-        </figure>
+        {%- if forloop.last -%}
+          <figure class="heist-hero__hand heist-hero__hand--final" {{ block.shopify_attributes }}>
+            {% render 'heist-image',
+              image: block.settings.image,
+              class: 'heist-hero__hand-image',
+              sizes: '(max-width: 749px) 92vw, 40vw',
+              loading: 'eager',
+              placeholder: 'lifestyle-2',
+              label: 'Hand layer'
+            %}
+          </figure>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="heist-hero__hands heist-hero__hands--front" aria-hidden="true">
+      {%- for block in hand_frames -%}
+        {%- unless forloop.last -%}
+          <figure class="heist-hero__hand" {{ block.shopify_attributes }}>
+            {% render 'heist-image',
+              image: block.settings.image,
+              class: 'heist-hero__hand-image',
+              sizes: '40vw',
+              loading: 'eager',
+              placeholder: 'lifestyle-2'
+            %}
+          </figure>
+        {%- endunless -%}
       {%- endfor -%}
     </div>
 

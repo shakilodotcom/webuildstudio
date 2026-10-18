@@ -670,6 +670,7 @@ body.heist-page {
   --p: 0;
   --intro: 0;
   --glass: 0;
+  --hands: 0;
   --story: 0;
 }
 .heist-hero__canvas {
@@ -712,7 +713,7 @@ body.heist-page {
   position: absolute;
   top: 62vh;
   left: 50%;
-  z-index: 3;
+  z-index: 4;
   width: 72.5vw;
   color: var(--heist-cream);
   opacity: calc(1 - var(--intro) * 1.2);
@@ -751,16 +752,16 @@ body.heist-page {
   z-index: 1;
   width: min(37vw, 76vh);
   aspect-ratio: 1800 / 2523;
-  transform: translateX(-50%);
+  transform: translate3d(-50%, calc((1 - var(--hands)) * 75vh), 0);
+  will-change: transform;
+}
+/* Fingers and palm wrap in front of the glass; the full hand sits behind it. */
+.heist-hero__hands--front {
+  z-index: 3;
 }
 .heist-hero__hand {
   position: absolute;
   inset: 0;
-  opacity: 0;
-  transition: opacity 0.12s linear;
-}
-.heist-hero__hand.is-active {
-  opacity: 1;
 }
 .heist-hero__hand-image {
   width: 100%;
@@ -774,7 +775,7 @@ body.heist-page {
 .heist-hero__story {
   position: absolute;
   inset: 0;
-  z-index: 4;
+  z-index: 5;
   display: flex;
   justify-content: space-between;
   padding: 36vh var(--heist-gutter) 8vh;
@@ -837,13 +838,11 @@ body.heist-page {
   --p: 1;
   --intro: 1;
   --glass: 1;
+  --hands: 1;
   --story: 1;
 }
 .heist-hero[data-static] .heist-hero__canvas {
   position: relative;
-}
-.heist-hero[data-static] .heist-hero__hand--final {
-  opacity: 1;
 }
 @media (max-width: 749px) {
   .heist-hero,
@@ -884,8 +883,8 @@ body.heist-page {
     width: 96vw;
     transform: translate3d(-44%, 0, 0);
   }
-  .heist-hero__hand--final {
-    opacity: 1;
+  .heist-hero__hands--front {
+    display: none;
   }
   .heist-hero__story {
     display: none;
@@ -2186,28 +2185,16 @@ thead .heist-evidence__col--heist .heist-wordmark {
     </div>
     <div class="heist-hero__glass" aria-hidden="true">
       <img src="https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=2400" srcset="https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=360 360w, https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=540 540w, https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=720 720w, https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=960 960w, https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=1200 1200w, https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=1600 1600w, https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=2000 2000w, https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=2400 2400w" sizes="(max-width: 749px) 74vw, 32vw" alt="" loading="eager" class="heist-hero__glass-image">
-    </div>
-    <div class="heist-hero__hands" aria-hidden="true"><figure
-          class="heist-hero__hand"
-          data-hand-frame
-        >
-          <img src="https://www.heist.co/cdn/shop/files/First_finger.png?width=2400" srcset="https://www.heist.co/cdn/shop/files/First_finger.png?width=360 360w, https://www.heist.co/cdn/shop/files/First_finger.png?width=540 540w, https://www.heist.co/cdn/shop/files/First_finger.png?width=720 720w, https://www.heist.co/cdn/shop/files/First_finger.png?width=960 960w, https://www.heist.co/cdn/shop/files/First_finger.png?width=1200 1200w, https://www.heist.co/cdn/shop/files/First_finger.png?width=1600 1600w, https://www.heist.co/cdn/shop/files/First_finger.png?width=2000 2000w, https://www.heist.co/cdn/shop/files/First_finger.png?width=2400 2400w" sizes="(max-width: 749px) 92vw, 50vw" alt="" loading="lazy" class="heist-hero__hand-image">
-        </figure><figure
-          class="heist-hero__hand"
-          data-hand-frame
-        >
-          <img src="https://www.heist.co/cdn/shop/files/Second_finger.png?width=2400" srcset="https://www.heist.co/cdn/shop/files/Second_finger.png?width=360 360w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=540 540w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=720 720w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=960 960w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=1200 1200w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=1600 1600w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=2000 2000w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=2400 2400w" sizes="(max-width: 749px) 92vw, 50vw" alt="" loading="lazy" class="heist-hero__hand-image">
-        </figure><figure
-          class="heist-hero__hand"
-          data-hand-frame
-        >
-          <img src="https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=2400" srcset="https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=360 360w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=540 540w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=720 720w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=960 960w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=1200 1200w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=1600 1600w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=2000 2000w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=2400 2400w" sizes="(max-width: 749px) 92vw, 50vw" alt="" loading="lazy" class="heist-hero__hand-image">
-        </figure><figure
-          class="heist-hero__hand heist-hero__hand--final"
-          data-hand-frame
-        >
-          <img src="https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=2400" srcset="https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=360 360w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=540 540w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=720 720w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=960 960w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=1200 1200w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=1600 1600w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=2000 2000w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=2400 2400w" sizes="(max-width: 749px) 92vw, 50vw" alt="" loading="lazy" class="heist-hero__hand-image">
-        </figure></div>
+    </div><div class="heist-hero__hands heist-hero__hands--back" aria-hidden="true"><figure class="heist-hero__hand heist-hero__hand--final" >
+            <img src="https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=2400" srcset="https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=360 360w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=540 540w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=720 720w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=960 960w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=1200 1200w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=1600 1600w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=2000 2000w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=2400 2400w" sizes="(max-width: 749px) 92vw, 40vw" alt="" loading="eager" class="heist-hero__hand-image">
+          </figure></div>
+    <div class="heist-hero__hands heist-hero__hands--front" aria-hidden="true"><figure class="heist-hero__hand" >
+            <img src="https://www.heist.co/cdn/shop/files/First_finger.png?width=2400" srcset="https://www.heist.co/cdn/shop/files/First_finger.png?width=360 360w, https://www.heist.co/cdn/shop/files/First_finger.png?width=540 540w, https://www.heist.co/cdn/shop/files/First_finger.png?width=720 720w, https://www.heist.co/cdn/shop/files/First_finger.png?width=960 960w, https://www.heist.co/cdn/shop/files/First_finger.png?width=1200 1200w, https://www.heist.co/cdn/shop/files/First_finger.png?width=1600 1600w, https://www.heist.co/cdn/shop/files/First_finger.png?width=2000 2000w, https://www.heist.co/cdn/shop/files/First_finger.png?width=2400 2400w" sizes="40vw" alt="" loading="eager" class="heist-hero__hand-image">
+          </figure><figure class="heist-hero__hand" >
+            <img src="https://www.heist.co/cdn/shop/files/Second_finger.png?width=2400" srcset="https://www.heist.co/cdn/shop/files/Second_finger.png?width=360 360w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=540 540w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=720 720w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=960 960w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=1200 1200w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=1600 1600w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=2000 2000w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=2400 2400w" sizes="40vw" alt="" loading="eager" class="heist-hero__hand-image">
+          </figure><figure class="heist-hero__hand" >
+            <img src="https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=2400" srcset="https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=360 360w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=540 540w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=720 720w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=960 960w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=1200 1200w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=1600 1600w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=2000 2000w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=2400 2400w" sizes="40vw" alt="" loading="eager" class="heist-hero__hand-image">
+          </figure></div>
     <div class="heist-hero__story">
       <div class="heist-hero__story-left">
         <p class="heist-hero__story-title t-h2">Steal Back</p><div class="heist-hero__badge">
@@ -3194,7 +3181,6 @@ Mycotoxin Free</li></ul>
   /* Hero: maps scroll progress through the section onto the timeline */
   class HeistHero extends HTMLElement {
     connectedCallback() {
-      this.frames = [...this.querySelectorAll('[data-hand-frame]')];
       this.update = this.update.bind(this);
       this.mode = this.mode.bind(this);
       desktop.addEventListener('change', this.mode);
@@ -3215,7 +3201,6 @@ Mycotoxin Free</li></ul>
         window.addEventListener('resize', this.update);
         this.update();
       } else {
-        this.setFrame(this.frames.length - 1);
         this.toggleAttribute('data-story-visible', true);
       }
     }
@@ -3228,21 +3213,14 @@ Mycotoxin Free</li></ul>
         const travel = Math.max(1, rect.height - window.innerHeight);
         const p = clamp(-rect.top / travel);
         const story = range(p, 0.62, 0.9);
-        // Glass rises first, then the hand frames build the grip in place.
+        // The glass rises; the stacked hand layers rise as one and close on it.
         this.style.setProperty('--p', p.toFixed(4));
         this.style.setProperty('--intro', range(p, 0, 0.3).toFixed(4));
         this.style.setProperty('--glass', range(p, 0.04, 0.42).toFixed(4));
+        this.style.setProperty('--hands', range(p, 0.08, 0.6).toFixed(4));
         this.style.setProperty('--story', story.toFixed(4));
         this.toggleAttribute('data-story-visible', story > 0.5);
-        const frameProgress = range(p, 0.4, 0.74);
-        const frame = frameProgress <= 0 ? -1 : Math.ceil(frameProgress * this.frames.length) - 1;
-        this.setFrame(Math.min(this.frames.length - 1, frame));
       });
-    }
-    setFrame(index) {
-      if (index === this.activeFrame) return;
-      this.activeFrame = index;
-      this.frames.forEach((frame, i) => frame.classList.toggle('is-active', i === index));
     }
   }
   /* Tabs with roving focus */

@@ -780,6 +780,7 @@ body.heist-page {
   --p: 0;
   --intro: 0;
   --glass: 0;
+  --hands: 0;
   --story: 0;
 }
 
@@ -828,7 +829,7 @@ body.heist-page {
   position: absolute;
   top: 62vh;
   left: 50%;
-  z-index: 3;
+  z-index: 4;
   width: 72.5vw;
   color: var(--heist-cream);
   opacity: calc(1 - var(--intro) * 1.2);
@@ -873,18 +874,18 @@ body.heist-page {
   z-index: 1;
   width: min(37vw, 76vh);
   aspect-ratio: 1800 / 2523;
-  transform: translateX(-50%);
+  transform: translate3d(-50%, calc((1 - var(--hands)) * 75vh), 0);
+  will-change: transform;
+}
+
+/* Fingers and palm wrap in front of the glass; the full hand sits behind it. */
+.heist-hero__hands--front {
+  z-index: 3;
 }
 
 .heist-hero__hand {
   position: absolute;
   inset: 0;
-  opacity: 0;
-  transition: opacity 0.12s linear;
-}
-
-.heist-hero__hand.is-active {
-  opacity: 1;
 }
 
 .heist-hero__hand-image {
@@ -901,7 +902,7 @@ body.heist-page {
 .heist-hero__story {
   position: absolute;
   inset: 0;
-  z-index: 4;
+  z-index: 5;
   display: flex;
   justify-content: space-between;
   padding: 36vh var(--heist-gutter) 8vh;
@@ -977,15 +978,12 @@ body.heist-page {
   --p: 1;
   --intro: 1;
   --glass: 1;
+  --hands: 1;
   --story: 1;
 }
 
 .heist-hero[data-static] .heist-hero__canvas {
   position: relative;
-}
-
-.heist-hero[data-static] .heist-hero__hand--final {
-  opacity: 1;
 }
 
 @media (max-width: 749px) {
@@ -1034,8 +1032,8 @@ body.heist-page {
     transform: translate3d(-44%, 0, 0);
   }
 
-  .heist-hero__hand--final {
-    opacity: 1;
+  .heist-hero__hands--front {
+    display: none;
   }
 
   .heist-hero__story {
