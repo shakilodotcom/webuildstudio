@@ -1,7 +1,8 @@
 {%- comment -%}
   Vitals reviews for any template (pages, landing pages, home).
   Shows the first 20 reviews of the chosen product by reading the same
-  JSON the Vitals widget loads on product pages.
+  JSON the Vitals widget loads on product pages, laid out to match the
+  Vitals product page widget.
   Needs the Vitals app embed switched on (Theme settings > App embeds).
 {%- endcomment -%}
 
@@ -9,48 +10,82 @@
 {%- if p != blank -%}
   {%- assign rating = p.metafields.reviews.rating.value.rating | default: 0 -%}
   {%- assign count = p.metafields.reviews.rating_count.value | default: 0 -%}
-  {%- assign pct = rating | times: 20 -%}
 
-  <section
+  <div
     class="vr"
     id="vr-{{ section.id }}"
     data-shop-id="{{ shop.id }}"
     data-product-id="{{ p.id }}"
     data-cache-key="{{ section.settings.cache_key | strip }}"
-    data-show-photos="{{ section.settings.show_photos }}"
+    data-rating="{{ rating }}"
+    data-count="{{ count }}"
     style="--vr-star: {{ section.settings.star_color }};"
   >
-    <div class="vr__head">
-      {%- if section.settings.heading != blank -%}
-        <h2 class="vr__title">{{ section.settings.heading }}</h2>
-      {%- endif -%}
-      {%- if count > 0 -%}
-        <div class="vr__summary" aria-label="{{ rating }} out of 5 stars, {{ count }} reviews">
-          <span class="vr__stars"><span class="vr__stars-fill" style="width: {{ pct }}%">★★★★★</span>★★★★★</span>
-          <span class="vr__summary-text">{{ rating }} · {{ count }} reviews</span>
-        </div>
-      {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="vr__title">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="vr__summary">
+      <div class="vr__summary-stars">
+        <span class="vr__stars vr__stars--lg" data-vr-summary-stars role="img"></span>
+        <span class="vr__summary-text" data-vr-summary-text></span>
+      </div>
+      <a class="vr__btn vr__btn--solid" href="{{ p.url }}#vitals-end-section">Write a Review</a>
     </div>
 
-    <div class="vr__grid" data-vr-grid aria-live="polite"></div>
-  </section>
+    <div class="vr__masonry" data-vr-grid aria-live="polite"></div>
+
+    <div class="vr__actions" data-vr-actions hidden>
+      <button type="button" class="vr__btn vr__btn--stroked" data-vr-more>See more reviews</button>
+    </div>
+  </div>
 
   <style>
-    #vr-{{ section.id }} { max-width: 1200px; margin: 0 auto; padding: 48px 16px; }
-    #vr-{{ section.id }} .vr__head { text-align: center; margin-bottom: 28px; }
-    #vr-{{ section.id }} .vr__title { margin: 0 0 8px; }
-    #vr-{{ section.id }} .vr__summary { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; }
-    #vr-{{ section.id }} .vr__stars { position: relative; display: inline-block; color: #e5e7eb; letter-spacing: 2px; white-space: nowrap; }
-    #vr-{{ section.id }} .vr__stars-fill { position: absolute; inset: 0 auto 0 0; overflow: hidden; color: var(--vr-star); }
-    #vr-{{ section.id }} .vr__grid { columns: 3 280px; column-gap: 16px; }
-    #vr-{{ section.id }} .vr__card { break-inside: avoid; margin: 0 0 16px; background: #fff; border: 1px solid rgba(0,0,0,.08); border-radius: 14px; overflow: hidden; box-shadow: 0 6px 16px rgba(0,0,0,.04); }
-    #vr-{{ section.id }} .vr__photo { display: block; width: 100%; height: auto; background: #f3f4f6; }
-    #vr-{{ section.id }} .vr__body { padding: 14px 16px 16px; }
-    #vr-{{ section.id }} .vr__card-stars { color: var(--vr-star); letter-spacing: 1px; font-size: 14px; }
-    #vr-{{ section.id }} .vr__text { margin: 8px 0 10px; font-size: 14px; line-height: 1.45; color: rgba(0,0,0,.78); }
-    #vr-{{ section.id }} .vr__meta { display: flex; justify-content: space-between; font-size: 13px; color: rgba(0,0,0,.55); }
-    #vr-{{ section.id }} .vr__name { font-weight: 600; color: rgba(0,0,0,.85); }
-    #vr-{{ section.id }} .vr__reply { margin-top: 10px; padding: 10px 12px; border-radius: 10px; background: #f9fafb; font-size: 13px; }
+    #vr-{{ section.id }} {
+      box-sizing: border-box; max-width: 1200px; margin: 40px auto 20px; padding: 32px 24px;
+      display: flex; flex-direction: column; gap: 16px;
+      font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.8;
+      letter-spacing: .6px; color: rgba(0,0,0,.75);
+    }
+    #vr-{{ section.id }} *, #vr-{{ section.id }} *::before, #vr-{{ section.id }} *::after { box-sizing: border-box; }
+    #vr-{{ section.id }} .vr__title { margin: 0; }
+    #vr-{{ section.id }} .vr__summary {
+      display: flex; flex-direction: column; align-items: flex-start;
+      padding-bottom: 18px; border-bottom: 1px solid #efefef;
+    }
+    #vr-{{ section.id }} .vr__summary-stars { display: flex; align-items: center; gap: 4px; margin-bottom: 16px; }
+    #vr-{{ section.id }} .vr__summary-text { font-size: 14.4px; line-height: 14.4px; }
+    #vr-{{ section.id }} .vr__stars { position: relative; display: block; flex: 0 0 auto; width: 5em; height: 1em; font-size: 16px; }
+    #vr-{{ section.id }} .vr__stars--lg { font-size: 18px; }
+    #vr-{{ section.id }} .vr__stars-layer { position: absolute; inset: 0 auto 0 0; display: flex; overflow: hidden; color: #cecece; }
+    #vr-{{ section.id }} .vr__stars-layer--front { color: var(--vr-star); }
+    #vr-{{ section.id }} .vr__stars-inner { display: flex; width: 5em; flex: 0 0 auto; }
+    #vr-{{ section.id }} .vr__stars svg { display: block; width: 1em; height: 1em; flex: 0 0 auto; }
+    #vr-{{ section.id }} .vr__btn {
+      display: inline-block; height: 36px; min-width: 64px; padding: 0 32px; border-radius: 4px;
+      font: 13.3333px/36px Helvetica, Arial, sans-serif; letter-spacing: normal; text-align: center;
+      text-decoration: none; cursor: pointer;
+    }
+    #vr-{{ section.id }} .vr__btn--solid { background: #000; color: #fff; border: 0; }
+    #vr-{{ section.id }} .vr__btn--stroked { background: transparent; color: #222; border: 1px solid #222; line-height: 34px; }
+    #vr-{{ section.id }} .vr__actions { text-align: center; }
+    #vr-{{ section.id }} .vr__masonry { display: flex; gap: 16px; align-items: flex-start; }
+    #vr-{{ section.id }} .vr__column { display: flex; flex-direction: column; gap: 16px; flex: 1 1 0; min-width: 0; }
+    #vr-{{ section.id }} .vr__card {
+      background: #fff; border-radius: 4px; box-shadow: 0 0 5px 0 #eaeaea; overflow: hidden;
+      font-size: 14px; line-height: 19.6px;
+    }
+    #vr-{{ section.id }} .vr__photo { display: block; width: 100%; height: auto; object-fit: cover; }
+    #vr-{{ section.id }} .vr__details { display: flex; flex-direction: column; align-items: flex-start; padding: 16px; }
+    #vr-{{ section.id }} .vr__author { font-weight: 600; color: #222; }
+    #vr-{{ section.id }} .vr__card .vr__stars { margin: 4px 0 12px; }
+    #vr-{{ section.id }} .vr__text { margin: 0; line-height: 19px; color: #5e5e5e; text-align: left; overflow-wrap: anywhere; }
+    #vr-{{ section.id }} .vr__reply { padding: 16px; background: #f7f7f7; border-radius: 0 0 4px 4px; }
+    #vr-{{ section.id }} .vr__reply-owner { display: block; margin-bottom: 4px; font-weight: 600; color: #222; }
+    #vr-{{ section.id }} .vr__reply-text { color: #5e5e5e; }
+    @media (max-width: 767px) {
+      #vr-{{ section.id }} { padding: 16px; font-size: 15px; }
+    }
   </style>
 
   <script>
@@ -58,9 +93,31 @@
       var root = document.getElementById('vr-{{ section.id }}');
       if (!root) return;
       var grid = root.querySelector('[data-vr-grid]');
+      var actions = root.querySelector('[data-vr-actions]');
       var shopId = root.dataset.shopId;
       var productId = root.dataset.productId;
-      var showPhotos = root.dataset.showPhotos === 'true';
+      var MOBILE_LIMIT = 10;
+      var reviews = [];
+      var expanded = false;
+      var columns = 0;
+
+      var STAR = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 14" aria-hidden="true"><path d="m8 0 1.796 5.528h5.813l-4.703 3.416 1.796 5.528L8 11.056l-4.702 3.416 1.796-5.528L.392 5.528h5.812L8 0Z" fill="currentColor"/></svg>';
+      var FIVE = STAR + STAR + STAR + STAR + STAR;
+
+      function stars(value) {
+        var pct = Math.max(0, Math.min(100, value / 5 * 100));
+        return '<span class="vr__stars-layer">' + FIVE + '</span>' +
+          '<span class="vr__stars-layer vr__stars-layer--front" style="width:' + pct + '%"><span class="vr__stars-inner">' + FIVE + '</span></span>';
+      }
+
+      function summary(rating, count) {
+        var el = root.querySelector('[data-vr-summary-stars]');
+        el.innerHTML = stars(rating);
+        el.setAttribute('aria-label', rating + ' out of 5 stars');
+        root.querySelector('[data-vr-summary-text]').textContent =
+          ' ' + rating + ' (' + Number(count).toLocaleString('en-US') + ' reviews)';
+      }
+      summary(Number(root.dataset.rating) || 0, Number(root.dataset.count) || 0);
 
       // Vitals changes this key whenever reviews change. Use the setting if
       // filled in, otherwise try the keys the Vitals app embed puts on every page.
@@ -90,26 +147,68 @@
         return 'https://cdn-pri.vitals.app/phrev/' + shopId + '/640/' + reviewId + '-' + String(photo).replace(/^vitals\./, '') + '.jpg';
       }
 
-      function render(reviews) {
-        grid.innerHTML = reviews.slice(0, 20).map(function (r) {
-          var photo = showPhotos && r.photos && r.photos.length
-            ? '<img class="vr__photo" loading="lazy" alt="Photo from ' + esc(r.name) + '" src="' + photoUrl(r.id, r.photos[0]) + '"' +
-              (r.imgWidth ? ' width="' + r.imgWidth + '" height="' + r.imgHeight + '"' : '') + '>'
-            : '';
-          var stars = '★★★★★'.slice(0, r.stars) + '<span style="color:#e5e7eb">' + '★★★★★'.slice(r.stars) + '</span>';
-          var date = r.date ? new Date(r.date).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) : '';
-          return '<article class="vr__card">' + photo +
-            '<div class="vr__body">' +
-              '<div class="vr__card-stars" aria-label="' + r.stars + ' out of 5 stars">' + stars + '</div>' +
-              '<p class="vr__text">' + esc(r.review) + '</p>' +
-              '<div class="vr__meta"><span class="vr__name">' + esc(r.name) + '</span><span>' + esc(date) + '</span></div>' +
-              (r.reply ? '<div class="vr__reply"><strong>{{ shop.name | escape }}:</strong> ' + esc(r.reply) + '</div>' : '') +
-            '</div></article>';
-        }).join('');
+      function card(r) {
+        var el = document.createElement('div');
+        el.className = 'vr__card';
+        var photo = r.photos && r.photos.length
+          ? '<img class="vr__photo" loading="lazy" alt="' + esc('{{ p.title | escape }}') + '" src="' + photoUrl(r.id, r.photos[0]) + '"' +
+            ' style="aspect-ratio:' + (r.imgWidth || 1) + ' / ' + (r.imgHeight || 1) + '" onerror="this.remove()">'
+          : '';
+        el.innerHTML = photo +
+          '<div class="vr__details">' +
+            '<span class="vr__author">' + esc(r.name) + '</span>' +
+            '<span class="vr__stars" role="img" aria-label="' + r.stars + ' out of 5 stars">' + stars(r.stars) + '</span>' +
+            '<div class="vr__text">' + esc(r.review) + '</div>' +
+          '</div>' +
+          (r.reply ? '<div class="vr__reply"><span class="vr__reply-owner">Store reply</span><div class="vr__reply-text">' + esc(r.reply) + '</div></div>' : '');
+        return el;
       }
 
+      // Same column counts as the Vitals widget: 2 below 768px, then as many
+      // ~212px columns as fit, up to 5.
+      function columnCount() {
+        var w = root.clientWidth;
+        if (w < 768) return 2;
+        var inner = w - 48;
+        return Math.max(3, Math.min(5, Math.floor((inner + 16) / 228)));
+      }
+
+      function render() {
+        columns = columnCount();
+        var mobile = root.clientWidth < 768;
+        var list = mobile && !expanded ? reviews.slice(0, MOBILE_LIMIT) : reviews;
+        grid.innerHTML = '';
+        var cols = [];
+        for (var i = 0; i < columns; i++) {
+          var c = document.createElement('div');
+          c.className = 'vr__column';
+          grid.appendChild(c);
+          cols.push(c);
+        }
+        // Each card goes into the shortest column, like the Vitals masonry.
+        list.forEach(function (r) {
+          var shortest = cols.reduce(function (a, b) { return b.offsetHeight < a.offsetHeight ? b : a; });
+          shortest.appendChild(card(r));
+        });
+        actions.hidden = !(mobile && !expanded && reviews.length > MOBILE_LIMIT);
+      }
+
+      root.querySelector('[data-vr-more]').addEventListener('click', function () {
+        expanded = true;
+        render();
+      });
+
       load(cacheKeys())
-        .then(function (data) { render(data.reviews); })
+        .then(function (data) {
+          reviews = data.reviews.slice(0, 20);
+          if (data.reviewStats) summary(data.reviewStats.s, data.reviewStats.r);
+          render();
+          var lastMobile = root.clientWidth < 768;
+          new ResizeObserver(function () {
+            var mobile = root.clientWidth < 768;
+            if (columnCount() !== columns || mobile !== lastMobile) { lastMobile = mobile; render(); }
+          }).observe(root);
+        })
         .catch(function () { grid.hidden = true; });
     })();
   </script>
@@ -120,9 +219,8 @@
   "name": "Vitals reviews",
   "settings": [
     { "type": "product", "id": "product", "label": "Product" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "What customers are saying" },
+    { "type": "text", "id": "heading", "label": "Heading (optional)" },
     { "type": "color", "id": "star_color", "label": "Star colour", "default": "#FFD700" },
-    { "type": "checkbox", "id": "show_photos", "label": "Show review photos", "default": true },
     {
       "type": "text",
       "id": "cache_key",
