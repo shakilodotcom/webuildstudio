@@ -1,0 +1,19 @@
+{%- comment -%}
+  Brand wordmark: the uploaded logo file when set, otherwise a typeset
+  fallback in the display face so layouts hold their shape.
+
+  Accepts:
+  - logo {Object} image setting
+  - class {String}
+  - sizes {String}
+  - loading {String}
+{%- endcomment -%}
+{%- if logo != blank -%}
+  {{
+    logo
+    | image_url: width: 1800
+    | image_tag: widths: '240, 480, 900, 1400, 1800', sizes: sizes, loading: loading, class: class, alt: shop.name
+  }}
+{%- else -%}
+  <span class="heist-wordmark {{ class }}" role="img" aria-label="{{ shop.name | escape }}">HEIST<sup>&reg;</sup></span>
+{%- endif -%}

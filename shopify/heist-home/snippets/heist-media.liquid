@@ -1,0 +1,56 @@
+{%- comment -%}
+  Video-or-image media slot. A Shopify-hosted video wins over the image;
+  the image doubles as the video poster. Videos autoplay muted only while
+  in view (handled by heist.js) and respect prefers-reduced-motion.
+
+  Accepts:
+  - video {Object} video setting
+  - image {Object} image setting
+  - mobile_image {Object} optional mobile crop for the image
+  - sizes {String} sizes attribute
+  - class {String} class applied to the <video>/<img>
+  - sound_toggle {Boolean} adds a mute/unmute button
+  - placeholder {String} Shopify placeholder name
+  - label {String} placeholder label
+  - loading {String} image loading attribute
+{%- endcomment -%}
+{%- if video != blank -%}
+  <div class="heist-video" data-heist-video>
+    {%- if image != blank -%}
+      {%- assign poster = image | image_url: width: 1600 -%}
+    {%- else -%}
+      {%- assign poster = video.preview_image | image_url: width: 1600 -%}
+    {%- endif -%}
+    <video
+      class="{{ class }}"
+      playsinline
+      muted
+      loop
+      preload="none"
+      poster="{{ poster }}"
+      {% if video.alt != blank %}aria-label="{{ video.alt | escape }}"{% else %}aria-hidden="true"{% endif %}
+    >
+      {%- for source in video.sources -%}
+        {%- if source.mime_type == 'video/mp4' -%}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {%- endif -%}
+      {%- endfor -%}
+    </video>
+    {%- if sound_toggle -%}
+      <button type="button" class="heist-video__sound" data-sound-toggle aria-pressed="false" aria-label="Unmute video">
+        {% render 'heist-icon', icon: 'muted' %}
+        {% render 'heist-icon', icon: 'unmuted' %}
+      </button>
+    {%- endif -%}
+  </div>
+{%- else -%}
+  {% render 'heist-image',
+    image: image,
+    mobile_image: mobile_image,
+    sizes: sizes,
+    class: class,
+    loading: loading,
+    placeholder: placeholder,
+    label: label
+  %}
+{%- endif -%}

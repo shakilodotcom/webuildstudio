@@ -1,0 +1,124 @@
+{%- comment -%}
+  "For the late night conversations…": large statement over a dusk
+  gradient with a staggered five-column collage of photos and clips.
+  Each tile picks its column, shape and drop; mobile reflows to two columns.
+{%- endcomment -%}
+
+<section class="heist-late-night" id="HeistLateNight-{{ section.id }}">
+  <div class="heist-grain" aria-hidden="true"></div>
+  <div class="heist-container">
+    <h2 class="heist-late-night__heading t-h4">{{ section.settings.heading }}</h2>
+
+    <div class="heist-collage">
+      {%- for column in (1..5) -%}
+        <div class="heist-collage__column heist-collage__column--{{ column }}">
+          {%- for block in section.blocks -%}
+            {%- assign bs = block.settings -%}
+            {%- assign block_column = bs.column | plus: 0 -%}
+            {%- if block_column == column -%}
+              <figure
+                class="heist-collage__tile heist-collage__tile--{{ bs.shape }} heist-collage__tile--drop-{{ bs.drop }}"
+                {{ block.shopify_attributes }}
+              >
+                {% render 'heist-media',
+                  video: bs.video,
+                  image: bs.image,
+                  class: 'heist-collage__media',
+                  sizes: '(max-width: 749px) 46vw, 22vw',
+                  placeholder: 'lifestyle-1',
+                  label: bs.placeholder_label
+                %}
+              </figure>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Heist late-night collage",
+  "class": "heist-late-night-section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>For the late night conversations, and anyone who’s been told 1 pm is their last cup.<br>You now call the shots.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video",
+          "info": "Plays muted in place of the image."
+        },
+        {
+          "type": "select",
+          "id": "column",
+          "label": "Column",
+          "options": [
+            { "value": "1", "label": "1 (wide)" },
+            { "value": "2", "label": "2" },
+            { "value": "3", "label": "3" },
+            { "value": "4", "label": "4 (wide)" },
+            { "value": "5", "label": "5" }
+          ],
+          "default": "1"
+        },
+        {
+          "type": "select",
+          "id": "shape",
+          "label": "Shape",
+          "options": [
+            { "value": "tall", "label": "Tall" },
+            { "value": "short", "label": "Short" }
+          ],
+          "default": "tall"
+        },
+        {
+          "type": "select",
+          "id": "drop",
+          "label": "Vertical offset",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "small", "label": "Small" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "text",
+          "id": "placeholder_label",
+          "label": "Placeholder label",
+          "info": "Shown only while no image or video is set."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heist late-night collage",
+      "blocks": [
+        { "type": "tile", "settings": { "column": "1" } },
+        { "type": "tile", "settings": { "column": "2", "shape": "short" } },
+        { "type": "tile", "settings": { "column": "3", "shape": "short", "drop": "large" } },
+        { "type": "tile", "settings": { "column": "4" } },
+        { "type": "tile", "settings": { "column": "5", "shape": "short" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

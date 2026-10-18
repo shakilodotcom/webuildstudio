@@ -1,0 +1,101 @@
+{%- comment -%}
+  "For those who are serious about coffee.": heading, follow button and a
+  continuously drifting marquee of social photos/clips. The marquee
+  pauses on hover/focus and stays static under prefers-reduced-motion.
+{%- endcomment -%}
+{%- assign s = section.settings -%}
+
+<section class="heist-social heist-paper" id="HeistSocial-{{ section.id }}">
+  <div class="heist-grain" aria-hidden="true"></div>
+  <div class="heist-container heist-social__header">
+    <h2 class="heist-social__heading t-h4">{{ s.heading }}</h2>
+    {%- if s.button_label != blank -%}
+      <a class="heist-btn heist-btn--cream heist-social__follow" href="{{ s.button_link }}" target="_blank" rel="noopener">
+        {{ s.button_label }}<span class="visually-hidden">, opens in a new tab</span>
+      </a>
+    {%- endif -%}
+  </div>
+
+  <heist-marquee class="heist-marquee" style="--marquee-duration: {{ s.speed }}s;">
+    <ul class="heist-marquee__track" role="list">
+      {%- for block in section.blocks -%}
+        <li class="heist-marquee__item" {{ block.shopify_attributes }}>
+          {% render 'heist-media',
+            video: block.settings.video,
+            image: block.settings.image,
+            class: 'heist-marquee__media',
+            sizes: '(max-width: 749px) 60vw, 320px',
+            placeholder: 'lifestyle-1',
+            label: 'Social post'
+          %}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </heist-marquee>
+</section>
+
+{% schema %}
+{
+  "name": "Heist social gallery",
+  "class": "heist-social-section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>For those who are serious about coffee.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Follow @DrinkHeist"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Seconds per loop",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "post",
+      "name": "Post",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Portrait, about 3:4."
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heist social gallery",
+      "blocks": [
+        { "type": "post" },
+        { "type": "post" },
+        { "type": "post" },
+        { "type": "post" },
+        { "type": "post" }
+      ]
+    }
+  ]
+}
+{% endschema %}

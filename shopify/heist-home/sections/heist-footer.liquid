@@ -1,0 +1,130 @@
+{%- comment -%}
+  Heist footer: full-width wordmark on signal red, bold link row,
+  "Join the Heist." newsletter card, and the dark legal strip.
+{%- endcomment -%}
+{%- assign s = section.settings -%}
+
+<footer class="heist-footer">
+  <div class="heist-container">
+    <a class="heist-footer__wordmark" href="{{ routes.root_url }}">
+      {% render 'heist-wordmark', logo: s.logo, class: 'heist-footer__wordmark-image', sizes: '92vw' %}
+    </a>
+
+    {%- if s.menu != blank -%}
+      <nav class="heist-footer__nav" aria-label="Footer">
+        <ul class="t-ui" role="list">
+          {%- for link in s.menu.links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+
+    <div class="heist-footer__signup">
+      <div class="heist-footer__signup-head">
+        <h2 class="heist-footer__signup-title t-h6">{{ s.newsletter_heading }}</h2>
+        <ul class="heist-footer__social" role="list">
+          {%- if s.instagram != blank -%}
+            <li><a href="{{ s.instagram }}" target="_blank" rel="noopener">{% render 'heist-icon', icon: 'instagram' %}<span class="visually-hidden">Instagram, opens in a new tab</span></a></li>
+          {%- endif -%}
+          {%- if s.tiktok != blank -%}
+            <li><a href="{{ s.tiktok }}" target="_blank" rel="noopener">{% render 'heist-icon', icon: 'tiktok' %}<span class="visually-hidden">TikTok, opens in a new tab</span></a></li>
+          {%- endif -%}
+        </ul>
+      </div>
+
+      {%- form 'customer', id: 'HeistFooterNewsletter', class: 'heist-footer__form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <label class="visually-hidden" for="HeistFooterEmail">Email address</label>
+        <input
+          id="HeistFooterEmail"
+          class="heist-footer__input t-n1"
+          type="email"
+          name="contact[email]"
+          autocomplete="email"
+          placeholder="Email address"
+          required
+          {% if form.errors %}aria-invalid="true" aria-describedby="HeistFooterNewsletterError"{% endif %}
+        >
+        <button type="submit" class="heist-footer__submit">
+          {% render 'heist-icon', icon: 'arrow' %}
+          <span class="visually-hidden">Subscribe</span>
+        </button>
+        {%- if form.errors -%}
+          <p class="heist-footer__message t-n2" id="HeistFooterNewsletterError">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
+        {%- elsif form.posted_successfully? -%}
+          <p class="heist-footer__message t-n2" role="status">{{ s.newsletter_success }}</p>
+        {%- endif -%}
+      {%- endform -%}
+
+      <span class="heist-barcode heist-barcode--wide" aria-hidden="true"></span>
+    </div>
+  </div>
+
+  <div class="heist-footer__legal">
+    <div class="heist-container heist-footer__legal-inner t-n3">
+      <p>{{ s.copyright }}</p>
+      {%- if s.legal_menu != blank -%}
+        <ul role="list">
+          {%- for link in s.legal_menu.links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Heist footer",
+  "class": "heist-footer-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Wordmark",
+      "info": "Dark SVG wordmark, spans the full width."
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Main links",
+      "default": "footer"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Join the Heist."
+    },
+    {
+      "type": "text",
+      "id": "newsletter_success",
+      "label": "Success message",
+      "default": "You’re in. Watch your inbox."
+    },
+    {
+      "type": "url",
+      "id": "instagram",
+      "label": "Instagram link"
+    },
+    {
+      "type": "url",
+      "id": "tiktok",
+      "label": "TikTok link"
+    },
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "Copyright line",
+      "default": "Copyright © MCMLMMXXVI by Heist Coffee Co."
+    },
+    {
+      "type": "link_list",
+      "id": "legal_menu",
+      "label": "Legal links"
+    }
+  ]
+}
+{% endschema %}

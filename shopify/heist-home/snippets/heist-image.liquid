@@ -1,0 +1,63 @@
+{%- comment -%}
+  Renders a responsive image, with an optional separate mobile crop.
+  Falls back to a labelled placeholder when no image is set, so a section
+  never renders empty while an asset is pending client sign-off.
+
+  Accepts:
+  - image {Object} image setting (desktop / default)
+  - mobile_image {Object} optional image setting used below 750px
+  - sizes {String} sizes attribute (default 100vw)
+  - class {String} class for the <img> / placeholder
+  - alt {String} alt override
+  - loading {String} 'lazy' (default) or 'eager'
+  - priority {Boolean} sets fetchpriority=high
+  - placeholder {String} Shopify placeholder name (default 'image')
+  - label {String} text shown on the placeholder
+{%- endcomment -%}
+{%- liquid
+  assign sizes = sizes | default: '100vw'
+  assign loading = loading | default: 'lazy'
+  assign placeholder = placeholder | default: 'image'
+  assign widths = '360, 540, 720, 960, 1200, 1600, 2000, 2400'
+  if priority
+    assign fetchpriority = 'high'
+  else
+    assign fetchpriority = 'auto'
+  endif
+-%}
+{%- if image != blank -%}
+  {%- liquid
+    if alt == blank
+      assign alt = image.alt | default: ''
+    endif
+  -%}
+  {%- if mobile_image != blank -%}
+    <picture>
+      <source
+        media="(max-width: 749px)"
+        srcset="{{ mobile_image | image_url: width: 540 }} 540w, {{ mobile_image | image_url: width: 750 }} 750w, {{ mobile_image | image_url: width: 1100 }} 1100w, {{ mobile_image | image_url: width: 1500 }} 1500w"
+        sizes="100vw"
+        width="{{ mobile_image.width }}"
+        height="{{ mobile_image.height }}"
+      >
+      {{
+        image
+        | image_url: width: 2400
+        | image_tag: widths: widths, sizes: sizes, loading: loading, fetchpriority: fetchpriority, class: class, alt: alt
+      }}
+    </picture>
+  {%- else -%}
+    {{
+      image
+      | image_url: width: 2400
+      | image_tag: widths: widths, sizes: sizes, loading: loading, fetchpriority: fetchpriority, class: class, alt: alt
+    }}
+  {%- endif -%}
+{%- else -%}
+  <div class="heist-placeholder {{ class }}" role="img" aria-label="{{ label | default: 'Image placeholder' | escape }}">
+    {{ placeholder | placeholder_svg_tag: 'heist-placeholder__svg' }}
+    {%- if label != blank -%}
+      <span class="heist-placeholder__label">{{ label }}</span>
+    {%- endif -%}
+  </div>
+{%- endif -%}

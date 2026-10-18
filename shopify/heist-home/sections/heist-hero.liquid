@@ -1,0 +1,234 @@
+{%- comment -%}
+  Scroll-captured hero. Desktop: the canvas pins while the title and
+  wordmark lift away, the glass rises, the hand frames build up beneath
+  it and the "Steal Back / The Night." story fades in.
+  Mobile and reduced motion: a static stack, then a separate story panel.
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  if s.button_link != blank
+    assign button_url = s.button_link
+  else
+    assign button_url = routes.all_products_collection_url
+  endif
+  assign hand_frames = section.blocks | where: 'type', 'hand_frame'
+-%}
+
+<heist-hero
+  class="heist-hero"
+  id="HeistHero-{{ section.id }}"
+  style="--hero-scroll: {{ s.scroll_length }}vh;"
+>
+  <div class="heist-hero__canvas">
+    <div class="heist-hero__background" aria-hidden="true">
+      {% render 'heist-image',
+        image: s.background,
+        mobile_image: s.background_mobile,
+        class: 'heist-hero__background-image',
+        loading: 'eager',
+        priority: true,
+        placeholder: 'hero-apparel-1'
+      %}
+    </div>
+    <div class="heist-grain" aria-hidden="true"></div>
+
+    <div class="heist-hero__intro">
+      <h1 class="heist-hero__title t-h1">{{ s.title }}</h1>
+      <div class="heist-hero__wordmark" aria-hidden="true">
+        {% render 'heist-wordmark',
+          logo: s.wordmark,
+          class: 'heist-hero__wordmark-image',
+          sizes: '(max-width: 749px) 84vw, 74vw',
+          loading: 'eager'
+        %}
+      </div>
+    </div>
+
+    <div class="heist-hero__glass" aria-hidden="true">
+      {% render 'heist-image',
+        image: s.glass,
+        class: 'heist-hero__glass-image',
+        sizes: '(max-width: 749px) 74vw, 32vw',
+        loading: 'eager',
+        placeholder: 'product-1',
+        label: 'Glass cut-out'
+      %}
+    </div>
+
+    <div class="heist-hero__hands" aria-hidden="true">
+      {%- for block in hand_frames -%}
+        <figure
+          class="heist-hero__hand{% if forloop.last %} heist-hero__hand--final{% endif %}"
+          data-hand-frame
+          {{ block.shopify_attributes }}
+        >
+          {% render 'heist-image',
+            image: block.settings.image,
+            class: 'heist-hero__hand-image',
+            sizes: '(max-width: 749px) 92vw, 50vw',
+            placeholder: 'lifestyle-2',
+            label: 'Hand frame'
+          %}
+        </figure>
+      {%- endfor -%}
+    </div>
+
+    <div class="heist-hero__story">
+      <div class="heist-hero__story-left">
+        <p class="heist-hero__story-title t-h2">{{ s.story_left }}</p>
+        {%- if s.badge != blank -%}
+          <div class="heist-hero__badge">
+            {% render 'heist-image', image: s.badge, class: 'heist-hero__badge-image', sizes: '160px' %}
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="heist-hero__story-right">
+        <p class="heist-hero__story-title t-h2">{{ s.story_right }}</p>
+        <div class="heist-hero__body t-t1">{{ s.body }}</div>
+        {%- if s.button_label != blank -%}
+          <a class="heist-btn heist-btn--cream heist-hero__button" href="{{ button_url }}">{{ s.button_label }}</a>
+        {%- endif -%}
+        <div class="heist-hero__note t-n1">{{ s.note }}</div>
+      </div>
+    </div>
+  </div>
+</heist-hero>
+
+<div class="heist-hero-mobile-story">
+  <div class="heist-hero-mobile-story__background" aria-hidden="true">
+    {% render 'heist-image', image: s.story_background_mobile, class: 'heist-hero-mobile-story__image', placeholder: 'hero-apparel-2' %}
+  </div>
+  <div class="heist-grain" aria-hidden="true"></div>
+  <div class="heist-hero-mobile-story__content">
+    <p class="heist-hero-mobile-story__title t-h2">{{ s.story_left }}<br>{{ s.story_right }}</p>
+    <div class="heist-hero-mobile-story__body t-t1">{{ s.body }}</div>
+    {%- if s.button_label != blank -%}
+      <a class="heist-btn heist-btn--cream heist-hero-mobile-story__button" href="{{ button_url }}">{{ s.button_label }}</a>
+    {%- endif -%}
+    <div class="heist-hero__note t-n3">{{ s.note }}</div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Heist hero",
+  "class": "heist-hero-section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background",
+      "label": "Background (desktop)",
+      "info": "Tall gradient artwork, about 2400 × 2800px."
+    },
+    {
+      "type": "image_picker",
+      "id": "background_mobile",
+      "label": "Background (mobile)"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Coffee Without a Curfew."
+    },
+    {
+      "type": "image_picker",
+      "id": "wordmark",
+      "label": "Wordmark",
+      "info": "Large HEIST wordmark under the glass."
+    },
+    {
+      "type": "image_picker",
+      "id": "glass",
+      "label": "Glass cut-out",
+      "info": "Transparent PNG."
+    },
+    {
+      "type": "range",
+      "id": "scroll_length",
+      "label": "Scroll length (desktop)",
+      "min": 120,
+      "max": 300,
+      "step": 10,
+      "unit": "vh",
+      "default": 190
+    },
+    {
+      "type": "header",
+      "content": "Story"
+    },
+    {
+      "type": "text",
+      "id": "story_left",
+      "label": "Left title",
+      "default": "Steal Back"
+    },
+    {
+      "type": "text",
+      "id": "story_right",
+      "label": "Right title",
+      "default": "The Night."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>Heist is a world-class decaf coffee built for people who refuse to choose between full flavor and a good night’s sleep.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "richtext",
+      "id": "note",
+      "label": "Guarantee note",
+      "default": "<p>30-day escape plan</p><p>Love it or your money back</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge",
+      "label": "Seal / badge",
+      "info": "Bottom-left of the story frame."
+    },
+    {
+      "type": "image_picker",
+      "id": "story_background_mobile",
+      "label": "Story background (mobile)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hand_frame",
+      "name": "Hand frame",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Frame",
+          "info": "Transparent PNG, about 1800 × 2520px. Frames play in order; the last is shown on mobile."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heist hero",
+      "blocks": [
+        { "type": "hand_frame" },
+        { "type": "hand_frame" },
+        { "type": "hand_frame" },
+        { "type": "hand_frame" }
+      ]
+    }
+  ]
+}
+{% endschema %}

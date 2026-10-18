@@ -1,0 +1,249 @@
+{%- comment -%}
+  "World-Class Decaf Coffee": heading, proof badges and full-bleed product
+  cards. Each card toggles between the product's first-option values
+  (e.g. Decaf / 1/4 Caf) and updates the "Shop now – from" price and link.
+  Hovering a card on desktop reveals its description and optional video.
+{%- endcomment -%}
+{%- liquid
+  assign product_blocks = section.blocks | where: 'type', 'product'
+  assign badge_blocks = section.blocks | where: 'type', 'badge'
+  assign first_product = product_blocks.first.settings.product
+  assign rating_count = first_product.metafields.reviews.rating_count
+-%}
+
+<section class="heist-showcase heist-paper" id="HeistShowcase-{{ section.id }}">
+  <div class="heist-grain" aria-hidden="true"></div>
+  <div class="heist-container">
+    <header class="heist-showcase__header">
+      <div class="heist-showcase__heading-wrap">
+        {%- if rating_count != blank -%}
+          <p class="heist-rating t-n2">
+            <span class="heist-rating__stars" aria-hidden="true">
+              {%- for i in (1..5) -%}{% render 'heist-icon', icon: 'star' %}{%- endfor -%}
+            </span>
+            <span>(<a href="{{ first_product.url }}#reviews">{{ rating_count }} reviews</a>)</span>
+          </p>
+        {%- endif -%}
+        <h2 class="heist-showcase__heading t-h4">{{ section.settings.heading }}</h2>
+      </div>
+      {%- if badge_blocks.size > 0 -%}
+        <ul class="heist-showcase__badges" role="list">
+          {%- for block in badge_blocks -%}
+            <li class="heist-showcase__badge" {{ block.shopify_attributes }}>
+              {% render 'heist-image',
+                image: block.settings.image,
+                class: 'heist-showcase__badge-image',
+                sizes: '140px',
+                alt: block.settings.alt,
+                placeholder: 'image',
+                label: block.settings.alt
+              %}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </header>
+
+    <div class="heist-showcase__grid">
+      {%- for block in product_blocks -%}
+        {%- liquid
+          assign bs = block.settings
+          assign product = bs.product
+          assign title = bs.title | default: product.title
+          assign option = product.options_with_values.first
+        -%}
+        <article
+          class="heist-product-card heist-product-card--{{ bs.text_scheme }}"
+          data-heist-product-card
+          {{ block.shopify_attributes }}
+        >
+          <div class="heist-product-card__media">
+            {% render 'heist-image',
+              image: bs.image,
+              class: 'heist-product-card__image',
+              sizes: '(max-width: 749px) 92vw, 46vw',
+              placeholder: 'product-2',
+              alt: title
+            %}
+          </div>
+
+          {%- if bs.video != blank or bs.description != blank -%}
+            <div class="heist-product-card__detail">
+              {%- if bs.video != blank -%}
+                {% render 'heist-media', video: bs.video, class: 'heist-product-card__detail-video' %}
+              {%- endif -%}
+              <div class="heist-product-card__description t-t1">{{ bs.description }}</div>
+            </div>
+          {%- endif -%}
+
+          <div class="heist-product-card__head">
+            <h3 class="heist-product-card__title t-ui">{{ title }}</h3>
+            <p class="heist-product-card__roast t-t1">{{ bs.roast }}</p>
+            <p class="heist-product-card__notes t-n1">{{ bs.notes }}</p>
+          </div>
+
+          <div class="heist-product-card__actions">
+            {%- if product != blank and product.has_only_default_variant == false and option.values.size > 1 -%}
+              <div class="heist-product-card__toggle" role="radiogroup" aria-label="{{ option.name | escape }}">
+                {%- for value in option.values -%}
+                  {%- liquid
+                    assign match = null
+                    for variant in product.variants
+                      if variant.option1 == value and variant.available
+                        if match == null or variant.price < match.price
+                          assign match = variant
+                        endif
+                      endif
+                    endfor
+                    if match == null
+                      assign match = product.variants | where: 'option1', value | first
+                    endif
+                  -%}
+                  <button
+                    type="button"
+                    class="heist-product-card__toggle-option t-n1"
+                    role="radio"
+                    aria-checked="{% if forloop.first %}true{% else %}false{% endif %}"
+                    data-url="{{ match.url }}"
+                    data-price="{{ match.price | money_without_trailing_zeros }}"
+                  >
+                    {{ value }}
+                  </button>
+                {%- endfor -%}
+              </div>
+              {%- assign first_value = option.values.first -%}
+              {%- assign start_variant = product.variants | where: 'option1', first_value | first -%}
+            {%- elsif product != blank and option.values.size == 1 -%}
+              <div class="heist-product-card__toggle heist-product-card__toggle--single">
+                <span class="heist-product-card__toggle-option t-n1" aria-checked="true">{{ option.values.first }}</span>
+              </div>
+              {%- assign start_variant = product.selected_or_first_available_variant -%}
+            {%- else -%}
+              {%- assign start_variant = product.selected_or_first_available_variant -%}
+            {%- endif -%}
+
+            {%- if product != blank -%}
+              {%- assign start_url = start_variant.url | default: product.url -%}
+              {%- assign start_price = start_variant.price | default: product.price_min | money_without_trailing_zeros -%}
+            {%- else -%}
+              {%- assign start_url = '#' -%}
+              {%- assign start_price = '$32.99' -%}
+            {%- endif -%}
+            <a class="heist-btn heist-btn--red heist-product-card__buy" href="{{ start_url }}" data-buy-link>
+              <span>{{ section.settings.button_label }}</span>
+              <span class="heist-product-card__price" data-price-label>{{ start_price }}</span>
+            </a>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Heist products",
+  "class": "heist-showcase-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "World-Class Decaf Coffee"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "info": "The lowest price of the selected option is added after this.",
+      "default": "Shop now - from"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Badge artwork"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Description",
+          "default": "Whole beans badge"
+        }
+      ]
+    },
+    {
+      "type": "product",
+      "name": "Product",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "info": "Defaults to the product title."
+        },
+        {
+          "type": "text",
+          "id": "roast",
+          "label": "Roast",
+          "default": "Medium Roast"
+        },
+        {
+          "type": "text",
+          "id": "notes",
+          "label": "Tasting notes",
+          "default": "Dark chocolate, vanilla bean"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card image",
+          "info": "Square, about 1600 × 1600px."
+        },
+        {
+          "type": "select",
+          "id": "text_scheme",
+          "label": "Text colour",
+          "options": [
+            { "value": "dark", "label": "Dark" },
+            { "value": "light", "label": "Light" }
+          ],
+          "default": "dark"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Hover description"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Hover video"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heist products",
+      "blocks": [
+        { "type": "badge" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}

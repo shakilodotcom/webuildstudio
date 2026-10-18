@@ -1,0 +1,284 @@
+{%- comment -%}
+  "Can Decaf be as good as regular?": tabbed proof panel.
+  Tab 1 is a blind cupping-score bar chart (bar blocks), tab 2 an evidence
+  table (row blocks). Bars grow into place when the panel scrolls into view.
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign bars = section.blocks | where: 'type', 'bar'
+  assign rows = section.blocks | where: 'type', 'evidence_row'
+  assign axis_range = s.axis_max | minus: s.axis_min
+  assign tick_count = axis_range | divided_by: s.axis_step
+-%}
+
+<section class="heist-comparison" id="HeistComparison-{{ section.id }}">
+  <div class="heist-grain" aria-hidden="true"></div>
+  <div class="heist-container">
+    <h2 class="heist-comparison__heading t-h4">{{ s.heading }}</h2>
+
+    <heist-tabs class="heist-tabs">
+      <div class="heist-comparison__subheadings">
+        <div class="heist-comparison__subheading t-t4" data-tab-copy>{{ s.chart_intro }}</div>
+        <div class="heist-comparison__subheading t-t4" data-tab-copy hidden>{{ s.table_intro }}</div>
+      </div>
+
+      <div class="heist-tabs__list" role="tablist" aria-label="{{ s.heading | escape }}">
+        <button type="button" role="tab" class="heist-tabs__tab t-n1" id="Tab-{{ section.id }}-0" aria-controls="Panel-{{ section.id }}-0" aria-selected="true">{{ s.chart_tab }}</button>
+        <button type="button" role="tab" class="heist-tabs__tab t-n1" id="Tab-{{ section.id }}-1" aria-controls="Panel-{{ section.id }}-1" aria-selected="false" tabindex="-1">{{ s.table_tab }}</button>
+      </div>
+
+      <div class="heist-tabs__panel" role="tabpanel" id="Panel-{{ section.id }}-0" aria-labelledby="Tab-{{ section.id }}-0" tabindex="0">
+        <div class="heist-chart" data-heist-chart>
+          <ol class="heist-chart__rows" role="list">
+            {%- for block in bars -%}
+              {%- liquid
+                assign bs = block.settings
+                assign offset = bs.score | minus: s.axis_min
+                assign pct = offset | times: 100.0 | divided_by: axis_range
+                if pct < 0
+                  assign pct = 0
+                elsif pct > 100
+                  assign pct = 100
+                endif
+              -%}
+              <li class="heist-chart__row{% if bs.featured %} heist-chart__row--featured{% endif %}" {{ block.shopify_attributes }}>
+                <div class="heist-chart__label t-n1">
+                  {%- if bs.featured -%}
+                    <span class="heist-chart__brand">
+                      {% render 'heist-wordmark', logo: s.logo, class: 'heist-chart__logo', sizes: '120px' %}
+                    </span>
+                  {%- else -%}
+                    <span>{{ bs.label }}</span>
+                  {%- endif -%}
+                  <span>{{ bs.sublabel }}</span>
+                </div>
+                <div class="heist-chart__track">
+                  <div class="heist-chart__bar" style="--bar: {{ pct }}%;">
+                    {%- if bs.tag != blank -%}<span class="heist-chart__tag t-n1">{{ bs.tag }}</span>{%- endif -%}
+                  </div>
+                  <span class="heist-chart__score t-n1" style="--bar: {{ pct }}%;">
+                    <span class="visually-hidden">Score: </span>{{ bs.score }}
+                  </span>
+                </div>
+              </li>
+            {%- endfor -%}
+          </ol>
+          <div class="heist-chart__axis t-n1" aria-hidden="true">
+            {%- for i in (0..tick_count) -%}
+              {%- assign tick = i | times: s.axis_step | plus: s.axis_min -%}
+              <span style="--tick: {{ i | times: 100.0 | divided_by: tick_count }}%;">{{ tick }}</span>
+            {%- endfor -%}
+          </div>
+          {%- if s.method != blank -%}
+            <div class="heist-chart__method t-n2">{{ s.method }}</div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="heist-tabs__panel" role="tabpanel" id="Panel-{{ section.id }}-1" aria-labelledby="Tab-{{ section.id }}-1" tabindex="0" hidden>
+        <div class="heist-evidence">
+          <table class="heist-evidence__table">
+            <thead>
+              <tr class="t-h6">
+                <th scope="col">{{ s.table_label_heading }}</th>
+                <th scope="col" class="heist-evidence__col">{{ s.table_other_heading }}</th>
+                <th scope="col" class="heist-evidence__col heist-evidence__col--heist">
+                  {% render 'heist-wordmark', logo: s.logo, class: 'heist-evidence__logo', sizes: '160px' %}
+                  <span class="heist-evidence__sub t-n1">{{ s.table_heist_sub }}</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {%- for block in rows -%}
+                <tr {{ block.shopify_attributes }}>
+                  <th scope="row" class="t-n1">{{ block.settings.label }}</th>
+                  <td class="heist-evidence__col">
+                    {%- if block.settings.other -%}
+                      {% render 'heist-icon', icon: 'check' %}<span class="visually-hidden">Yes</span>
+                    {%- else -%}
+                      {% render 'heist-icon', icon: 'cross' %}<span class="visually-hidden">No</span>
+                    {%- endif -%}
+                  </td>
+                  <td class="heist-evidence__col heist-evidence__col--heist">
+                    {%- if block.settings.heist -%}
+                      {% render 'heist-icon', icon: 'check' %}<span class="visually-hidden">Yes</span>
+                    {%- else -%}
+                      {% render 'heist-icon', icon: 'cross' %}<span class="visually-hidden">No</span>
+                    {%- endif -%}
+                  </td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </heist-tabs>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Heist comparison",
+  "class": "heist-comparison-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Can Decaf be as good as regular?"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Heist logo (dark)",
+      "info": "Used on featured bars and the table header."
+    },
+    {
+      "type": "header",
+      "content": "Chart tab"
+    },
+    {
+      "type": "text",
+      "id": "chart_tab",
+      "label": "Tab label",
+      "default": "Heist vs. regular coffees"
+    },
+    {
+      "type": "richtext",
+      "id": "chart_intro",
+      "label": "Intro",
+      "default": "<p>This is our mission so we didn't pick easy competition.</p>"
+    },
+    {
+      "type": "number",
+      "id": "axis_min",
+      "label": "Axis start",
+      "default": 70
+    },
+    {
+      "type": "number",
+      "id": "axis_max",
+      "label": "Axis end",
+      "default": 90
+    },
+    {
+      "type": "number",
+      "id": "axis_step",
+      "label": "Axis step",
+      "default": 5
+    },
+    {
+      "type": "richtext",
+      "id": "method",
+      "label": "Method note"
+    },
+    {
+      "type": "header",
+      "content": "Table tab"
+    },
+    {
+      "type": "text",
+      "id": "table_tab",
+      "label": "Tab label",
+      "default": "Heist vs. decaf"
+    },
+    {
+      "type": "richtext",
+      "id": "table_intro",
+      "label": "Intro",
+      "default": "<p>What sets us apart from the other STANDARD decaf coffees.</p>"
+    },
+    {
+      "type": "text",
+      "id": "table_label_heading",
+      "label": "First column heading",
+      "default": "Evidence"
+    },
+    {
+      "type": "text",
+      "id": "table_other_heading",
+      "label": "Comparison column heading",
+      "default": "Standard Decafs"
+    },
+    {
+      "type": "text",
+      "id": "table_heist_sub",
+      "label": "Heist column sub-label",
+      "default": "(Decaf)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bar",
+      "name": "Chart bar",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Heist coffee (shows logo, blue bar)",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "info": "Replaced by the logo on featured bars.",
+          "default": "Former Roaster"
+        },
+        {
+          "type": "text",
+          "id": "sublabel",
+          "label": "Second line",
+          "default": "of the Year"
+        },
+        {
+          "type": "number",
+          "id": "score",
+          "label": "Score",
+          "default": 84
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag inside bar",
+          "info": "e.g. decaf"
+        }
+      ]
+    },
+    {
+      "type": "evidence_row",
+      "name": "Table row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Claim",
+          "default": "Small-batch roasted"
+        },
+        {
+          "type": "checkbox",
+          "id": "other",
+          "label": "Standard decafs meet this",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "heist",
+          "label": "Heist meets this",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heist comparison",
+      "blocks": [
+        { "type": "bar", "settings": { "featured": true, "sublabel": "Blueprint", "score": 86, "tag": "decaf" } },
+        { "type": "bar" },
+        { "type": "evidence_row" }
+      ]
+    }
+  ]
+}
+{% endschema %}

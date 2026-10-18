@@ -1,0 +1,227 @@
+{%- comment -%}
+  Heist header: brand fonts, announcement bar, transparent-over-hero nav,
+  a cream bar with centred logo when scrolling up, and a sticky
+  "Coffee Without a Curfew. / SHOP NOW" bar when scrolling down.
+{%- endcomment -%}
+
+<style>
+  {%- if section.settings.display_font_file != blank %}
+  @font-face {
+    font-family: 'Feature Display Condensed';
+    src: url('{{ section.settings.display_font_file | file_url }}') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  {%- endif %}
+  {%- if section.settings.ui_font_file != blank %}
+  @font-face {
+    font-family: 'Aro';
+    src: url('{{ section.settings.ui_font_file | file_url }}') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+  {%- endif %}
+</style>
+{%- if section.settings.typekit_id != blank -%}
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <link rel="stylesheet" href="https://use.typekit.net/{{ section.settings.typekit_id | escape }}.css">
+{%- endif -%}
+{%- if section.settings.fallback_fonts -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,800&family=IBM+Plex+Mono:wght@500;600&family=Instrument+Serif&display=swap">
+{%- endif -%}
+
+{%- liquid
+  assign menu = section.settings.menu
+  assign link_count = menu.links.size
+  assign left_count = link_count | plus: 1 | divided_by: 2
+  if section.settings.shop_link != blank
+    assign shop_url = section.settings.shop_link
+  else
+    assign shop_url = routes.all_products_collection_url
+  endif
+-%}
+
+<heist-header class="heist-header" data-state="top">
+  {%- if section.settings.announcement != blank -%}
+    <div class="heist-announcement t-n2">
+      {%- if section.settings.announcement_link != blank -%}
+        <a href="{{ section.settings.announcement_link }}">{{ section.settings.announcement }}</a>
+      {%- else -%}
+        <p>{{ section.settings.announcement }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="heist-header__bar">
+    <button type="button" class="heist-header__menu-toggle" aria-controls="HeistMenuDrawer" aria-expanded="false" data-menu-open>
+      {% render 'heist-icon', icon: 'menu' %}
+      <span class="visually-hidden">Open menu</span>
+    </button>
+
+    <a class="heist-btn heist-btn--red heist-header__shop" href="{{ shop_url }}">{{ section.settings.shop_label }}</a>
+
+    <nav class="heist-header__nav heist-header__nav--centre" aria-label="Main">
+      <ul class="t-n1">
+        {%- for link in menu.links -%}
+          <li><a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <nav class="heist-header__nav heist-header__nav--left" aria-label="Main (part 1)">
+      <ul class="t-n1">
+        {%- for link in menu.links limit: left_count -%}
+          <li><a href="{{ link.url }}" tabindex="-1">{{ link.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <a class="heist-header__logo" href="{{ routes.root_url }}">
+      {% render 'heist-wordmark', logo: section.settings.logo, class: 'heist-header__logo-image', sizes: '160px', loading: 'eager' %}
+    </a>
+
+    <nav class="heist-header__nav heist-header__nav--right" aria-label="Main (part 2)">
+      <ul class="t-n1">
+        {%- for link in menu.links offset: left_count -%}
+          <li><a href="{{ link.url }}" tabindex="-1">{{ link.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <a class="heist-header__cart t-ui" href="{{ routes.cart_url }}">
+      <span class="heist-header__cart-label">Cart(<span data-cart-count>{{ cart.item_count }}</span>)</span>
+      <span class="heist-header__cart-bubble" aria-hidden="true">{{ cart.item_count }}</span>
+      <span class="visually-hidden">, {{ cart.item_count }} items</span>
+    </a>
+  </div>
+
+  <div class="heist-sticky-cta" aria-hidden="true">
+    <p class="heist-sticky-cta__copy t-h7">{{ section.settings.sticky_text }}</p>
+    <a class="heist-sticky-cta__button t-ui" href="{{ shop_url }}" tabindex="-1">{{ section.settings.shop_label }}</a>
+  </div>
+</heist-header>
+
+<dialog class="heist-menu-drawer" id="HeistMenuDrawer" aria-label="Menu">
+  <div class="heist-menu-drawer__inner">
+    <button type="button" class="heist-menu-drawer__close" data-menu-close>
+      {% render 'heist-icon', icon: 'close' %}
+      <span class="visually-hidden">Close menu</span>
+    </button>
+    {%- assign drawer_menu = section.settings.mobile_menu | default: menu -%}
+    <ul class="heist-menu-drawer__links t-ui">
+      {%- for link in drawer_menu.links -%}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {%- endfor -%}
+    </ul>
+    <a class="heist-btn heist-btn--red heist-menu-drawer__shop" href="{{ shop_url }}">{{ section.settings.shop_label }}</a>
+    {%- if section.settings.drawer_note != blank -%}
+      <p class="heist-menu-drawer__note t-n1">{{ section.settings.drawer_note }}</p>
+    {%- endif -%}
+  </div>
+</dialog>
+
+{% schema %}
+{
+  "name": "Heist header",
+  "class": "heist-header-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Brand fonts"
+    },
+    {
+      "type": "paragraph",
+      "content": "Upload licensed .woff2 files to Content > Files and enter the exact file names. Leave blank to use the fallback fonts below."
+    },
+    {
+      "type": "text",
+      "id": "display_font_file",
+      "label": "Display serif file (Feature Display Condensed)",
+      "default": "FeatureDisplayCondensed-Regular.woff2"
+    },
+    {
+      "type": "text",
+      "id": "ui_font_file",
+      "label": "UI sans file (Aro Narrow)",
+      "default": "Aro-Narrow.woff2"
+    },
+    {
+      "type": "text",
+      "id": "typekit_id",
+      "label": "Adobe Fonts kit ID (forma-djr-mono)",
+      "info": "The kit must list this store's domains."
+    },
+    {
+      "type": "checkbox",
+      "id": "fallback_fonts",
+      "label": "Load open-licence fallback fonts",
+      "info": "Instrument Serif, Archivo and IBM Plex Mono from Google Fonts. Turn on until the brand font licences are confirmed.",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Announcement"
+    },
+    {
+      "type": "text",
+      "id": "announcement",
+      "label": "Text",
+      "default": "Great coffee for the second half of the day."
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo",
+      "info": "SVG or transparent PNG. Shown when the bar turns cream."
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Desktop menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "mobile_menu",
+      "label": "Mobile menu",
+      "info": "Defaults to the desktop menu."
+    },
+    {
+      "type": "text",
+      "id": "shop_label",
+      "label": "Shop button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "shop_link",
+      "label": "Shop button link"
+    },
+    {
+      "type": "text",
+      "id": "sticky_text",
+      "label": "Sticky bar text",
+      "default": "Coffee Without a Curfew."
+    },
+    {
+      "type": "text",
+      "id": "drawer_note",
+      "label": "Menu drawer note",
+      "default": "World-class decaf"
+    }
+  ]
+}
+{% endschema %}

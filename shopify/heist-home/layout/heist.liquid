@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#161414">
+    <link rel="canonical" href="{{ canonical_url }}">
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64, height: 64 }}">
+    {%- endif -%}
+
+    <title>
+      {{ page_title }}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    {{ 'heist.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'heist.js' | asset_url }}" defer></script>
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="heist-page">
+    <a class="heist-skip-link" href="#MainContent">Skip to content</a>
+
+    {%- comment -%}
+      Fonts, announcement bar, navigation and the sticky CTA live in the
+      static header section so their settings are editable in the theme editor.
+    {%- endcomment -%}
+    {% section 'heist-header' %}
+
+    <main id="MainContent" class="heist-main" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'heist-footer' %}
+  </body>
+</html>

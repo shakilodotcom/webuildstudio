@@ -1,0 +1,148 @@
+{%- comment -%}
+  "The receipts don't lie.": swipeable row of review cards. Blocks are
+  either a written review (name, rating, product, quote, bag shot) or a
+  customer video with a sound toggle.
+{%- endcomment -%}
+
+<section class="heist-reviews" id="HeistReviews-{{ section.id }}">
+  <div class="heist-grain" aria-hidden="true"></div>
+  <div class="heist-container">
+    <h2 class="heist-reviews__heading t-h4">{{ section.settings.heading }}</h2>
+  </div>
+
+  <heist-carousel class="heist-carousel heist-reviews__carousel">
+    <ul class="heist-carousel__track" role="list" tabindex="0" aria-label="{{ section.settings.heading | escape }}">
+      {%- for block in section.blocks -%}
+        {%- assign bs = block.settings -%}
+        {%- case block.type -%}
+          {%- when 'video' -%}
+            <li class="heist-review heist-review--video" {{ block.shopify_attributes }}>
+              <div class="heist-review__media">
+                {% render 'heist-media',
+                  video: bs.video,
+                  image: bs.poster,
+                  class: 'heist-review__video',
+                  sizes: '(max-width: 749px) 80vw, 320px',
+                  sound_toggle: true,
+                  placeholder: 'lifestyle-1',
+                  label: 'Customer video'
+                %}
+              </div>
+            </li>
+          {%- when 'review' -%}
+            <li class="heist-review heist-review--text" {{ block.shopify_attributes }}>
+              <dl class="heist-review__meta t-n1">
+                <div><dt>Name:</dt><dd>{{ bs.name }}</dd></div>
+                <div>
+                  <dt>Rating:</dt>
+                  <dd class="heist-review__stars" aria-label="{{ bs.rating }} out of 5 stars">
+                    {%- for i in (1..bs.rating) -%}{% render 'heist-icon', icon: 'star' %}{%- endfor -%}
+                  </dd>
+                </div>
+                <div><dt>Product:</dt><dd>{{ bs.product_label }}</dd></div>
+              </dl>
+              <blockquote class="heist-review__quote t-t2">“{{ bs.quote }}”</blockquote>
+              <div class="heist-review__footer">
+                <div class="heist-review__bag">
+                  {% render 'heist-image', image: bs.image, class: 'heist-review__bag-image', sizes: '96px', placeholder: 'product-3' %}
+                </div>
+                <div class="heist-review__verify">
+                  <span class="heist-barcode" aria-hidden="true"></span>
+                  {%- if bs.verified -%}
+                    <span class="heist-review__verified t-n1">{% render 'heist-icon', icon: 'verified' %} Verified buyer</span>
+                  {%- endif -%}
+                </div>
+              </div>
+            </li>
+        {%- endcase -%}
+      {%- endfor -%}
+    </ul>
+  </heist-carousel>
+</section>
+
+{% schema %}
+{
+  "name": "Heist reviews",
+  "class": "heist-reviews-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The receipts don’t lie."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Written review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Customer name",
+          "default": "Alyssa H."
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "product_label",
+          "label": "Product",
+          "default": "Smooth Talker (decaf)"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "Love this coffee. Tastes like dessert but I still slept like a baby."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Bag image"
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Verified buyer",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Customer video",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video",
+          "info": "Portrait. Only use clips the customer has agreed can be shown."
+        },
+        {
+          "type": "image_picker",
+          "id": "poster",
+          "label": "Poster image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heist reviews",
+      "blocks": [
+        { "type": "video" },
+        { "type": "review" }
+      ]
+    }
+  ]
+}
+{% endschema %}

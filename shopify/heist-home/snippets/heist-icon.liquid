@@ -1,0 +1,27 @@
+{%- comment -%}
+  Inline UI icons. Accepts: icon {String}
+{%- endcomment -%}
+{%- case icon -%}
+  {%- when 'menu' -%}
+    <svg class="heist-icon heist-icon--menu" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+  {%- when 'close' -%}
+    <svg class="heist-icon heist-icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+  {%- when 'arrow' -%}
+    <svg class="heist-icon heist-icon--arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+  {%- when 'star' -%}
+    <svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg>
+  {%- when 'check' -%}
+    <svg class="heist-icon heist-icon--check" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="15" fill="currentColor"/><path d="M9 16.5l4.5 4.5L23 11.5" fill="none" stroke="var(--heist-cream)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  {%- when 'cross' -%}
+    <svg class="heist-icon heist-icon--cross" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M25.4 6.6L6.6 25.4M6.6 6.6l18.8 18.8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+  {%- when 'verified' -%}
+    <svg class="heist-icon heist-icon--verified" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5 8.2l2 2 4-4.2" fill="none" stroke="var(--heist-paper)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  {%- when 'muted' -%}
+    <svg class="heist-icon heist-icon--muted" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M3 21L21 3" stroke="currentColor" stroke-width="1.75"/></svg>
+  {%- when 'unmuted' -%}
+    <svg class="heist-icon heist-icon--unmuted" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+  {%- when 'instagram' -%}
+    <svg class="heist-icon heist-icon--instagram" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.75"/><circle cx="12" cy="12" r="3.8" fill="none" stroke="currentColor" stroke-width="1.75"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
+  {%- when 'tiktok' -%}
+    <svg class="heist-icon heist-icon--tiktok" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.5 3h2.6a4.6 4.6 0 004 4.1v2.7a7.3 7.3 0 01-4-1.3v6.3a5.8 5.8 0 11-5.8-5.8c.3 0 .6 0 .9.1v2.8a3 3 0 102.3 2.9z" fill="currentColor"/></svg>
+{%- endcase -%}

@@ -1,0 +1,328 @@
+{
+  "layout": "heist",
+  "sections": {
+    "hero": {
+      "type": "heist-hero",
+      "blocks": {
+        "hand_1": { "type": "hand_frame", "settings": { "image": "shopify://shop_images/First_finger.png" } },
+        "hand_2": { "type": "hand_frame", "settings": { "image": "shopify://shop_images/Second_finger.png" } },
+        "hand_3": { "type": "hand_frame", "settings": { "image": "shopify://shop_images/Half_Hand_1.png" } },
+        "hand_4": { "type": "hand_frame", "settings": { "image": "shopify://shop_images/Full_Hand_1.png" } }
+      },
+      "block_order": ["hand_1", "hand_2", "hand_3", "hand_4"],
+      "settings": {
+        "background": "shopify://shop_images/Homepage_BG-D.jpg",
+        "background_mobile": "shopify://shop_images/homepage1-M.jpg",
+        "title": "Coffee Without a Curfew.",
+        "wordmark": "shopify://shop_images/Heist-Logo_271574f0-d638-445f-846d-44996bb163bb.svg",
+        "glass": "shopify://shop_images/Coffee_Glass.png",
+        "scroll_length": 190,
+        "story_left": "Steal Back",
+        "story_right": "The Night.",
+        "body": "<p>Heist is a world-class decaf coffee built for people who refuse to choose between full flavor and a good night’s sleep.</p>",
+        "button_label": "Shop now",
+        "button_link": "shopify://products/coffee-without-a-curfew",
+        "note": "<p>30-day escape plan</p><p>Love it or your money back</p>",
+        "badge": "shopify://shop_images/badge-heistglobal.svg",
+        "story_background_mobile": "shopify://shop_images/homepage2-M.jpg"
+      }
+    },
+    "products": {
+      "type": "heist-product-showcase",
+      "blocks": {
+        "badge_whole_beans": {
+          "type": "badge",
+          "settings": { "image": "shopify://shop_images/badge-wholebeans.svg", "alt": "Whole beans badge" }
+        },
+        "badge_caffeine": {
+          "type": "badge",
+          "settings": { "image": "shopify://shop_images/badge-caffeine.svg", "alt": "99.9 percent caffeine removed icon" }
+        },
+        "badge_toxin": {
+          "type": "badge",
+          "settings": { "image": "shopify://shop_images/badge-toxinfree.svg", "alt": "Mold and mycotoxin free badge" }
+        },
+        "badge_water": {
+          "type": "badge",
+          "settings": { "image": "shopify://shop_images/Isolation_Mode.svg", "alt": "Chemical-free water-based decaffeination badge" }
+        },
+        "smooth_talker": {
+          "type": "product",
+          "settings": {
+            "product": "smooth-talker",
+            "title": "Smooth Talker",
+            "roast": "Medium Roast",
+            "notes": "Dark chocolate, vanilla bean",
+            "image": "shopify://shop_images/smooth_talker_b26b3c99-fd7c-460d-8e26-43d4a9b3d026.jpg",
+            "text_scheme": "dark",
+            "description": "<p>Round and balanced. The cup you reach for without thinking, every day of the week, any time of the day.</p>"
+          }
+        },
+        "blueprint": {
+          "type": "product",
+          "settings": {
+            "product": "blueprint",
+            "title": "Blueprint",
+            "roast": "Light Roast",
+            "notes": "Cocoa, Citrus Zest, Peach",
+            "image": "shopify://shop_images/blueprint_63a1694a-6387-4dd5-9fbd-7c9982b692ab.jpg",
+            "text_scheme": "light",
+            "description": "<p>The record-breaking decaf for the serious coffee lover. Our signature rotating single origin.</p>"
+          }
+        }
+      },
+      "block_order": ["badge_whole_beans", "badge_caffeine", "badge_toxin", "badge_water", "smooth_talker", "blueprint"],
+      "settings": {
+        "heading": "World-Class Decaf Coffee",
+        "button_label": "Shop now - from"
+      }
+    },
+    "film": {
+      "type": "heist-video-feature",
+      "settings": {
+        "eyebrow": "The Heist, in full"
+      }
+    },
+    "quality": {
+      "type": "heist-quality",
+      "blocks": {
+        "point_1": { "type": "point", "settings": { "text": "Top 1% of World’s\nCoffee Beans" } },
+        "point_2": { "type": "point", "settings": { "text": "Water Extracts\nthe Caffeine" } },
+        "point_3": { "type": "point", "settings": { "text": "No Solvents,\nno Chemicals" } },
+        "point_4": { "type": "point", "settings": { "text": "Highest Decaf\nCupping Score" } },
+        "point_5": { "type": "point", "settings": { "text": "Whole Beans to\nPreserve Flavor" } },
+        "point_6": { "type": "point", "settings": { "text": "Tested Mold +\nMycotoxin Free" } }
+      },
+      "block_order": ["point_1", "point_2", "point_3", "point_4", "point_5", "point_6"],
+      "settings": {
+        "heading": "Roasted in Small Batches with Big Standards",
+        "code": "23587 1348 124",
+        "code_label": "Batch"
+      }
+    },
+    "comparison": {
+      "type": "heist-comparison",
+      "blocks": {
+        "bar_blueprint": { "type": "bar", "settings": { "featured": true, "label": "Heist", "sublabel": "Blueprint", "score": 86, "tag": "decaf" } },
+        "bar_2": { "type": "bar", "settings": { "label": "Former Roaster", "sublabel": "of the Year", "score": 85 } },
+        "bar_3": { "type": "bar", "settings": { "label": "Award-Winning", "sublabel": "Elite Roaster", "score": 85 } },
+        "bar_smooth_talker": { "type": "bar", "settings": { "featured": true, "label": "Heist", "sublabel": "Smooth Talker", "score": 84, "tag": "decaf" } },
+        "bar_5": { "type": "bar", "settings": { "label": "Former Roaster", "sublabel": "of the Year", "score": 84 } },
+        "bar_6": { "type": "bar", "settings": { "label": "Former Roaster", "sublabel": "of the Year", "score": 83 } },
+        "bar_7": { "type": "bar", "settings": { "label": "Premium", "sublabel": "National Chain", "score": 78 } },
+        "bar_8": { "type": "bar", "settings": { "label": "National", "sublabel": "Chain", "score": 79 } },
+        "bar_9": { "type": "bar", "settings": { "label": "National", "sublabel": "Chain", "score": 78 } },
+        "row_1": { "type": "evidence_row", "settings": { "label": "Top 1% Arabica Beans Worldwide", "other": false, "heist": true } },
+        "row_2": { "type": "evidence_row", "settings": { "label": "Chemical Free Decaffeination", "other": false, "heist": true } },
+        "row_3": { "type": "evidence_row", "settings": { "label": "Independent lab-tested", "other": false, "heist": true } },
+        "row_4": { "type": "evidence_row", "settings": { "label": "Small-batch roasted", "other": false, "heist": true } },
+        "row_5": { "type": "evidence_row", "settings": { "label": "Mold + Mycotoxin Tested", "other": false, "heist": true } },
+        "row_6": { "type": "evidence_row", "settings": { "label": "99.9% decaf", "other": false, "heist": true } }
+      },
+      "block_order": [
+        "bar_blueprint", "bar_2", "bar_3", "bar_smooth_talker", "bar_5", "bar_6", "bar_7", "bar_8", "bar_9",
+        "row_1", "row_2", "row_3", "row_4", "row_5", "row_6"
+      ],
+      "settings": {
+        "heading": "Can Decaf be as good as regular?",
+        "logo": "shopify://shop_images/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg",
+        "chart_tab": "Heist vs. regular coffees",
+        "chart_intro": "<p>This is our mission so we didn't pick easy competition.<br>We picked the top seller from the most Awarded Roasters.<br>Judged blind by certified Coffee Q Graders.</p>",
+        "axis_min": 70,
+        "axis_max": 90,
+        "axis_step": 5,
+        "method": "<p>Method: Purchased the \"best-selling\" coffee directly from Roaster websites or direct in their cafe. Send blind roasted samples to certified Q Graders to judge with SCA scale weighted scoring method.</p>",
+        "table_tab": "Heist vs. decaf",
+        "table_intro": "<p>What sets us apart from the other STANDARD decaf coffees.</p>",
+        "table_label_heading": "Evidence",
+        "table_other_heading": "Standard Decafs",
+        "table_heist_sub": "(Decaf)"
+      }
+    },
+    "reviews": {
+      "type": "heist-reviews",
+      "blocks": {
+        "video_1": { "type": "video", "settings": {} },
+        "video_2": { "type": "video", "settings": {} },
+        "review_alyssa": {
+          "type": "review",
+          "settings": {
+            "name": "Alyssa H.",
+            "rating": 5,
+            "product_label": "Smooth Talker (decaf)",
+            "quote": "Love this coffee. Tastes like dessert but I still slept like a baby. Didn’t think decaf could actually hit this hard.",
+            "image": "shopify://shop_images/Review_DECAF.png",
+            "verified": true
+          }
+        },
+        "video_3": { "type": "video", "settings": {} },
+        "review_priya": {
+          "type": "review",
+          "settings": {
+            "name": "Priya S.",
+            "rating": 5,
+            "product_label": "Smooth Talker (1/4 caf)",
+            "quote": "Bought this for my friend who’s been trying to cut back on caffeine but refuses to give up good coffee. She’s now completely obsessed!",
+            "image": "shopify://shop_images/Review_1_2_CAF.png",
+            "verified": true
+          }
+        },
+        "review_carissa": {
+          "type": "review",
+          "settings": {
+            "name": "Carissa L.",
+            "rating": 5,
+            "product_label": "Blueprint",
+            "quote": "My best hours are 10pm to 2am. Always have been. Heist is built for people like me. I finally have a coffee that gets it.",
+            "image": "shopify://shop_images/Review_BLUEPRINT.png",
+            "verified": true
+          }
+        }
+      },
+      "block_order": ["video_1", "video_2", "review_alyssa", "video_3", "review_priya", "review_carissa"],
+      "settings": {
+        "heading": "The receipts don’t lie."
+      }
+    },
+    "late_night": {
+      "type": "heist-late-night",
+      "blocks": {
+        "tile_1": { "type": "tile", "settings": { "column": "1", "shape": "tall", "drop": "small", "placeholder_label": "Lifestyle portrait" } },
+        "tile_2": { "type": "tile", "settings": { "image": "shopify://shop_images/LNC_2.jpg", "column": "2", "shape": "short", "drop": "none" } },
+        "tile_3": { "type": "tile", "settings": { "column": "3", "shape": "short", "drop": "large", "placeholder_label": "Late-night clip" } },
+        "tile_4": { "type": "tile", "settings": { "image": "shopify://shop_images/LNC_4.jpg", "column": "4", "shape": "tall", "drop": "none" } },
+        "tile_5": { "type": "tile", "settings": { "column": "5", "shape": "short", "drop": "none", "placeholder_label": "Late-night clip" } }
+      },
+      "block_order": ["tile_1", "tile_2", "tile_3", "tile_4", "tile_5"],
+      "settings": {
+        "heading": "<p>For the late night conversations, and anyone who’s been told 1 pm is their last cup.<br>You now call the shots.</p>"
+      }
+    },
+    "brewing": {
+      "type": "heist-brewing-guide",
+      "blocks": {
+        "drip": {
+          "type": "recipe",
+          "settings": {
+            "card_title": "Drip coffee",
+            "card_image": "shopify://shop_images/1.jpg",
+            "card_hover_image": "shopify://shop_images/1_H.jpg",
+            "recipe_title": "Drip / Filter",
+            "details": "Coffee: Water Ratio | 1:14.5\nMake time | 5 min\nBest served | Hot · makes about 4 cups\nGrind | Medium, like table salt · C40 26-28",
+            "ingredients": "Filtered water | 1000 g\nHeist Coffee | 69 g",
+            "steps": "Grind to a medium, table-salt texture. Decaf throws more fines than caffeinated coffee, so if the brew stalls, go coarser before you change anything else.\nRinse a flat-bottom paper filter with hot water and discard the rinse water.\nAdd the grounds and level the bed flat. An uneven bed is the most common cause of a weak pot.\nIf your brewer has a pre-infusion setting, use it.\nBrew. Most machines take four to six minutes on their own.\nStir the carafe before you pour. Batch brews stratify, and the first cup and the last cup are different coffees otherwise.\nDrink within 30 minutes. Thermal carafe, never a hot plate."
+          }
+        },
+        "martini": {
+          "type": "recipe",
+          "settings": {
+            "card_title": "Espresso Martini",
+            "card_image": "shopify://shop_images/2.jpg",
+            "details": "Best made with | Smooth Talker\nMake time | 3 min\nBest served | Cold · up · coupe\nGrind | Fine (espresso)",
+            "scalable": true,
+            "ingredients": "Vodka | 2 oz\nCoffee Liqueur | 0.5 oz\nSmooth Talker espresso, fresh | 1 oz (a double, 38-40 g)\nDemerara syrup (2:1) | \nCoffee beans, to garnish | 3",
+            "steps": "Chill the coupe.\nPull the espresso straight into the shaker.\nAdd the syrup and a full scoop of ice.\nShake as hard as you can for 15 seconds.\nFine strain into the chilled coupe.",
+            "footnote": "It should land with a dense, hazelnut-coloured foam on top."
+          }
+        },
+        "pour_over": {
+          "type": "recipe",
+          "settings": {
+            "card_title": "Pour over",
+            "card_image": "shopify://shop_images/4.jpg",
+            "card_hover_image": "shopify://shop_images/4_H.jpg",
+            "recipe_title": "Pour Over",
+            "details": "Coffee: Water Ratio | 1:16\nMake time | 4 min\nBest served | Hot · 10 oz\nGrind | Medium-fine, like coarse sand · C40 20-22",
+            "ingredients": "Smooth Talker, whole bean | 20 g\nFiltered water | 320 g",
+            "steps": "Boil, then let the kettle rest 30 seconds. You want 200-204 F / 94-96 C.\nRinse a V60 paper thoroughly and discard the rinse water. This is what removes the paper taste and preheats the brewer.\nAdd the grounds, tap the bed flat, and make a shallow well in the centre.\nBloom with 50 g of water. Swirl gently, then wait 45 seconds.\nAt 0:45, pour steadily to 200 g.\nAt 1:30, pour to 320 g. Keep the stream central and off the walls.\nSwirl once to level the bed, then leave it alone.\nDrawdown should finish between 2:45 and 3:00. Past 3:30, grind coarser next time."
+          }
+        },
+        "espresso": {
+          "type": "recipe",
+          "settings": {
+            "card_title": "Espresso",
+            "card_image": "shopify://shop_images/5.jpg",
+            "card_hover_image": "shopify://shop_images/5_H.jpg",
+            "details": "Coffee: Water Ratio | 1:2.1\nMake time | 30 sec\nBest served | Hot · straight or in milk\nGrind | Fine · 2-3 steps coarser than your usual medium roast",
+            "ingredients": "Smooth Talker, ground | 18 g\nYield in the cup | 38-40 g",
+            "steps": "Set the brew temperature to 200 F / 92-93 C. Lower than you would run a caffeinated medium roast.\nBreak up the clumps with a needle tool. Decaf pucks channel more than caffeinated ones, so this step is not optional.\nLevel, then tamp straight and light.\nPre-infuse for five to eight seconds, then run the shot.\nStop at 38-40 g in the cup, around 27 to 30 seconds total.\nIf the shot gushes or runs pale early, the puck channeled. Redistribute and re-tamp. Do not grind finer to chase it."
+          }
+        },
+        "affogato": {
+          "type": "recipe",
+          "settings": {
+            "card_title": "Affogato",
+            "card_image": "shopify://shop_images/6.jpg",
+            "details": "Make time | 1 min\nBest served | Cold glass, immediately\nGrind | Fine (espresso)",
+            "ingredients": "Vanilla gelato, high butterfat | 85-100 g\nSmooth Talker espresso | 38-40 g\nFlaky sea salt | a pinch",
+            "steps": "Put the glass in the freezer for a few minutes. A cold glass is what stops it turning to soup.\nScoop the gelato in. Use the highest butterfat you can find — cheap ice cream goes watery the second the espresso hits it.\nPull the espresso and pour it straight over, at the table.\nAdd a pinch of flaky salt. Optional, and also the best version.\nServe immediately, with a spoon."
+          }
+        },
+        "cold_brew": {
+          "type": "recipe",
+          "settings": {
+            "card_title": "Cold brew",
+            "card_image": "shopify://shop_images/7.jpg",
+            "card_hover_image": "shopify://shop_images/7_H.jpg",
+            "recipe_title": "Cold Brew",
+            "details": "Coffee: Water Ratio | 1:8 concentrate\nMake time | 12 hr steep\nBest served | Cold · over ice · diluted 1:1\nGrind | Coarse, coarser than French press · C40 32-34",
+            "ingredients": "Smooth Talker, whole bean | 150 g\nCold filtered water | 1200 g\nFine sea salt | a pinch",
+            "steps": "Grind coarse, coarser than you would for French press. Fines make cold brew muddy and they never settle out.\nCombine the grounds and cold filtered water in a large jar.\nStir once, only until every ground is wet. Then leave it alone, stirring mid-steep pulls bitterness.\nSteep 12 to 14 hours at room temperature, or 18 to 20 in the fridge. Decaf extracts faster than caffeinated coffee, so pull it earlier than a recipe you have used before.\nStrain through a fine mesh.\nStrain a second time through a paper filter or a clean cloth, and do not squeeze the bed. Two-stage filtering is the whole difference between cafe and home cold brew.\nAdd a two-finger pinch of fine salt per litre. It kills the residual bitterness and reads as sweetness. Try it before you dismiss it.\nDilute 1:1 with water, milk or oat milk over ice. Keeps 10 to 14 days sealed in the fridge."
+          }
+        },
+        "aeropress": {
+          "type": "recipe",
+          "settings": {
+            "card_title": "AeroPress",
+            "card_image": "shopify://shop_images/8.jpg",
+            "card_hover_image": "shopify://shop_images/8_H.jpg",
+            "details": "Coffee: Water Ratio | 1:15\nMake time | 2 min\nBest served | Hot · 8 oz\nGrind | Medium-fine · C40 18-20",
+            "ingredients": "Smooth Talker, whole bean | 16 g",
+            "steps": "Boil and rest the kettle to 200 F / 92-93 C.\nRinse one paper filter, cap it, and stand the AeroPress on your mug the normal way up. Use two papers if you want a cleaner cup.\nAdd the grounds, then pour all the water in one go, right to the top.\nStir for 10 seconds.\nCap it and steep until 1:30 on the clock.\nPress slowly for 30 seconds. Stop the moment you hear the hiss, pushing past it only forces fines through."
+          }
+        },
+        "french_press": {
+          "type": "recipe",
+          "settings": {
+            "card_title": "French press",
+            "card_image": "shopify://shop_images/9.jpg",
+            "recipe_title": "French Press",
+            "details": "Coffee: Water Ratio | 1:15\nMake time | 9 min\nGrind | Coarse, like rough breadcrumbs · C40 30-32",
+            "ingredients": "Smooth Talker, whole bean | 30 g\nFiltered water | 450 g",
+            "steps": "Boil and rest the kettle to 200-203 F / 93-95 C.\nAdd the grounds, pour all the water, and start a timer.\nAt 4:00, break the crust with three gentle stirs.\nSkim the foam and floating grounds off the top and throw them away.\nRest the plunger on the surface but do not press. Wait five more minutes — the fines settle on their own.\nPress just to the surface, then pour out every drop immediately.\nNever leave brewed coffee sitting on the bed. It keeps extracting and turns bitter."
+          }
+        }
+      },
+      "block_order": ["drip", "martini", "pour_over", "espresso", "affogato", "cold_brew", "aeropress", "french_press"],
+      "settings": {
+        "heading": "Brewing Guide:",
+        "card_cta": "How to brew →",
+        "banner_product": "smooth-talker",
+        "banner_image": "shopify://shop_images/Receipe_Drawer_product.jpg",
+        "banner_title": "Smooth Talker",
+        "banner_roast": "Medium Roast",
+        "banner_button": "Shop 1/4 caf"
+      }
+    },
+    "social": {
+      "type": "heist-social-gallery",
+      "blocks": {
+        "post_1": { "type": "post", "settings": { "image": "shopify://shop_images/Marque_1_e316bc57-6c8f-42ed-9dd8-74f5771bd394.jpg" } },
+        "post_2": { "type": "post", "settings": { "image": "shopify://shop_images/Marquee_2.jpg" } },
+        "post_3": { "type": "post", "settings": {} },
+        "post_4": { "type": "post", "settings": { "image": "shopify://shop_images/Marquee_4.jpg" } },
+        "post_5": { "type": "post", "settings": {} },
+        "post_6": { "type": "post", "settings": { "image": "shopify://shop_images/Marquee_6.jpg" } },
+        "post_7": { "type": "post", "settings": { "image": "shopify://shop_images/Marquee_7.jpg" } }
+      },
+      "block_order": ["post_1", "post_2", "post_3", "post_4", "post_5", "post_6", "post_7"],
+      "settings": {
+        "heading": "<p>For those who are serious about coffee.</p>",
+        "button_label": "Follow @DrinkHeist",
+        "button_link": "https://www.instagram.com/drinkheist/",
+        "speed": 60
+      }
+    }
+  },
+  "order": ["hero", "products", "film", "quality", "comparison", "reviews", "late_night", "brewing", "social"]
+}

@@ -1,0 +1,86 @@
+{%- comment -%}
+  "The Heist, in full": eyebrow label over a framed campaign film.
+  Separate desktop (16:9) and mobile (9:16) edits; plays only while in view.
+{%- endcomment -%}
+{%- assign s = section.settings -%}
+
+<section class="heist-video-feature heist-paper" id="HeistVideo-{{ section.id }}">
+  <div class="heist-grain" aria-hidden="true"></div>
+  <div class="heist-container">
+    {%- if s.eyebrow != blank -%}
+      <p class="heist-video-feature__eyebrow t-n2">{{ s.eyebrow }}</p>
+    {%- endif -%}
+    <div class="heist-video-feature__frame heist-video-feature__frame--desktop">
+      {% render 'heist-media',
+        video: s.video,
+        image: s.poster,
+        class: 'heist-video-feature__media',
+        sizes: '92vw',
+        sound_toggle: true,
+        placeholder: 'lifestyle-1',
+        label: 'Campaign film (16:9)'
+      %}
+    </div>
+    <div class="heist-video-feature__frame heist-video-feature__frame--mobile">
+      {%- if s.video_mobile != blank or s.poster_mobile != blank -%}
+        {% render 'heist-media',
+          video: s.video_mobile,
+          image: s.poster_mobile,
+          class: 'heist-video-feature__media',
+          sizes: '92vw',
+          sound_toggle: true
+        %}
+      {%- else -%}
+        {% render 'heist-media',
+          video: s.video,
+          image: s.poster,
+          class: 'heist-video-feature__media',
+          sizes: '92vw',
+          sound_toggle: true,
+          placeholder: 'lifestyle-1',
+          label: 'Campaign film (9:16)'
+        %}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Heist video feature",
+  "class": "heist-video-feature-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Heist, in full"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video (desktop, 16:9)"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster",
+      "label": "Poster image (desktop)"
+    },
+    {
+      "type": "video",
+      "id": "video_mobile",
+      "label": "Video (mobile, 9:16)"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_mobile",
+      "label": "Poster image (mobile)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heist video feature"
+    }
+  ]
+}
+{% endschema %}

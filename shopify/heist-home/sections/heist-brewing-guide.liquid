@@ -1,0 +1,294 @@
+{%- comment -%}
+  "Brewing Guide:": swipeable recipe cards. Each card opens a side drawer
+  with the recipe's specs, ingredients, a product banner and the method.
+  Recipes marked "scalable" get a serving-size picker that rescales the
+  leading number of every ingredient amount.
+
+  Text formats (one item per line):
+  - Details:     Label | Value       e.g. "Make time | 5 min"
+  - Ingredients: Name | Amount       e.g. "Filtered water | 1000 g"
+  - Method:      one step per line
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  if s.banner_link != blank
+    assign banner_url = s.banner_link
+  elsif s.banner_product != blank
+    assign banner_url = s.banner_product.url
+  else
+    assign banner_url = routes.all_products_collection_url
+  endif
+-%}
+
+<section class="heist-brewing" id="HeistBrewing-{{ section.id }}">
+  <div class="heist-grain" aria-hidden="true"></div>
+  <div class="heist-container">
+    <h2 class="heist-brewing__heading t-h4">{{ s.heading }}</h2>
+  </div>
+
+  <heist-carousel class="heist-carousel heist-brewing__carousel">
+    <ul class="heist-carousel__track" role="list" tabindex="0" aria-label="{{ s.heading | escape }}">
+      {%- for block in section.blocks -%}
+        {%- assign bs = block.settings -%}
+        <li class="heist-brew-card" {{ block.shopify_attributes }}>
+          <button
+            type="button"
+            class="heist-brew-card__button"
+            aria-haspopup="dialog"
+            aria-controls="Recipe-{{ block.id }}"
+            data-recipe-open="Recipe-{{ block.id }}"
+          >
+            <span class="heist-brew-card__media">
+              {% render 'heist-image',
+                image: bs.card_image,
+                class: 'heist-brew-card__image',
+                sizes: '(max-width: 749px) 72vw, 320px',
+                alt: bs.card_title,
+                placeholder: 'lifestyle-2',
+                label: bs.card_title
+              %}
+              {%- if bs.card_video != blank or bs.card_hover_image != blank -%}
+                <span class="heist-brew-card__hover" aria-hidden="true">
+                  {% render 'heist-media',
+                    video: bs.card_video,
+                    image: bs.card_hover_image,
+                    class: 'heist-brew-card__hover-media',
+                    sizes: '320px'
+                  %}
+                </span>
+              {%- endif -%}
+            </span>
+            <span class="heist-brew-card__label t-n1">
+              <span class="heist-brew-card__title">{{ bs.card_title }}</span>
+              <span class="heist-brew-card__cta">{{ s.card_cta }}</span>
+            </span>
+          </button>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </heist-carousel>
+
+  {%- for block in section.blocks -%}
+    {%- liquid
+      assign bs = block.settings
+      assign recipe_title = bs.recipe_title | default: bs.card_title
+      assign details = bs.details | newline_to_br | split: '<br />'
+      assign ingredients = bs.ingredients | newline_to_br | split: '<br />'
+      assign steps = bs.steps | newline_to_br | split: '<br />'
+    -%}
+    <dialog class="heist-recipe" id="Recipe-{{ block.id }}" aria-labelledby="RecipeTitle-{{ block.id }}" data-heist-recipe>
+      <div class="heist-recipe__inner">
+        <button type="button" class="heist-recipe__close" data-recipe-close>
+          {% render 'heist-icon', icon: 'close' %}
+          <span class="visually-hidden">Close recipe</span>
+        </button>
+
+        <div class="heist-recipe__head">
+          <div class="heist-recipe__thumb">
+            {% render 'heist-image', image: bs.card_image, class: 'heist-recipe__thumb-image', sizes: '200px', placeholder: 'lifestyle-2' %}
+          </div>
+          <div class="heist-recipe__summary">
+            <h3 class="heist-recipe__title t-h6" id="RecipeTitle-{{ block.id }}">{{ recipe_title }}</h3>
+            <dl class="heist-recipe__details t-n2">
+              {%- for line in details -%}
+                {%- assign parts = line | strip | split: '|' -%}
+                {%- if parts.size > 1 -%}
+                  <div><dt>{{ parts[0] | strip }}:</dt><dd>{{ parts[1] | strip }}</dd></div>
+                {%- endif -%}
+              {%- endfor -%}
+            </dl>
+          </div>
+        </div>
+
+        {%- if bs.scalable -%}
+          <div class="heist-recipe__servings t-n2">
+            <label for="Servings-{{ block.id }}">Serving size:</label>
+            <select id="Servings-{{ block.id }}" data-servings>
+              {%- for i in (1..7) -%}
+                <option value="{{ i }}">× {{ i }} serving{% if i > 1 %}s{% endif %}</option>
+              {%- endfor -%}
+            </select>
+          </div>
+        {%- endif -%}
+
+        <div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">Ingredients:</p>
+          <ul class="heist-recipe__ingredients t-t4" role="list">
+            {%- for line in ingredients -%}
+              {%- assign parts = line | strip | split: '|' -%}
+              {%- if parts.size > 0 and parts[0] != blank -%}
+                <li>
+                  <span>{{ parts[0] | strip }}</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="{{ parts[1] | strip | escape }}">{{ parts[1] | strip }}</span>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+
+        <div class="heist-recipe__banner">
+          <div class="heist-recipe__banner-image">
+            {% render 'heist-image', image: s.banner_image, class: 'heist-recipe__banner-img', sizes: '180px', placeholder: 'product-4' %}
+          </div>
+          <div class="heist-recipe__banner-copy">
+            <p class="heist-recipe__banner-title t-ui">{{ s.banner_title }}</p>
+            <p class="heist-recipe__banner-roast t-t1">{{ s.banner_roast }}</p>
+            <a class="heist-btn heist-btn--red" href="{{ banner_url }}">{{ s.banner_button }}</a>
+          </div>
+        </div>
+
+        <div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">How to make:</p>
+          <ol class="heist-recipe__steps t-t4">
+            {%- for step in steps -%}
+              {%- assign step_text = step | strip -%}
+              {%- if step_text != blank -%}
+                <li>{{ step_text }}</li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ol>
+        </div>
+        {%- if bs.footnote != blank -%}
+          <p class="heist-recipe__footnote t-t4">{{ bs.footnote }}</p>
+        {%- endif -%}
+      </div>
+    </dialog>
+  {%- endfor -%}
+</section>
+
+{% schema %}
+{
+  "name": "Heist brewing guide",
+  "class": "heist-brewing-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Brewing Guide:"
+    },
+    {
+      "type": "text",
+      "id": "card_cta",
+      "label": "Card hover label",
+      "default": "How to brew →"
+    },
+    {
+      "type": "header",
+      "content": "Recipe drawer product"
+    },
+    {
+      "type": "product",
+      "id": "banner_product",
+      "label": "Product"
+    },
+    {
+      "type": "url",
+      "id": "banner_link",
+      "label": "Link override"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "banner_title",
+      "label": "Title",
+      "default": "Smooth Talker"
+    },
+    {
+      "type": "text",
+      "id": "banner_roast",
+      "label": "Roast",
+      "default": "Medium Roast"
+    },
+    {
+      "type": "text",
+      "id": "banner_button",
+      "label": "Button label",
+      "default": "Shop 1/4 caf"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "recipe",
+      "name": "Recipe",
+      "settings": [
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Card title",
+          "default": "Drip coffee"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image",
+          "label": "Card image",
+          "info": "Portrait, about 3:4."
+        },
+        {
+          "type": "image_picker",
+          "id": "card_hover_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "video",
+          "id": "card_video",
+          "label": "Hover video"
+        },
+        {
+          "type": "text",
+          "id": "recipe_title",
+          "label": "Drawer title",
+          "info": "Defaults to the card title."
+        },
+        {
+          "type": "textarea",
+          "id": "details",
+          "label": "Details",
+          "info": "One per line: Label | Value",
+          "default": "Coffee: Water Ratio | 1:14.5\nMake time | 5 min"
+        },
+        {
+          "type": "checkbox",
+          "id": "scalable",
+          "label": "Show serving-size picker",
+          "default": false
+        },
+        {
+          "type": "textarea",
+          "id": "ingredients",
+          "label": "Ingredients",
+          "info": "One per line: Name | Amount",
+          "default": "Filtered water | 1000 g\nHeist Coffee | 69 g"
+        },
+        {
+          "type": "textarea",
+          "id": "steps",
+          "label": "Method",
+          "info": "One step per line."
+        },
+        {
+          "type": "textarea",
+          "id": "footnote",
+          "label": "Footnote"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heist brewing guide",
+      "blocks": [
+        { "type": "recipe" },
+        { "type": "recipe" },
+        { "type": "recipe" },
+        { "type": "recipe" }
+      ]
+    }
+  ]
+}
+{% endschema %}
