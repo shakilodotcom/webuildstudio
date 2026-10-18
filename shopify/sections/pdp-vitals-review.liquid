@@ -75,7 +75,7 @@
       background: #fff; border-radius: 4px; box-shadow: 0 0 5px 0 #eaeaea; overflow: hidden;
       font-size: 14px; line-height: 19.6px;
     }
-    #vr-{{ section.id }} .vr__photo { display: block; width: 100%; height: auto; object-fit: cover; }
+    #vr-{{ section.id }} .vr__photo { display: inline-block; width: 100%; height: auto; object-fit: cover; }
     #vr-{{ section.id }} .vr__details { display: flex; flex-direction: column; align-items: flex-start; padding: 16px; }
     #vr-{{ section.id }} .vr__author { font-weight: 600; color: #222; }
     #vr-{{ section.id }} .vr__card .vr__stars { margin: 4px 0 12px; }
@@ -150,9 +150,12 @@
       function card(r) {
         var el = document.createElement('div');
         el.className = 'vr__card';
+        // Same markup as Vitals: space is reserved only when the photo size is
+        // known, and the photo is dropped (without re-laying out) if it fails.
         var photo = r.photos && r.photos.length
-          ? '<img class="vr__photo" loading="lazy" alt="' + esc('{{ p.title | escape }}') + '" src="' + photoUrl(r.id, r.photos[0]) + '"' +
-            ' style="aspect-ratio:' + (r.imgWidth || 1) + ' / ' + (r.imgHeight || 1) + '" onerror="this.remove()">'
+          ? '<div class="vr__photo-holder"><div><img class="vr__photo" loading="lazy" alt="' + esc('{{ p.title | escape }}') + '" src="' + photoUrl(r.id, r.photos[0]) + '"' +
+            (r.imgWidth && r.imgHeight ? ' style="aspect-ratio: ' + r.imgWidth + ' / ' + r.imgHeight + ';"' : '') +
+            ' onerror="this.closest(\'.vr__photo-holder\').remove()"></div></div>'
           : '';
         el.innerHTML = photo +
           '<div class="vr__details">' +
