@@ -1,0 +1,3500 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#161414">
+    <link rel="canonical" href="https://www.heist.co/"><title>
+      Specialty Decaf and 1/4 Caf Coffee without a Curfew &ndash; Heist</title><meta name="description" content=""><link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <style>
+/* ==========================================================================
+   Heist homepage — layout/heist.liquid + sections/heist-*.liquid
+   ========================================================================== */
+/* Tokens
+   ========================================================================== */
+:root {
+  --heist-ink: #161414;
+  --heist-ink-soft: #4e484b;
+  --heist-cream: #ddd6c7;
+  --heist-paper: #eeeade;
+  --heist-paper-deep: #d1cabc;
+  --heist-bar: #c3baa8;
+  --heist-red: #ff3b27;
+  --heist-red-deep: #ff4014;
+  --heist-blue: #0f63e0;
+  --heist-blue-bright: #2b86fb;
+  --heist-blue-chart: #4489e8;
+  --heist-navy: #063891;
+  --heist-night: #1e1a2b;
+  --heist-plum: #25181f;
+  --heist-font-display: 'Feature Display Condensed', 'Instrument Serif', 'Times New Roman', serif;
+  --heist-font-ui: 'Aro', 'Archivo', 'Arial Narrow', system-ui, sans-serif;
+  --heist-font-mono: forma-djr-mono, 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+  --heist-font-body: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --heist-gutter: clamp(16px, 3.9vw, 56px);
+  --heist-line: 1.5px;
+  --heist-announcement-h: 32px;
+  --heist-bar-h: 84px;
+  --heist-sticky-h: 72px;
+  --heist-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (max-width: 749px) {
+  :root {
+    --heist-announcement-h: 24px;
+    --heist-bar-h: 56px;
+    --heist-sticky-h: 56px;
+  }
+}
+/* Base
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--heist-sticky-h) + 16px);
+}
+body.heist-page {
+  margin: 0;
+  background: var(--heist-cream);
+  color: var(--heist-ink);
+  font-family: var(--heist-font-body);
+  font-size: 16px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+/* Resets are wrapped in :where() so component classes always win. */
+:where(.heist-page) :where(img, video, svg) {
+  display: block;
+  max-width: 100%;
+}
+:where(.heist-page) :where(a) {
+  color: inherit;
+}
+:where(.heist-page) :where(button) {
+  font: inherit;
+  color: inherit;
+}
+:where(.heist-page) :focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+:where(.heist-page) :where(ul, ol[role='list']) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+:where(.heist-page) :where(p, h1, h2, h3, blockquote, dl, dd, figure) {
+  margin: 0;
+}
+.heist-main:focus {
+  outline: none;
+}
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.heist-skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--heist-ink);
+  color: var(--heist-cream);
+  font-family: var(--heist-font-mono);
+  text-transform: uppercase;
+  transform: translateY(-200%);
+}
+.heist-skip-link:focus {
+  transform: none;
+}
+.heist-container {
+  position: relative;
+  z-index: 1;
+  padding-inline: var(--heist-gutter);
+}
+/* Typography
+   ========================================================================== */
+.t-h1,
+.t-h2,
+.t-h4,
+.t-h6,
+.t-h7,
+.t-t1,
+.t-t2 {
+  font-family: var(--heist-font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.t-h1 {
+  font-size: clamp(56px, 8.4vw, 136px);
+  line-height: 0.92;
+}
+.t-h2 {
+  font-size: clamp(48px, 6.67vw, 112px);
+  line-height: 1.04;
+}
+.t-h4 {
+  font-size: clamp(42px, 5vw, 84px);
+  line-height: 1.04;
+}
+.t-h6 {
+  font-size: clamp(30px, 3.33vw, 56px);
+  line-height: 1.04;
+}
+.t-h7 {
+  font-size: clamp(24px, 2.78vw, 44px);
+  line-height: 1.1;
+}
+.t-t1 {
+  font-size: clamp(22px, 2.22vw, 36px);
+  line-height: 1.12;
+}
+.t-t2 {
+  font-size: clamp(24px, 2.22vw, 32px);
+  line-height: 1.12;
+}
+.t-t4 {
+  font-family: var(--heist-font-body);
+  font-size: 16px;
+  line-height: 1.3;
+}
+.t-n1,
+.t-n2,
+.t-n3 {
+  font-family: var(--heist-font-mono);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.t-n1 {
+  font-size: 14px;
+  line-height: 1.12;
+}
+.t-n2 {
+  font-size: 12px;
+  line-height: 1.36;
+}
+.t-n3 {
+  font-size: 10px;
+  line-height: 1.12;
+}
+.t-ui {
+  font-family: var(--heist-font-ui);
+  font-weight: 800;
+  font-stretch: 75%;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: 1;
+}
+.t-h1 p,
+.t-h4 p,
+.t-t1 p,
+.t-t4 p {
+  margin: 0;
+}
+/* Shared pieces
+   ========================================================================== */
+.heist-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 1.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.heist-paper {
+  position: relative;
+  background: linear-gradient(180deg, #e2dccf 0%, var(--heist-cream) 50%, #d4cdbf 100%);
+}
+.heist-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  min-height: 44px;
+  padding: 10px 22px;
+  border: var(--heist-line) solid var(--heist-ink);
+  border-radius: 0;
+  font-family: var(--heist-font-ui);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(16px, 1.39vw, 20px);
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--heist-ink);
+  cursor: pointer;
+  transition: transform 0.16s ease, filter 0.16s ease, background-color 0.2s ease;
+}
+.heist-btn:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+.heist-btn--red {
+  background: var(--heist-red);
+}
+.heist-btn--cream {
+  background: var(--heist-cream);
+}
+.heist-placeholder {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 80px;
+  background: rgba(22, 20, 20, 0.06);
+  color: rgba(22, 20, 20, 0.35);
+  overflow: hidden;
+}
+.heist-placeholder__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+.heist-placeholder__label {
+  position: relative;
+  padding: 4px 8px;
+  background: var(--heist-paper);
+  color: var(--heist-ink);
+  font-family: var(--heist-font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.heist-wordmark {
+  display: inline-block;
+  font-family: var(--heist-font-ui);
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 0.8;
+  letter-spacing: -0.02em;
+}
+.heist-wordmark sup {
+  font-size: 0.16em;
+  vertical-align: bottom;
+  margin-left: 0.04em;
+}
+.heist-icon {
+  width: 24px;
+  height: 24px;
+  flex: none;
+}
+.heist-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.heist-rating__stars {
+  display: inline-flex;
+  gap: 2px;
+}
+.heist-rating .heist-icon {
+  width: 13px;
+  height: 13px;
+}
+.heist-barcode {
+  display: block;
+  height: 40px;
+  background:
+    repeating-linear-gradient(90deg, var(--heist-ink) 0 3px, transparent 3px 5px, var(--heist-ink) 5px 6px, transparent 6px 9px, var(--heist-ink) 9px 13px, transparent 13px 15px, var(--heist-ink) 15px 16px, transparent 16px 21px),
+    repeating-linear-gradient(90deg, transparent 0 34px, var(--heist-paper) 34px 37px);
+  background-blend-mode: normal;
+}
+.heist-barcode--wide {
+  height: 38px;
+}
+/* Video */
+.heist-video {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.heist-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.heist-video__sound {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: var(--heist-line) solid var(--heist-ink);
+  border-radius: 50%;
+  background: var(--heist-paper);
+  cursor: pointer;
+}
+.heist-video__sound .heist-icon {
+  width: 20px;
+  height: 20px;
+}
+.heist-video__sound .heist-icon--unmuted,
+.heist-video__sound[aria-pressed='true'] .heist-icon--muted {
+  display: none;
+}
+.heist-video__sound[aria-pressed='true'] .heist-icon--unmuted {
+  display: block;
+}
+/* Carousel (native scroll-snap) */
+.heist-carousel {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+.heist-carousel__track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--heist-gutter);
+  padding-inline: var(--heist-gutter);
+  scrollbar-width: none;
+  cursor: grab;
+}
+.heist-carousel__track::-webkit-scrollbar {
+  display: none;
+}
+.heist-carousel__track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+.heist-carousel__track > * {
+  flex: none;
+  scroll-snap-align: start;
+}
+/* Header
+   ========================================================================== */
+.heist-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 40;
+  display: block;
+  color: var(--heist-cream);
+  pointer-events: none;
+}
+.heist-header > * {
+  pointer-events: auto;
+}
+.heist-announcement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--heist-announcement-h);
+  padding-inline: var(--heist-gutter);
+  background: var(--heist-red);
+  color: var(--heist-ink);
+  font-weight: 600;
+  text-align: center;
+  transition: transform 0.35s var(--heist-ease);
+}
+.heist-announcement a {
+  text-decoration: none;
+}
+.heist-header__bar {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  height: var(--heist-bar-h);
+  padding-inline: var(--heist-gutter);
+  border-bottom: var(--heist-line) solid transparent;
+  transition: transform 0.35s var(--heist-ease), background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.heist-header__shop {
+  justify-self: start;
+  grid-column: 1;
+  grid-row: 1;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+.heist-header__nav ul {
+  display: flex;
+  gap: 32px;
+}
+.heist-header__nav a {
+  text-decoration: none;
+  white-space: nowrap;
+}
+.heist-header__nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.heist-header__nav--centre {
+  grid-column: 2;
+  grid-row: 1;
+}
+.heist-header__nav--left {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+  margin-left: 176px;
+}
+.heist-header__nav--right {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  margin-right: 104px;
+}
+.heist-header__logo {
+  grid-column: 2;
+  grid-row: 1;
+  display: block;
+  color: var(--heist-ink);
+  text-decoration: none;
+}
+.heist-header__logo-image {
+  width: 152px;
+  height: auto;
+}
+.heist-header__logo .heist-wordmark {
+  font-size: 40px;
+}
+.heist-header__cart {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  font-size: 20px;
+  text-decoration: none;
+}
+.heist-header__cart-bubble,
+.heist-header__menu-toggle {
+  display: none;
+}
+/* Header states: top (transparent), up (cream bar), down (sticky CTA) */
+.heist-header__nav--left,
+.heist-header__nav--right,
+.heist-header__logo {
+  visibility: hidden;
+  opacity: 0;
+}
+.heist-header[data-state='up'] {
+  color: var(--heist-ink);
+}
+.heist-header[data-state='up'] .heist-header__bar {
+  background: var(--heist-cream);
+  border-bottom-color: var(--heist-ink);
+}
+.heist-header[data-state='up'] .heist-header__nav--centre {
+  visibility: hidden;
+  opacity: 0;
+}
+.heist-header[data-state='up'] .heist-header__nav--left,
+.heist-header[data-state='up'] .heist-header__nav--right,
+.heist-header[data-state='up'] .heist-header__logo {
+  visibility: visible;
+  opacity: 1;
+}
+.heist-header[data-state='down'] .heist-announcement,
+.heist-header[data-state='down'] .heist-header__bar {
+  transform: translateY(calc(-100% - var(--heist-announcement-h)));
+}
+.heist-sticky-cta {
+  position: fixed;
+  inset: 0 0 auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  height: var(--heist-sticky-h);
+  padding-left: var(--heist-gutter);
+  background: #e4dfd3;
+  color: var(--heist-ink);
+  border-bottom: var(--heist-line) solid var(--heist-ink);
+  transform: translateY(-105%);
+  transition: transform 0.35s var(--heist-ease);
+}
+.heist-header[data-state='down'] .heist-sticky-cta {
+  transform: none;
+}
+.heist-sticky-cta__copy {
+  align-self: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.heist-sticky-cta__button {
+  display: grid;
+  place-items: center;
+  width: 200px;
+  background: var(--heist-red);
+  border-left: var(--heist-line) solid var(--heist-ink);
+  font-size: 20px;
+  text-decoration: none;
+}
+@media (max-width: 1100px) {
+  .heist-header__nav--left {
+    margin-left: 150px;
+  }
+  .heist-header__nav--right {
+    margin-right: 84px;
+  }
+  .heist-header__nav ul {
+    gap: 20px;
+  }
+}
+@media (max-width: 899px) {
+  .heist-header__bar {
+    grid-template-columns: 44px 1fr 44px;
+    gap: 8px;
+  }
+  .heist-header__nav,
+  .heist-header__logo,
+  .heist-header__cart-label {
+    display: none;
+  }
+  .heist-header__menu-toggle {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+  .heist-header__shop {
+    grid-column: 2;
+    justify-self: center;
+    min-height: 34px;
+    padding: 6px 16px;
+    font-size: 15px;
+  }
+  .heist-header__cart-bubble {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border: var(--heist-line) solid currentColor;
+    border-radius: 50%;
+    font-size: 14px;
+  }
+  .heist-sticky-cta__button {
+    width: 128px;
+    font-size: 16px;
+  }
+  .heist-sticky-cta__copy {
+    font-size: 24px;
+  }
+}
+/* Menu drawer */
+.heist-menu-drawer {
+  width: min(420px, 100vw);
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0 auto 0 0;
+  padding: 0;
+  border: 0;
+  background: var(--heist-red);
+  color: var(--heist-ink);
+}
+.heist-menu-drawer::backdrop {
+  background: rgba(22, 20, 20, 0.6);
+}
+.heist-menu-drawer[open] {
+  animation: heist-slide-left 0.35s var(--heist-ease);
+}
+.heist-menu-drawer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-height: 100%;
+  padding: 72px var(--heist-gutter) 32px;
+}
+.heist-menu-drawer__close {
+  position: absolute;
+  top: 16px;
+  left: 12px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.heist-menu-drawer__links {
+  display: grid;
+  gap: 18px;
+  font-size: 40px;
+}
+.heist-menu-drawer__links a {
+  text-decoration: none;
+}
+.heist-menu-drawer__shop {
+  align-self: flex-start;
+  background: var(--heist-cream);
+}
+.heist-menu-drawer__note {
+  margin-top: auto;
+}
+@keyframes heist-slide-left {
+  from {
+    transform: translateX(-100%);
+  }
+}
+@keyframes heist-slide-right {
+  from {
+    transform: translateX(100%);
+  }
+}
+/* Hero
+   ========================================================================== */
+.heist-hero {
+  position: relative;
+  display: block;
+  height: var(--hero-scroll, 190vh);
+  --p: 0;
+  --intro: 0;
+  --glass: 0;
+  --story: 0;
+}
+.heist-hero__canvas {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--heist-night) 0%, var(--heist-navy) 28%, var(--heist-blue) 52%, var(--heist-blue-bright) 64%, #10307c 80%, var(--heist-plum) 100%);
+  color: var(--heist-cream);
+}
+.heist-hero__background {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 0;
+  min-height: 100%;
+  transform: translate3d(0, calc(var(--p) * (100vh - 100%)), 0);
+  will-change: transform;
+}
+.heist-hero__background-image {
+  width: 100%;
+  min-height: 100vh;
+  object-fit: cover;
+}
+.heist-hero__background .heist-placeholder {
+  display: none;
+}
+.heist-hero__title {
+  position: absolute;
+  top: 18vh;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  text-align: center;
+  white-space: nowrap;
+  opacity: calc(1 - var(--intro) * 1.4);
+  transform: translate3d(0, calc(var(--intro) * -18vh), 0);
+}
+.heist-hero__wordmark {
+  position: absolute;
+  top: 62vh;
+  left: 50%;
+  z-index: 3;
+  width: 72.5vw;
+  color: var(--heist-cream);
+  opacity: calc(1 - var(--intro) * 1.2);
+  transform: translate3d(-50%, calc(var(--intro) * 30vh), 0);
+}
+.heist-hero__wordmark-image {
+  width: 100%;
+  height: auto;
+}
+.heist-hero__wordmark .heist-wordmark {
+  display: block;
+  font-size: 22.6vw;
+  text-align: center;
+}
+.heist-hero__glass {
+  position: absolute;
+  top: 29.5vh;
+  left: 50%;
+  z-index: 2;
+  width: min(30vw, 62vh);
+  transform: translate3d(-50%, calc(var(--glass) * -18vh), 0);
+  will-change: transform;
+}
+.heist-hero__glass-image {
+  width: 100%;
+  height: auto;
+}
+.heist-hero__glass .heist-placeholder {
+  aspect-ratio: 6 / 5;
+  border-radius: 0 0 40% 40%;
+}
+.heist-hero__hands {
+  position: absolute;
+  left: 50%;
+  top: 15vh;
+  z-index: 1;
+  width: min(37vw, 76vh);
+  aspect-ratio: 1800 / 2523;
+  transform: translateX(-50%);
+}
+.heist-hero__hand {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.12s linear;
+}
+.heist-hero__hand.is-active {
+  opacity: 1;
+}
+.heist-hero__hand-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: top center;
+}
+.heist-hero__hand .heist-placeholder {
+  background: transparent;
+}
+.heist-hero__story {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  justify-content: space-between;
+  padding: 36vh var(--heist-gutter) 8vh;
+  opacity: var(--story);
+  transform: translate3d(0, calc((1 - var(--story)) * 6vh), 0);
+  pointer-events: none;
+}
+.heist-hero[data-story-visible] .heist-hero__story {
+  pointer-events: auto;
+}
+.heist-hero__story-left,
+.heist-hero__story-right {
+  display: flex;
+  flex-direction: column;
+  width: min(26vw, 380px);
+}
+.heist-hero__story-right {
+  align-items: stretch;
+  width: min(23vw, 340px);
+  text-align: left;
+}
+.heist-hero__story-right .heist-hero__story-title {
+  text-align: right;
+  white-space: nowrap;
+}
+.heist-hero__story-title {
+  white-space: nowrap;
+}
+.heist-hero__badge {
+  width: min(11vw, 160px);
+  margin-top: auto;
+  margin-left: 24px;
+  margin-bottom: 4vh;
+}
+.heist-hero__badge-image {
+  width: 100%;
+  height: auto;
+}
+.heist-hero__body {
+  margin-top: 3.5vh;
+}
+.heist-hero__button {
+  width: 100%;
+  margin-top: 4vh;
+}
+.heist-hero__note {
+  margin-top: 3vh;
+  text-align: center;
+  line-height: 1.7;
+}
+.heist-hero__note p {
+  margin: 0;
+}
+.heist-hero-mobile-story {
+  display: none;
+}
+/* Reduced motion: show the final frame without pinning. */
+.heist-hero[data-static] {
+  height: auto;
+  --p: 1;
+  --intro: 1;
+  --glass: 1;
+  --story: 1;
+}
+.heist-hero[data-static] .heist-hero__canvas {
+  position: relative;
+}
+.heist-hero[data-static] .heist-hero__hand--final {
+  opacity: 1;
+}
+@media (max-width: 749px) {
+  .heist-hero,
+  .heist-hero[data-static] {
+    height: auto;
+    --p: 0;
+    --intro: 0;
+    --glass: 0;
+    --story: 0;
+  }
+  .heist-hero__canvas {
+    position: relative;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 390 / 1180;
+    background: linear-gradient(180deg, var(--heist-navy) 0%, var(--heist-blue) 34%, var(--heist-blue-bright) 62%, var(--heist-blue) 82%, #0b3a9c 100%);
+  }
+  .heist-hero__title {
+    top: calc(var(--heist-announcement-h) + var(--heist-bar-h) + 20px);
+    padding-inline: 24px;
+    white-space: normal;
+    font-size: 15vw;
+    line-height: 0.9;
+  }
+  .heist-hero__glass {
+    top: 76vw;
+    width: 50vw;
+  }
+  .heist-hero__wordmark {
+    top: 112vw;
+    width: 84vw;
+  }
+  .heist-hero__wordmark .heist-wordmark {
+    font-size: 26vw;
+  }
+  .heist-hero__hands {
+    top: 128vw;
+    width: 96vw;
+    transform: translate3d(-44%, 0, 0);
+  }
+  .heist-hero__hand--final {
+    opacity: 1;
+  }
+  .heist-hero__story {
+    display: none;
+  }
+  .heist-hero-mobile-story {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    color: var(--heist-cream);
+    background: linear-gradient(180deg, #1b3fb0 0%, var(--heist-blue) 50%, #092a7a 100%);
+    text-align: center;
+  }
+  .heist-hero-mobile-story__background {
+    position: absolute;
+    inset: 0;
+  }
+  .heist-hero-mobile-story__background .heist-placeholder {
+    display: none;
+  }
+  .heist-hero-mobile-story__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .heist-hero-mobile-story__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    padding: 64px 28px 72px;
+  }
+  .heist-hero-mobile-story__title {
+    font-size: 15vw;
+    line-height: 1;
+  }
+  .heist-hero-mobile-story__body {
+    font-size: 26px;
+  }
+  .heist-hero-mobile-story__button {
+    width: 100%;
+    margin-top: 6px;
+  }
+  .heist-hero-mobile-story .heist-hero__note {
+    margin-top: 0;
+    line-height: 2;
+  }
+}
+/* Product showcase
+   ========================================================================== */
+.heist-showcase {
+  padding: clamp(56px, 8vw, 112px) 0 clamp(64px, 7vw, 104px);
+}
+.heist-showcase__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: clamp(32px, 3.6vw, 52px);
+}
+.heist-showcase__heading-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.heist-showcase__badges {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 44px);
+}
+.heist-showcase__badge {
+  width: clamp(80px, 9.6vw, 140px);
+  height: 60px;
+  display: grid;
+  place-items: center;
+}
+.heist-showcase__badge-image {
+  width: 100%;
+  height: 60px;
+  object-fit: contain;
+}
+.heist-showcase__badge .heist-placeholder {
+  min-height: 0;
+  height: 52px;
+}
+.heist-showcase__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.heist-product-card {
+  position: relative;
+  aspect-ratio: 656 / 680;
+  overflow: hidden;
+  border: var(--heist-line) solid var(--heist-ink);
+  background: #c58b2a;
+  color: var(--heist-ink);
+  isolation: isolate;
+}
+.heist-product-card--light {
+  color: var(--heist-cream);
+  background: var(--heist-navy);
+}
+.heist-product-card__media,
+.heist-product-card__detail {
+  position: absolute;
+  inset: 0;
+}
+.heist-product-card__media {
+  z-index: -2;
+}
+.heist-product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--heist-ease);
+}
+.heist-product-card:hover .heist-product-card__image {
+  transform: scale(1.03);
+}
+.heist-product-card__detail {
+  z-index: -1;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 12% 34%;
+  background: linear-gradient(180deg, rgba(22, 20, 20, 0) 30%, rgba(22, 20, 20, 0.72) 100%);
+  color: var(--heist-cream);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.heist-product-card__detail .heist-video {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.heist-product-card__description {
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+@media (hover: hover) and (min-width: 750px) {
+  .heist-product-card:hover .heist-product-card__detail,
+  .heist-product-card:focus-within .heist-product-card__detail {
+    opacity: 1;
+  }
+}
+.heist-product-card__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 8.5% 24px 0;
+  text-align: center;
+}
+.heist-product-card__title {
+  font-size: clamp(30px, 2.78vw, 44px);
+}
+.heist-product-card__actions {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  display: grid;
+  gap: 12px;
+  width: min(320px, 74%);
+  transform: translateX(-50%);
+}
+.heist-product-card__toggle {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  padding: 3px;
+  border: var(--heist-line) solid var(--heist-ink);
+  background: var(--heist-cream);
+  color: var(--heist-ink);
+}
+.heist-product-card__toggle-option {
+  display: grid;
+  place-items: center;
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.heist-product-card__toggle-option[aria-checked='true'] {
+  background: var(--heist-ink);
+  color: var(--heist-cream);
+}
+.heist-product-card__buy {
+  width: 100%;
+  font-size: clamp(16px, 1.39vw, 20px);
+}
+@media (max-width: 749px) {
+  .heist-showcase__header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .heist-showcase__heading-wrap {
+    align-items: center;
+  }
+  .heist-showcase__badges {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 20px;
+  }
+  .heist-showcase__badge {
+    width: 72px;
+    height: 44px;
+  }
+  .heist-showcase__badge-image {
+    height: 44px;
+  }
+  .heist-showcase__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .heist-product-card {
+    aspect-ratio: 350 / 560;
+  }
+}
+/* Video feature
+   ========================================================================== */
+.heist-video-feature {
+  padding: clamp(48px, 5vw, 72px) 0;
+}
+.heist-video-feature__eyebrow {
+  margin-bottom: 18px;
+  color: var(--heist-ink-soft);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-align: center;
+}
+.heist-video-feature__frame {
+  position: relative;
+  aspect-ratio: 1328 / 690;
+  border: var(--heist-line) solid var(--heist-ink);
+  background: var(--heist-ink);
+  overflow: hidden;
+}
+.heist-video-feature__media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.heist-video-feature__frame--mobile {
+  display: none;
+}
+@media (max-width: 749px) {
+  .heist-video-feature__frame--desktop {
+    display: none;
+  }
+  .heist-video-feature__frame--mobile {
+    display: block;
+    aspect-ratio: 9 / 16;
+  }
+}
+/* Quality points
+   ========================================================================== */
+.heist-quality {
+  padding: clamp(48px, 5vw, 72px) 0 clamp(80px, 9vw, 128px);
+}
+.heist-quality__heading {
+  max-width: 22ch;
+  margin: 0 auto clamp(48px, 6vw, 88px);
+  text-align: center;
+}
+@media (min-width: 1100px) {
+  .heist-quality__heading {
+    max-width: none;
+  }
+}
+.heist-quality__layout {
+  display: grid;
+  grid-template-columns: 1fr minmax(240px, 27vw) 1fr;
+  align-items: center;
+  gap: clamp(32px, 6vw, 88px);
+}
+.heist-quality__column {
+  display: flex;
+  flex-direction: column;
+}
+.heist-quality__point {
+  padding: 24px 0;
+  border-bottom: var(--heist-line) solid var(--heist-ink);
+  font-size: clamp(26px, 3.33vw, 48px);
+  line-height: 1.04;
+  white-space: pre-line;
+}
+.heist-quality__point:last-child {
+  border-bottom: 0;
+}
+.heist-quality__media {
+  position: relative;
+  padding-top: 32px;
+}
+.heist-quality__frame {
+  aspect-ratio: 390 / 503;
+  border: var(--heist-line) solid var(--heist-red);
+  overflow: hidden;
+}
+.heist-quality__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.heist-quality__frame .heist-placeholder {
+  background: transparent;
+}
+.heist-quality__code {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 12px;
+  background: var(--heist-red);
+  color: var(--heist-ink);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  overflow: hidden;
+}
+.heist-roller__digit {
+  display: inline-block;
+  height: 1.36em;
+  overflow: hidden;
+  vertical-align: top;
+}
+.heist-roller__strip {
+  display: flex;
+  flex-direction: column;
+  transition: transform 1.4s var(--heist-ease);
+}
+.heist-roller__strip > span {
+  height: 1.36em;
+}
+@media (max-width: 749px) {
+  .heist-quality__layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 16px;
+  }
+  .heist-quality__media {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  .heist-quality__point {
+    padding: 14px 0;
+    font-size: 21px;
+  }
+}
+/* Comparison
+   ========================================================================== */
+.heist-comparison {
+  position: relative;
+  padding: clamp(64px, 8vw, 112px) 0 clamp(48px, 6vw, 96px);
+  background: linear-gradient(180deg, #1d1719 0%, #211b1d 30%, #2b2a45 62%, #2f4b9a 86%, #2b6ee6 100%);
+  color: var(--heist-cream);
+}
+.heist-comparison__heading {
+  text-align: center;
+}
+.heist-comparison__subheadings {
+  max-width: 460px;
+  margin: 20px auto clamp(40px, 4vw, 60px);
+  text-align: center;
+}
+.heist-tabs {
+  display: block;
+}
+.heist-tabs__list {
+  display: flex;
+  gap: 16px;
+}
+.heist-tabs__tab {
+  position: relative;
+  min-width: 245px;
+  padding: 18px 24px;
+  border: var(--heist-line) solid var(--heist-ink);
+  border-bottom: 0;
+  background: var(--heist-cream);
+  color: var(--heist-ink);
+  cursor: pointer;
+}
+.heist-tabs__tab[aria-selected='true'] {
+  z-index: 1;
+  margin-bottom: calc(var(--heist-line) * -1);
+  padding-bottom: calc(18px + var(--heist-line));
+  background: var(--heist-paper);
+}
+.heist-tabs__panel {
+  padding: clamp(28px, 4vw, 56px) clamp(16px, 4vw, 56px) 32px;
+  border: var(--heist-line) solid var(--heist-ink);
+  background: var(--heist-paper);
+  color: var(--heist-ink);
+}
+.heist-tabs__panel[hidden] {
+  display: none;
+}
+/* Chart */
+.heist-chart {
+  --label-w: clamp(110px, 17vw, 236px);
+}
+.heist-chart__rows {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding: 28px 0 22px;
+}
+.heist-chart__rows::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--label-w);
+  width: var(--heist-line);
+  background: var(--heist-ink);
+}
+.heist-chart__row {
+  display: grid;
+  grid-template-columns: var(--label-w) 1fr;
+  align-items: center;
+}
+.heist-chart__label {
+  display: flex;
+  flex-direction: column;
+  padding-right: 12px;
+}
+.heist-chart__row:not(.heist-chart__row--featured) .heist-chart__label {
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 0.6em;
+}
+.heist-chart__brand {
+  color: var(--heist-ink);
+}
+.heist-chart__logo {
+  width: 116px;
+  height: auto;
+}
+.heist-chart__brand .heist-wordmark {
+  font-size: 26px;
+}
+.heist-chart__track {
+  position: relative;
+  height: 32px;
+  margin-right: 56px;
+}
+.heist-chart__bar {
+  display: flex;
+  align-items: center;
+  width: 0;
+  height: 100%;
+  padding-left: 12px;
+  border: var(--heist-line) solid var(--heist-ink);
+  border-left: 0;
+  background: var(--heist-bar);
+  overflow: hidden;
+  transition: width 1.2s var(--heist-ease);
+}
+.heist-chart__row--featured .heist-chart__bar {
+  background: var(--heist-blue-chart);
+}
+.heist-chart.is-visible .heist-chart__bar {
+  width: var(--bar);
+}
+.heist-chart__score {
+  position: absolute;
+  top: 50%;
+  left: var(--bar);
+  padding-left: 10px;
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: opacity 0.3s ease 1s;
+}
+.heist-chart.is-visible .heist-chart__score {
+  opacity: 1;
+}
+.heist-chart__axis {
+  position: relative;
+  height: 28px;
+  margin-left: var(--label-w);
+  margin-right: 56px;
+  border-top: var(--heist-line) solid var(--heist-ink);
+}
+.heist-chart__axis span {
+  position: absolute;
+  top: 8px;
+  left: var(--tick);
+  transform: translateX(-50%);
+}
+.heist-chart__axis span:first-child {
+  transform: none;
+}
+.heist-chart__method {
+  max-width: 980px;
+  margin-top: 40px;
+  font-size: 10px;
+}
+/* Evidence table */
+.heist-evidence {
+  overflow-x: auto;
+}
+.heist-evidence__table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+}
+.heist-evidence__table th,
+.heist-evidence__table td {
+  padding: 18px 12px;
+  border-bottom: var(--heist-line) solid var(--heist-ink);
+  text-align: left;
+  vertical-align: middle;
+}
+.heist-evidence__table thead th {
+  font-family: var(--heist-font-display);
+  font-weight: 400;
+  text-transform: none;
+}
+.heist-evidence__table tbody th {
+  font-weight: 500;
+}
+.heist-evidence__table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.heist-evidence__col {
+  width: 22%;
+  text-align: center !important;
+}
+.heist-evidence__col .heist-icon {
+  width: 32px;
+  height: 32px;
+  margin-inline: auto;
+}
+.heist-evidence__col--heist {
+  background: rgba(68, 137, 232, 0.12);
+}
+.heist-evidence__logo {
+  width: 140px;
+  height: auto;
+  margin-inline: auto;
+}
+thead .heist-evidence__col--heist {
+  color: var(--heist-ink);
+}
+thead .heist-evidence__col--heist .heist-wordmark {
+  font-size: 34px;
+}
+.heist-evidence__sub {
+  display: block;
+  margin-top: 6px;
+}
+@media (max-width: 749px) {
+  .heist-tabs__list {
+    gap: 6px;
+  }
+  .heist-tabs__tab {
+    min-width: 0;
+    flex: 0 1 42%;
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+  .heist-tabs__tab[aria-selected='true'] {
+    padding-bottom: calc(8px + var(--heist-line));
+  }
+  .heist-chart__rows {
+    gap: 12px;
+  }
+  .heist-chart__track {
+    height: 22px;
+    margin-right: 24px;
+  }
+  .heist-chart__axis {
+    margin-right: 24px;
+  }
+  .heist-chart__label {
+    font-size: 10px;
+  }
+  .heist-chart__logo {
+    width: 64px;
+  }
+  .heist-chart__brand .heist-wordmark {
+    font-size: 16px;
+  }
+  .heist-chart__tag,
+  .heist-chart__score {
+    font-size: 9px;
+  }
+}
+/* Reviews
+   ========================================================================== */
+.heist-reviews {
+  position: relative;
+  padding: clamp(48px, 7vw, 104px) 0 clamp(72px, 8vw, 112px);
+  background: linear-gradient(180deg, #2b6ee6 0%, var(--heist-blue-bright) 22%, #6aa7ef 70%, #a3c7e2 100%);
+  color: var(--heist-cream);
+}
+.heist-reviews__heading {
+  margin-bottom: clamp(32px, 3.6vw, 48px);
+}
+.heist-review {
+  display: flex;
+  flex-direction: column;
+  width: clamp(272px, 22.2vw, 320px);
+  aspect-ratio: 320 / 484;
+  padding: 12px;
+  border: var(--heist-line) solid var(--heist-ink);
+  background: var(--heist-paper);
+  color: var(--heist-ink);
+}
+.heist-review__media {
+  position: relative;
+  flex: 1;
+  border: var(--heist-line) solid var(--heist-ink);
+  overflow: hidden;
+}
+.heist-review__media .heist-placeholder {
+  background: transparent;
+}
+.heist-review__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.heist-review--text {
+  padding: 24px 22px 20px;
+}
+.heist-review__meta {
+  display: grid;
+  gap: 18px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--heist-ink);
+}
+.heist-review__meta > div {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  align-items: center;
+}
+.heist-review__stars {
+  display: flex;
+  gap: 4px;
+}
+.heist-review__stars .heist-icon {
+  width: 16px;
+  height: 16px;
+}
+.heist-review__quote {
+  margin-top: 22px;
+}
+.heist-review__footer {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  margin-top: auto;
+}
+.heist-review__bag {
+  width: 86px;
+  aspect-ratio: 1;
+  flex: none;
+}
+.heist-review__bag-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.heist-review__verify {
+  flex: 1;
+  display: grid;
+  gap: 8px;
+}
+.heist-review__verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.heist-review__verified .heist-icon {
+  width: 13px;
+  height: 13px;
+}
+/* Late-night collage
+   ========================================================================== */
+.heist-late-night {
+  position: relative;
+  padding: clamp(72px, 9vw, 152px) 0 clamp(72px, 8vw, 112px);
+  background: linear-gradient(180deg, #291a1f 0%, #3c2528 22%, #63403d 48%, #a85f4c 76%, #e47d57 100%);
+  color: var(--heist-cream);
+}
+.heist-late-night__heading {
+  margin-bottom: clamp(56px, 6vw, 88px);
+}
+.heist-collage {
+  display: grid;
+  grid-template-columns: 1.54fr 1fr 1fr 1.54fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.heist-collage__column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.heist-collage__tile {
+  position: relative;
+  border: var(--heist-line) solid var(--heist-ink);
+  overflow: hidden;
+}
+.heist-collage__tile--tall {
+  aspect-ratio: 4 / 7;
+}
+.heist-collage__tile--short {
+  aspect-ratio: 4 / 5;
+}
+.heist-collage__column--1 .heist-collage__tile--short,
+.heist-collage__column--4 .heist-collage__tile--short {
+  aspect-ratio: 5 / 4;
+}
+.heist-collage__tile--drop-small {
+  margin-top: 8px;
+}
+.heist-collage__tile--drop-large {
+  margin-top: clamp(80px, 20vw, 288px);
+}
+.heist-collage__media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.heist-collage .heist-placeholder {
+  background: rgba(22, 20, 20, 0.08);
+  color: rgba(22, 20, 20, 0.25);
+}
+@media (max-width: 749px) {
+  .heist-collage {
+    display: block;
+    columns: 2;
+    column-gap: 12px;
+  }
+  .heist-collage__column {
+    display: contents;
+  }
+  .heist-collage__tile {
+    break-inside: avoid;
+    margin-bottom: 12px;
+  }
+  .heist-collage__tile--drop-large {
+    margin-top: 0;
+  }
+}
+/* Brewing guide
+   ========================================================================== */
+.heist-brewing {
+  position: relative;
+  padding: clamp(48px, 6vw, 80px) 0 clamp(80px, 8vw, 112px);
+  background: linear-gradient(180deg, #e7ad83 0%, #e2c3a8 30%, #dad0c3 60%, var(--heist-cream) 100%);
+}
+.heist-brewing__heading {
+  margin-bottom: clamp(32px, 3vw, 40px);
+}
+.heist-brew-card {
+  width: clamp(240px, 22.2vw, 320px);
+}
+.heist-brew-card__button {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  border: var(--heist-line) solid var(--heist-ink);
+  background: var(--heist-cream);
+  text-align: left;
+  cursor: pointer;
+}
+.heist-brew-card__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 318 / 426;
+  overflow: hidden;
+}
+.heist-brew-card__image,
+.heist-brew-card__hover-media,
+.heist-brew-card__hover .heist-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.heist-brew-card__hover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.heist-brew-card__label {
+  position: relative;
+  display: block;
+  height: 48px;
+  border-top: var(--heist-line) solid var(--heist-ink);
+  overflow: hidden;
+}
+.heist-brew-card__title,
+.heist-brew-card__cta {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding-inline: 22px;
+  transition: transform 0.3s var(--heist-ease);
+}
+.heist-brew-card__cta {
+  transform: translateY(100%);
+  background: var(--heist-red);
+}
+.heist-brew-card__button:hover .heist-brew-card__hover,
+.heist-brew-card__button:focus-visible .heist-brew-card__hover {
+  opacity: 1;
+}
+.heist-brew-card__button:hover .heist-brew-card__title,
+.heist-brew-card__button:focus-visible .heist-brew-card__title {
+  transform: translateY(-100%);
+}
+.heist-brew-card__button:hover .heist-brew-card__cta,
+.heist-brew-card__button:focus-visible .heist-brew-card__cta {
+  transform: none;
+}
+/* Recipe drawer */
+.heist-recipe {
+  width: min(600px, 100vw);
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0 0 0 auto;
+  padding: 0;
+  border: 0;
+  border-left: var(--heist-line) solid var(--heist-ink);
+  background: var(--heist-cream);
+  color: var(--heist-ink);
+  overscroll-behavior: contain;
+}
+.heist-recipe[open] {
+  animation: heist-slide-right 0.4s var(--heist-ease);
+}
+.heist-recipe::backdrop {
+  background: rgba(22, 20, 20, 0.62);
+}
+.heist-recipe__inner {
+  position: relative;
+  display: grid;
+  gap: 28px;
+  padding: 24px 28px 48px 32px;
+}
+.heist-recipe__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: var(--heist-line) solid var(--heist-ink);
+  background: transparent;
+  cursor: pointer;
+}
+.heist-recipe__head {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 24px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--heist-ink);
+}
+.heist-recipe__thumb {
+  aspect-ratio: 160 / 200;
+  border: var(--heist-line) solid var(--heist-ink);
+  overflow: hidden;
+}
+.heist-recipe__thumb-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.heist-recipe__title {
+  margin: 0 48px 18px 0;
+}
+.heist-recipe__details {
+  display: grid;
+  gap: 16px;
+}
+.heist-recipe__details > div {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 8px;
+}
+.heist-recipe__servings {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.heist-recipe__servings select {
+  padding: 8px 12px;
+  border: var(--heist-line) solid var(--heist-ink);
+  border-radius: 0;
+  background: var(--heist-paper);
+  font: inherit;
+}
+.heist-recipe__row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 12px;
+}
+.heist-recipe__row-label {
+  padding-top: 3px;
+  font-size: 14px;
+}
+.heist-recipe__ingredients {
+  display: grid;
+  gap: 12px;
+}
+.heist-recipe__ingredients li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.heist-recipe__leader {
+  flex: 1;
+  border-bottom: 2px dotted rgba(22, 20, 20, 0.5);
+}
+.heist-recipe__banner {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  align-items: center;
+  gap: 32px;
+  padding: 20px;
+  border: var(--heist-line) solid var(--heist-ink);
+}
+.heist-recipe__banner-image {
+  aspect-ratio: 1;
+  border: 1px solid var(--heist-ink);
+  overflow: hidden;
+}
+.heist-recipe__banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.heist-recipe__banner-copy {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+.heist-recipe__banner-title {
+  font-size: 32px;
+}
+.heist-recipe__banner-copy .heist-btn {
+  width: 100%;
+  max-width: 240px;
+  margin-top: 6px;
+}
+.heist-recipe__steps {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 20px;
+  font-size: 16px;
+  line-height: 1.3;
+}
+.heist-recipe__footnote {
+  padding-left: 122px;
+}
+@media (max-width: 599px) {
+  .heist-recipe__inner {
+    padding: 20px 16px 40px;
+  }
+  .heist-recipe__head,
+  .heist-recipe__banner {
+    grid-template-columns: 104px 1fr;
+    gap: 16px;
+  }
+  .heist-recipe__details > div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .heist-recipe__row {
+    grid-template-columns: 1fr;
+  }
+  .heist-recipe__footnote {
+    padding-left: 0;
+  }
+  .heist-recipe__banner-title {
+    font-size: 24px;
+  }
+}
+/* Social gallery
+   ========================================================================== */
+.heist-social {
+  padding: clamp(40px, 6vw, 80px) 0 clamp(72px, 7vw, 96px);
+  overflow: hidden;
+}
+.heist-social__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: clamp(32px, 3vw, 36px);
+}
+.heist-social__heading {
+  max-width: 50%;
+}
+.heist-social__follow {
+  width: min(380px, 40vw);
+  margin-bottom: 4px;
+}
+.heist-marquee {
+  position: relative;
+  z-index: 1;
+  display: block;
+  overflow: hidden;
+}
+.heist-marquee__track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: heist-marquee var(--marquee-duration, 60s) linear infinite;
+}
+.heist-marquee:hover .heist-marquee__track,
+.heist-marquee:focus-within .heist-marquee__track {
+  animation-play-state: paused;
+}
+.heist-marquee__item {
+  width: clamp(220px, 22.2vw, 320px);
+  aspect-ratio: 320 / 456;
+  border: var(--heist-line) solid var(--heist-ink);
+  overflow: hidden;
+}
+.heist-marquee__media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@keyframes heist-marquee {
+  to {
+    transform: translateX(calc(-50% - 8px));
+  }
+}
+@media (max-width: 749px) {
+  .heist-social__header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .heist-social__heading {
+    max-width: none;
+  }
+  .heist-social__follow {
+    width: 100%;
+  }
+}
+/* Footer
+   ========================================================================== */
+.heist-footer {
+  background: var(--heist-red-deep);
+  color: var(--heist-ink);
+}
+.heist-footer > .heist-container {
+  padding-top: clamp(56px, 6.7vw, 96px);
+  padding-bottom: clamp(40px, 4vw, 56px);
+}
+.heist-footer__wordmark {
+  display: block;
+  text-decoration: none;
+}
+.heist-footer__wordmark-image {
+  width: 100%;
+  height: auto;
+}
+.heist-footer__wordmark .heist-wordmark {
+  display: block;
+  font-size: 23.4vw;
+  white-space: nowrap;
+}
+.heist-footer__nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px 32px;
+  margin-top: clamp(24px, 2.8vw, 40px);
+  font-size: clamp(18px, 1.8vw, 26px);
+}
+.heist-footer__nav a {
+  text-decoration: none;
+}
+.heist-footer__nav a:hover {
+  text-decoration: underline;
+}
+.heist-footer__signup {
+  display: grid;
+  gap: 28px;
+  width: min(656px, 100%);
+  margin-top: clamp(48px, 4.4vw, 64px);
+  padding: 28px 32px 24px;
+  border: var(--heist-line) solid var(--heist-ink);
+  background: var(--heist-cream);
+}
+.heist-footer__signup-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.heist-footer__social {
+  display: flex;
+  gap: 8px;
+}
+.heist-footer__social a {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 3px;
+  background: var(--heist-ink);
+  color: var(--heist-cream);
+}
+.heist-footer__social .heist-icon {
+  width: 16px;
+  height: 16px;
+}
+.heist-footer__form {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 3px solid var(--heist-ink);
+}
+.heist-footer__input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 8px;
+  border: 0;
+  background: transparent;
+  color: var(--heist-ink);
+}
+.heist-footer__input::placeholder {
+  color: var(--heist-ink);
+}
+.heist-footer__input:focus {
+  outline: none;
+}
+.heist-footer__form:focus-within {
+  outline: 2px solid var(--heist-ink);
+  outline-offset: 4px;
+}
+.heist-footer__submit {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.heist-footer__message {
+  flex-basis: 100%;
+  padding: 0 8px 10px;
+}
+.heist-footer__legal {
+  background: var(--heist-ink);
+  color: var(--heist-cream);
+}
+.heist-footer__legal-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding-block: 18px;
+}
+.heist-footer__legal ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+}
+.heist-footer__legal li:not(:last-child)::after {
+  content: '.';
+}
+@media (max-width: 749px) {
+  .heist-footer__nav ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(4, auto);
+    justify-content: start;
+    margin-top: 0;
+  }
+  .heist-footer > .heist-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .heist-footer__wordmark {
+    order: 3;
+    margin-top: 32px;
+  }
+  .heist-footer__signup {
+    order: 1;
+    margin: 0 0 56px;
+    padding: 20px;
+  }
+  .heist-footer__nav {
+    order: 2;
+  }
+  .heist-footer__legal-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+/* Motion preferences
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .heist-page *,
+  .heist-page *::before,
+  .heist-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .heist-marquee {
+    overflow-x: auto;
+  }
+  .heist-marquee__track {
+    animation: none;
+  }
+}
+</style>
+  </head>
+  <body class="heist-page">
+    <a class="heist-skip-link" href="#MainContent">Skip to content</a><div id="shopify-section-heist-header" class="shopify-section heist-header-section"><style>
+</style><link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,800&family=IBM+Plex+Mono:wght@500;600&family=Instrument+Serif&display=swap"><heist-header class="heist-header" data-state="top"><div class="heist-announcement t-n2"><p>Great coffee for the second half of the day.</p></div><div class="heist-header__bar">
+    <button type="button" class="heist-header__menu-toggle" aria-controls="HeistMenuDrawer" aria-expanded="false" data-menu-open>
+      <svg class="heist-icon heist-icon--menu" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+      <span class="visually-hidden">Open menu</span>
+    </button>
+    <a class="heist-btn heist-btn--red heist-header__shop" href="https://www.heist.co/products/coffee-without-a-curfew">Shop now</a>
+    <nav class="heist-header__nav heist-header__nav--centre" aria-label="Main">
+      <ul class="t-n1"><li><a href="https://www.heist.co/pages/why-decaf">Why Decaf</a></li><li><a href="https://www.heist.co/pages/the-process">The Process</a></li><li><a href="https://www.heist.co/pages/our-story">Our Story</a></li></ul>
+    </nav>
+    <nav class="heist-header__nav heist-header__nav--left" aria-label="Main (part 1)">
+      <ul class="t-n1"><li><a href="https://www.heist.co/pages/why-decaf" tabindex="-1">Why Decaf</a></li><li><a href="https://www.heist.co/pages/the-process" tabindex="-1">The Process</a></li></ul>
+    </nav>
+    <a class="heist-header__logo" href="https://www.heist.co/">
+      <span class="heist-wordmark heist-header__logo-image" role="img" aria-label="">HEIST<sup>&reg;</sup></span>
+    </a>
+    <nav class="heist-header__nav heist-header__nav--right" aria-label="Main (part 2)">
+      <ul class="t-n1"><li><a href="https://www.heist.co/pages/our-story" tabindex="-1">Our Story</a></li></ul>
+    </nav>
+    <a class="heist-header__cart t-ui" href="https://www.heist.co/cart">
+      <span class="heist-header__cart-label">Cart(<span data-cart-count>0</span>)</span>
+      <span class="heist-header__cart-bubble" aria-hidden="true">0</span>
+      <span class="visually-hidden">, 0 items</span>
+    </a>
+  </div>
+  <div class="heist-sticky-cta" aria-hidden="true">
+    <p class="heist-sticky-cta__copy t-h7">Coffee Without a Curfew.</p>
+    <a class="heist-sticky-cta__button t-ui" href="https://www.heist.co/products/coffee-without-a-curfew" tabindex="-1">Shop now</a>
+  </div>
+</heist-header>
+<dialog class="heist-menu-drawer" id="HeistMenuDrawer" aria-label="Menu">
+  <div class="heist-menu-drawer__inner">
+    <button type="button" class="heist-menu-drawer__close" data-menu-close>
+      <svg class="heist-icon heist-icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+      <span class="visually-hidden">Close menu</span>
+    </button><ul class="heist-menu-drawer__links t-ui"><li><a href="https://www.heist.co/pages/why-decaf">Why Decaf</a></li><li><a href="https://www.heist.co/pages/the-process">The Process</a></li><li><a href="https://www.heist.co/pages/our-story">Our Story</a></li></ul>
+    <a class="heist-btn heist-btn--red heist-menu-drawer__shop" href="https://www.heist.co/products/coffee-without-a-curfew">Shop now</a><p class="heist-menu-drawer__note t-n1">World-class decaf</p></div>
+</dialog>
+</div>
+    <main id="MainContent" class="heist-main" role="main" tabindex="-1">
+      <div id="shopify-section-hero" class="shopify-section heist-hero-section"><heist-hero
+  class="heist-hero"
+  id="HeistHero-hero"
+  style="--hero-scroll: 190vh;"
+>
+  <div class="heist-hero__canvas">
+    <div class="heist-hero__background" aria-hidden="true">
+      <picture>
+      <source
+        media="(max-width: 749px)"
+        srcset="https://www.heist.co/cdn/shop/files/homepage1-M.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/homepage1-M.jpg?width=750 750w, https://www.heist.co/cdn/shop/files/homepage1-M.jpg?width=1100 1100w, https://www.heist.co/cdn/shop/files/homepage1-M.jpg?width=1500 1500w"
+        sizes="100vw"
+        width="1600"
+        height="1600"
+      >
+      <img src="https://www.heist.co/cdn/shop/files/Homepage_BG-D.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/Homepage_BG-D.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/Homepage_BG-D.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/Homepage_BG-D.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/Homepage_BG-D.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/Homepage_BG-D.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/Homepage_BG-D.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/Homepage_BG-D.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/Homepage_BG-D.jpg?width=2400 2400w" sizes="100vw" alt="" loading="eager" class="heist-hero__background-image">
+    </picture>
+    </div>
+    <div class="heist-grain" aria-hidden="true"></div>
+    <div class="heist-hero__intro">
+      <h1 class="heist-hero__title t-h1">Coffee Without a Curfew.</h1>
+      <div class="heist-hero__wordmark" aria-hidden="true">
+        <img src="https://www.heist.co/cdn/shop/files/Heist-Logo_271574f0-d638-445f-846d-44996bb163bb.svg?width=1800" srcset="https://www.heist.co/cdn/shop/files/Heist-Logo_271574f0-d638-445f-846d-44996bb163bb.svg?width=240 240w, https://www.heist.co/cdn/shop/files/Heist-Logo_271574f0-d638-445f-846d-44996bb163bb.svg?width=480 480w, https://www.heist.co/cdn/shop/files/Heist-Logo_271574f0-d638-445f-846d-44996bb163bb.svg?width=900 900w, https://www.heist.co/cdn/shop/files/Heist-Logo_271574f0-d638-445f-846d-44996bb163bb.svg?width=1400 1400w, https://www.heist.co/cdn/shop/files/Heist-Logo_271574f0-d638-445f-846d-44996bb163bb.svg?width=1800 1800w" sizes="(max-width: 749px) 84vw, 74vw" alt="" loading="eager" class="heist-hero__wordmark-image">
+      </div>
+    </div>
+    <div class="heist-hero__glass" aria-hidden="true">
+      <img src="https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=2400" srcset="https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=360 360w, https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=540 540w, https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=720 720w, https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=960 960w, https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=1200 1200w, https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=1600 1600w, https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=2000 2000w, https://www.heist.co/cdn/shop/files/Coffee_Glass.png?width=2400 2400w" sizes="(max-width: 749px) 74vw, 32vw" alt="" loading="eager" class="heist-hero__glass-image">
+    </div>
+    <div class="heist-hero__hands" aria-hidden="true"><figure
+          class="heist-hero__hand"
+          data-hand-frame
+        >
+          <img src="https://www.heist.co/cdn/shop/files/First_finger.png?width=2400" srcset="https://www.heist.co/cdn/shop/files/First_finger.png?width=360 360w, https://www.heist.co/cdn/shop/files/First_finger.png?width=540 540w, https://www.heist.co/cdn/shop/files/First_finger.png?width=720 720w, https://www.heist.co/cdn/shop/files/First_finger.png?width=960 960w, https://www.heist.co/cdn/shop/files/First_finger.png?width=1200 1200w, https://www.heist.co/cdn/shop/files/First_finger.png?width=1600 1600w, https://www.heist.co/cdn/shop/files/First_finger.png?width=2000 2000w, https://www.heist.co/cdn/shop/files/First_finger.png?width=2400 2400w" sizes="(max-width: 749px) 92vw, 50vw" alt="" loading="lazy" class="heist-hero__hand-image">
+        </figure><figure
+          class="heist-hero__hand"
+          data-hand-frame
+        >
+          <img src="https://www.heist.co/cdn/shop/files/Second_finger.png?width=2400" srcset="https://www.heist.co/cdn/shop/files/Second_finger.png?width=360 360w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=540 540w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=720 720w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=960 960w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=1200 1200w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=1600 1600w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=2000 2000w, https://www.heist.co/cdn/shop/files/Second_finger.png?width=2400 2400w" sizes="(max-width: 749px) 92vw, 50vw" alt="" loading="lazy" class="heist-hero__hand-image">
+        </figure><figure
+          class="heist-hero__hand"
+          data-hand-frame
+        >
+          <img src="https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=2400" srcset="https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=360 360w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=540 540w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=720 720w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=960 960w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=1200 1200w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=1600 1600w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=2000 2000w, https://www.heist.co/cdn/shop/files/Half_Hand_1.png?width=2400 2400w" sizes="(max-width: 749px) 92vw, 50vw" alt="" loading="lazy" class="heist-hero__hand-image">
+        </figure><figure
+          class="heist-hero__hand heist-hero__hand--final"
+          data-hand-frame
+        >
+          <img src="https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=2400" srcset="https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=360 360w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=540 540w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=720 720w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=960 960w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=1200 1200w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=1600 1600w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=2000 2000w, https://www.heist.co/cdn/shop/files/Full_Hand_1.png?width=2400 2400w" sizes="(max-width: 749px) 92vw, 50vw" alt="" loading="lazy" class="heist-hero__hand-image">
+        </figure></div>
+    <div class="heist-hero__story">
+      <div class="heist-hero__story-left">
+        <p class="heist-hero__story-title t-h2">Steal Back</p><div class="heist-hero__badge">
+            <img src="https://www.heist.co/cdn/shop/files/badge-heistglobal.svg?width=2400" srcset="https://www.heist.co/cdn/shop/files/badge-heistglobal.svg?width=360 360w, https://www.heist.co/cdn/shop/files/badge-heistglobal.svg?width=540 540w, https://www.heist.co/cdn/shop/files/badge-heistglobal.svg?width=720 720w, https://www.heist.co/cdn/shop/files/badge-heistglobal.svg?width=960 960w, https://www.heist.co/cdn/shop/files/badge-heistglobal.svg?width=1200 1200w, https://www.heist.co/cdn/shop/files/badge-heistglobal.svg?width=1600 1600w, https://www.heist.co/cdn/shop/files/badge-heistglobal.svg?width=2000 2000w, https://www.heist.co/cdn/shop/files/badge-heistglobal.svg?width=2400 2400w" sizes="160px" alt="" loading="lazy" class="heist-hero__badge-image">
+          </div></div>
+      <div class="heist-hero__story-right">
+        <p class="heist-hero__story-title t-h2">The Night.</p>
+        <div class="heist-hero__body t-t1"><p>Heist is a world-class decaf coffee built for people who refuse to choose between full flavor and a good night’s sleep.</p></div><a class="heist-btn heist-btn--cream heist-hero__button" href="https://www.heist.co/products/coffee-without-a-curfew">Shop now</a><div class="heist-hero__note t-n1"><p>30-day escape plan</p><p>Love it or your money back</p></div>
+      </div>
+    </div>
+  </div>
+</heist-hero>
+<div class="heist-hero-mobile-story">
+  <div class="heist-hero-mobile-story__background" aria-hidden="true">
+    <img src="https://www.heist.co/cdn/shop/files/homepage2-M.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/homepage2-M.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/homepage2-M.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/homepage2-M.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/homepage2-M.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/homepage2-M.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/homepage2-M.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/homepage2-M.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/homepage2-M.jpg?width=2400 2400w" sizes="100vw" alt="" loading="lazy" class="heist-hero-mobile-story__image">
+  </div>
+  <div class="heist-grain" aria-hidden="true"></div>
+  <div class="heist-hero-mobile-story__content">
+    <p class="heist-hero-mobile-story__title t-h2">Steal Back<br>The Night.</p>
+    <div class="heist-hero-mobile-story__body t-t1"><p>Heist is a world-class decaf coffee built for people who refuse to choose between full flavor and a good night’s sleep.</p></div><a class="heist-btn heist-btn--cream heist-hero-mobile-story__button" href="https://www.heist.co/products/coffee-without-a-curfew">Shop now</a><div class="heist-hero__note t-n3"><p>30-day escape plan</p><p>Love it or your money back</p></div>
+  </div>
+</div>
+</div><div id="shopify-section-products" class="shopify-section heist-showcase-section"><section class="heist-showcase heist-paper" id="HeistShowcase-products">
+  <div class="heist-grain" aria-hidden="true"></div>
+  <div class="heist-container">
+    <header class="heist-showcase__header">
+      <div class="heist-showcase__heading-wrap"><p class="heist-rating t-n2">
+            <span class="heist-rating__stars" aria-hidden="true"><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg></span>
+            <span>(<a href="https://www.heist.co/products/smooth-talker#reviews">63 reviews</a>)</span>
+          </p><h2 class="heist-showcase__heading t-h4">World-Class Decaf Coffee</h2>
+      </div><ul class="heist-showcase__badges" role="list"><li class="heist-showcase__badge" >
+              <img src="https://www.heist.co/cdn/shop/files/badge-wholebeans.svg?width=2400" srcset="https://www.heist.co/cdn/shop/files/badge-wholebeans.svg?width=360 360w, https://www.heist.co/cdn/shop/files/badge-wholebeans.svg?width=540 540w, https://www.heist.co/cdn/shop/files/badge-wholebeans.svg?width=720 720w, https://www.heist.co/cdn/shop/files/badge-wholebeans.svg?width=960 960w, https://www.heist.co/cdn/shop/files/badge-wholebeans.svg?width=1200 1200w, https://www.heist.co/cdn/shop/files/badge-wholebeans.svg?width=1600 1600w, https://www.heist.co/cdn/shop/files/badge-wholebeans.svg?width=2000 2000w, https://www.heist.co/cdn/shop/files/badge-wholebeans.svg?width=2400 2400w" sizes="140px" alt="Whole beans badge" loading="lazy" class="heist-showcase__badge-image">
+            </li><li class="heist-showcase__badge" >
+              <img src="https://www.heist.co/cdn/shop/files/badge-caffeine.svg?width=2400" srcset="https://www.heist.co/cdn/shop/files/badge-caffeine.svg?width=360 360w, https://www.heist.co/cdn/shop/files/badge-caffeine.svg?width=540 540w, https://www.heist.co/cdn/shop/files/badge-caffeine.svg?width=720 720w, https://www.heist.co/cdn/shop/files/badge-caffeine.svg?width=960 960w, https://www.heist.co/cdn/shop/files/badge-caffeine.svg?width=1200 1200w, https://www.heist.co/cdn/shop/files/badge-caffeine.svg?width=1600 1600w, https://www.heist.co/cdn/shop/files/badge-caffeine.svg?width=2000 2000w, https://www.heist.co/cdn/shop/files/badge-caffeine.svg?width=2400 2400w" sizes="140px" alt="99.9 percent caffeine removed icon" loading="lazy" class="heist-showcase__badge-image">
+            </li><li class="heist-showcase__badge" >
+              <img src="https://www.heist.co/cdn/shop/files/badge-toxinfree.svg?width=2400" srcset="https://www.heist.co/cdn/shop/files/badge-toxinfree.svg?width=360 360w, https://www.heist.co/cdn/shop/files/badge-toxinfree.svg?width=540 540w, https://www.heist.co/cdn/shop/files/badge-toxinfree.svg?width=720 720w, https://www.heist.co/cdn/shop/files/badge-toxinfree.svg?width=960 960w, https://www.heist.co/cdn/shop/files/badge-toxinfree.svg?width=1200 1200w, https://www.heist.co/cdn/shop/files/badge-toxinfree.svg?width=1600 1600w, https://www.heist.co/cdn/shop/files/badge-toxinfree.svg?width=2000 2000w, https://www.heist.co/cdn/shop/files/badge-toxinfree.svg?width=2400 2400w" sizes="140px" alt="Mold and mycotoxin free badge" loading="lazy" class="heist-showcase__badge-image">
+            </li><li class="heist-showcase__badge" >
+              <img src="https://www.heist.co/cdn/shop/files/Isolation_Mode.svg?width=2400" srcset="https://www.heist.co/cdn/shop/files/Isolation_Mode.svg?width=360 360w, https://www.heist.co/cdn/shop/files/Isolation_Mode.svg?width=540 540w, https://www.heist.co/cdn/shop/files/Isolation_Mode.svg?width=720 720w, https://www.heist.co/cdn/shop/files/Isolation_Mode.svg?width=960 960w, https://www.heist.co/cdn/shop/files/Isolation_Mode.svg?width=1200 1200w, https://www.heist.co/cdn/shop/files/Isolation_Mode.svg?width=1600 1600w, https://www.heist.co/cdn/shop/files/Isolation_Mode.svg?width=2000 2000w, https://www.heist.co/cdn/shop/files/Isolation_Mode.svg?width=2400 2400w" sizes="140px" alt="Chemical-free water-based decaffeination badge" loading="lazy" class="heist-showcase__badge-image">
+            </li></ul></header>
+    <div class="heist-showcase__grid"><article
+          class="heist-product-card heist-product-card--dark"
+          data-heist-product-card
+        >
+          <div class="heist-product-card__media">
+            <img src="https://www.heist.co/cdn/shop/files/smooth_talker_b26b3c99-fd7c-460d-8e26-43d4a9b3d026.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/smooth_talker_b26b3c99-fd7c-460d-8e26-43d4a9b3d026.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/smooth_talker_b26b3c99-fd7c-460d-8e26-43d4a9b3d026.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/smooth_talker_b26b3c99-fd7c-460d-8e26-43d4a9b3d026.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/smooth_talker_b26b3c99-fd7c-460d-8e26-43d4a9b3d026.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/smooth_talker_b26b3c99-fd7c-460d-8e26-43d4a9b3d026.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/smooth_talker_b26b3c99-fd7c-460d-8e26-43d4a9b3d026.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/smooth_talker_b26b3c99-fd7c-460d-8e26-43d4a9b3d026.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/smooth_talker_b26b3c99-fd7c-460d-8e26-43d4a9b3d026.jpg?width=2400 2400w" sizes="(max-width: 749px) 92vw, 46vw" alt="Smooth Talker" loading="lazy" class="heist-product-card__image">
+          </div><div class="heist-product-card__detail"><div class="heist-product-card__description t-t1"><p>Round and balanced. The cup you reach for without thinking, every day of the week, any time of the day.</p></div>
+            </div><div class="heist-product-card__head">
+            <h3 class="heist-product-card__title t-ui">Smooth Talker</h3>
+            <p class="heist-product-card__roast t-t1">Medium Roast</p>
+            <p class="heist-product-card__notes t-n1">Dark chocolate, vanilla bean</p>
+          </div>
+          <div class="heist-product-card__actions"><div class="heist-product-card__toggle" role="radiogroup" aria-label="Format"><button
+                    type="button"
+                    class="heist-product-card__toggle-option t-n1"
+                    role="radio"
+                    aria-checked="true"
+                    data-url="/products/smooth-talker?variant=54943232557378"
+                    data-price="$32.99"
+                  >
+                    Decaf
+                  </button><button
+                    type="button"
+                    class="heist-product-card__toggle-option t-n1"
+                    role="radio"
+                    aria-checked="false"
+                    data-url="/products/smooth-talker?variant=54943232590146"
+                    data-price="$32.99"
+                  >
+                    1/4 Caf
+                  </button></div><a class="heist-btn heist-btn--red heist-product-card__buy" href="https://www.heist.co/products/smooth-talker?variant=54943232557378" data-buy-link>
+              <span>Shop now - from</span>
+              <span class="heist-product-card__price" data-price-label>$32.99</span>
+            </a>
+          </div>
+        </article><article
+          class="heist-product-card heist-product-card--light"
+          data-heist-product-card
+        >
+          <div class="heist-product-card__media">
+            <img src="https://www.heist.co/cdn/shop/files/blueprint_63a1694a-6387-4dd5-9fbd-7c9982b692ab.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/blueprint_63a1694a-6387-4dd5-9fbd-7c9982b692ab.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/blueprint_63a1694a-6387-4dd5-9fbd-7c9982b692ab.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/blueprint_63a1694a-6387-4dd5-9fbd-7c9982b692ab.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/blueprint_63a1694a-6387-4dd5-9fbd-7c9982b692ab.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/blueprint_63a1694a-6387-4dd5-9fbd-7c9982b692ab.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/blueprint_63a1694a-6387-4dd5-9fbd-7c9982b692ab.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/blueprint_63a1694a-6387-4dd5-9fbd-7c9982b692ab.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/blueprint_63a1694a-6387-4dd5-9fbd-7c9982b692ab.jpg?width=2400 2400w" sizes="(max-width: 749px) 92vw, 46vw" alt="Blueprint" loading="lazy" class="heist-product-card__image">
+          </div><div class="heist-product-card__detail"><div class="heist-product-card__description t-t1"><p>The record-breaking decaf for the serious coffee lover. Our signature rotating single origin.</p></div>
+            </div><div class="heist-product-card__head">
+            <h3 class="heist-product-card__title t-ui">Blueprint</h3>
+            <p class="heist-product-card__roast t-t1">Light Roast</p>
+            <p class="heist-product-card__notes t-n1">Cocoa, Citrus Zest, Peach</p>
+          </div>
+          <div class="heist-product-card__actions"><div class="heist-product-card__toggle heist-product-card__toggle--single">
+                <span class="heist-product-card__toggle-option t-n1" aria-checked="true">Decaf</span>
+              </div><a class="heist-btn heist-btn--red heist-product-card__buy" href="https://www.heist.co/products/blueprint?variant=54943233638722" data-buy-link>
+              <span>Shop now - from</span>
+              <span class="heist-product-card__price" data-price-label>$32.99</span>
+            </a>
+          </div>
+        </article></div>
+  </div>
+</section>
+</div><div id="shopify-section-film" class="shopify-section heist-video-feature-section"><section class="heist-video-feature heist-paper" id="HeistVideo-film">
+  <div class="heist-grain" aria-hidden="true"></div>
+  <div class="heist-container"><p class="heist-video-feature__eyebrow t-n2">The Heist, in full</p><div class="heist-video-feature__frame heist-video-feature__frame--desktop">
+      <div class="heist-placeholder heist-video-feature__media" role="img" aria-label="Campaign film (16:9)">
+    <svg class="heist-placeholder__svg" viewBox="0 0 525 525" preserveAspectRatio="xMidYMid slice"><rect width="525" height="525" fill-opacity=".04"/><path d="M0 525L525 0" stroke="currentColor" stroke-opacity=".25"/></svg><span class="heist-placeholder__label">Campaign film (16:9)</span></div>
+    </div>
+    <div class="heist-video-feature__frame heist-video-feature__frame--mobile"><div class="heist-placeholder heist-video-feature__media" role="img" aria-label="Campaign film (9:16)">
+    <svg class="heist-placeholder__svg" viewBox="0 0 525 525" preserveAspectRatio="xMidYMid slice"><rect width="525" height="525" fill-opacity=".04"/><path d="M0 525L525 0" stroke="currentColor" stroke-opacity=".25"/></svg><span class="heist-placeholder__label">Campaign film (9:16)</span></div></div>
+  </div>
+</section>
+</div><div id="shopify-section-quality" class="shopify-section heist-quality-section"><section class="heist-quality heist-paper" id="HeistQuality-quality">
+  <div class="heist-grain" aria-hidden="true"></div>
+  <div class="heist-container">
+    <h2 class="heist-quality__heading t-h4">Roasted in Small Batches with Big Standards</h2>
+    <div class="heist-quality__layout">
+      <ul class="heist-quality__column heist-quality__column--left" role="list"><li class="heist-quality__point t-h7" >Top 1% of World’s
+Coffee Beans</li><li class="heist-quality__point t-h7" >Water Extracts
+the Caffeine</li><li class="heist-quality__point t-h7" >No Solvents,
+no Chemicals</li></ul>
+      <div class="heist-quality__media"><p class="heist-quality__code t-n2" data-heist-roller data-value="23587 1348 124" aria-label="Batch 23587 1348 124">
+            23587 1348 124
+          </p><div class="heist-quality__frame">
+          <div class="heist-placeholder heist-quality__video" role="img" aria-label="Roasting film">
+    <svg class="heist-placeholder__svg" viewBox="0 0 525 525" preserveAspectRatio="xMidYMid slice"><rect width="525" height="525" fill-opacity=".04"/><path d="M0 525L525 0" stroke="currentColor" stroke-opacity=".25"/></svg><span class="heist-placeholder__label">Roasting film</span></div>
+        </div>
+      </div>
+      <ul class="heist-quality__column heist-quality__column--right" role="list"><li class="heist-quality__point t-h7" >Highest Decaf
+Cupping Score</li><li class="heist-quality__point t-h7" >Whole Beans to
+Preserve Flavor</li><li class="heist-quality__point t-h7" >Tested Mold +
+Mycotoxin Free</li></ul>
+    </div>
+  </div>
+</section>
+</div><div id="shopify-section-comparison" class="shopify-section heist-comparison-section"><section class="heist-comparison" id="HeistComparison-comparison">
+  <div class="heist-grain" aria-hidden="true"></div>
+  <div class="heist-container">
+    <h2 class="heist-comparison__heading t-h4">Can Decaf be as good as regular?</h2>
+    <heist-tabs class="heist-tabs">
+      <div class="heist-comparison__subheadings">
+        <div class="heist-comparison__subheading t-t4" data-tab-copy><p>This is our mission so we didn't pick easy competition.<br>We picked the top seller from the most Awarded Roasters.<br>Judged blind by certified Coffee Q Graders.</p></div>
+        <div class="heist-comparison__subheading t-t4" data-tab-copy hidden><p>What sets us apart from the other STANDARD decaf coffees.</p></div>
+      </div>
+      <div class="heist-tabs__list" role="tablist" aria-label="Can Decaf be as good as regular?">
+        <button type="button" role="tab" class="heist-tabs__tab t-n1" id="Tab-comparison-0" aria-controls="Panel-comparison-0" aria-selected="true">Heist vs. regular coffees</button>
+        <button type="button" role="tab" class="heist-tabs__tab t-n1" id="Tab-comparison-1" aria-controls="Panel-comparison-1" aria-selected="false" tabindex="-1">Heist vs. decaf</button>
+      </div>
+      <div class="heist-tabs__panel" role="tabpanel" id="Panel-comparison-0" aria-labelledby="Tab-comparison-0" tabindex="0">
+        <div class="heist-chart" data-heist-chart>
+          <ol class="heist-chart__rows" role="list"><li class="heist-chart__row heist-chart__row--featured" >
+                <div class="heist-chart__label t-n1"><span class="heist-chart__brand">
+                      <img src="https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=1800" srcset="https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=240 240w, https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=480 480w, https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=900 900w, https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=1400 1400w, https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=1800 1800w" sizes="120px" alt="" loading="lazy" class="heist-chart__logo">
+                    </span><span>Blueprint</span>
+                </div>
+                <div class="heist-chart__track">
+                  <div class="heist-chart__bar" style="--bar: 80%;"><span class="heist-chart__tag t-n1">decaf</span></div>
+                  <span class="heist-chart__score t-n1" style="--bar: 80%;">
+                    <span class="visually-hidden">Score: </span>86
+                  </span>
+                </div>
+              </li><li class="heist-chart__row" >
+                <div class="heist-chart__label t-n1"><span>Former Roaster</span><span>of the Year</span>
+                </div>
+                <div class="heist-chart__track">
+                  <div class="heist-chart__bar" style="--bar: 75%;"></div>
+                  <span class="heist-chart__score t-n1" style="--bar: 75%;">
+                    <span class="visually-hidden">Score: </span>85
+                  </span>
+                </div>
+              </li><li class="heist-chart__row" >
+                <div class="heist-chart__label t-n1"><span>Award-Winning</span><span>Elite Roaster</span>
+                </div>
+                <div class="heist-chart__track">
+                  <div class="heist-chart__bar" style="--bar: 75%;"></div>
+                  <span class="heist-chart__score t-n1" style="--bar: 75%;">
+                    <span class="visually-hidden">Score: </span>85
+                  </span>
+                </div>
+              </li><li class="heist-chart__row heist-chart__row--featured" >
+                <div class="heist-chart__label t-n1"><span class="heist-chart__brand">
+                      <img src="https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=1800" srcset="https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=240 240w, https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=480 480w, https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=900 900w, https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=1400 1400w, https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=1800 1800w" sizes="120px" alt="" loading="lazy" class="heist-chart__logo">
+                    </span><span>Smooth Talker</span>
+                </div>
+                <div class="heist-chart__track">
+                  <div class="heist-chart__bar" style="--bar: 70%;"><span class="heist-chart__tag t-n1">decaf</span></div>
+                  <span class="heist-chart__score t-n1" style="--bar: 70%;">
+                    <span class="visually-hidden">Score: </span>84
+                  </span>
+                </div>
+              </li><li class="heist-chart__row" >
+                <div class="heist-chart__label t-n1"><span>Former Roaster</span><span>of the Year</span>
+                </div>
+                <div class="heist-chart__track">
+                  <div class="heist-chart__bar" style="--bar: 70%;"></div>
+                  <span class="heist-chart__score t-n1" style="--bar: 70%;">
+                    <span class="visually-hidden">Score: </span>84
+                  </span>
+                </div>
+              </li><li class="heist-chart__row" >
+                <div class="heist-chart__label t-n1"><span>Former Roaster</span><span>of the Year</span>
+                </div>
+                <div class="heist-chart__track">
+                  <div class="heist-chart__bar" style="--bar: 65%;"></div>
+                  <span class="heist-chart__score t-n1" style="--bar: 65%;">
+                    <span class="visually-hidden">Score: </span>83
+                  </span>
+                </div>
+              </li><li class="heist-chart__row" >
+                <div class="heist-chart__label t-n1"><span>Premium</span><span>National Chain</span>
+                </div>
+                <div class="heist-chart__track">
+                  <div class="heist-chart__bar" style="--bar: 40%;"></div>
+                  <span class="heist-chart__score t-n1" style="--bar: 40%;">
+                    <span class="visually-hidden">Score: </span>78
+                  </span>
+                </div>
+              </li><li class="heist-chart__row" >
+                <div class="heist-chart__label t-n1"><span>National</span><span>Chain</span>
+                </div>
+                <div class="heist-chart__track">
+                  <div class="heist-chart__bar" style="--bar: 45%;"></div>
+                  <span class="heist-chart__score t-n1" style="--bar: 45%;">
+                    <span class="visually-hidden">Score: </span>79
+                  </span>
+                </div>
+              </li><li class="heist-chart__row" >
+                <div class="heist-chart__label t-n1"><span>National</span><span>Chain</span>
+                </div>
+                <div class="heist-chart__track">
+                  <div class="heist-chart__bar" style="--bar: 40%;"></div>
+                  <span class="heist-chart__score t-n1" style="--bar: 40%;">
+                    <span class="visually-hidden">Score: </span>78
+                  </span>
+                </div>
+              </li></ol>
+          <div class="heist-chart__axis t-n1" aria-hidden="true"><span style="--tick: 0%;">70</span><span style="--tick: 25%;">75</span><span style="--tick: 50%;">80</span><span style="--tick: 75%;">85</span><span style="--tick: 100%;">90</span></div><div class="heist-chart__method t-n2"><p>Method: Purchased the "best-selling" coffee directly from Roaster websites or direct in their cafe. Send blind roasted samples to certified Q Graders to judge with SCA scale weighted scoring method.</p></div></div>
+      </div>
+      <div class="heist-tabs__panel" role="tabpanel" id="Panel-comparison-1" aria-labelledby="Tab-comparison-1" tabindex="0" hidden>
+        <div class="heist-evidence">
+          <table class="heist-evidence__table">
+            <thead>
+              <tr class="t-h6">
+                <th scope="col">Evidence</th>
+                <th scope="col" class="heist-evidence__col">Standard Decafs</th>
+                <th scope="col" class="heist-evidence__col heist-evidence__col--heist">
+                  <img src="https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=1800" srcset="https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=240 240w, https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=480 480w, https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=900 900w, https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=1400 1400w, https://www.heist.co/cdn/shop/files/Heist-Logo_d239a604-ec26-4b37-b591-406de0b29470.svg?width=1800 1800w" sizes="160px" alt="" loading="lazy" class="heist-evidence__logo">
+                  <span class="heist-evidence__sub t-n1">(Decaf)</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody><tr >
+                  <th scope="row" class="t-n1">Top 1% Arabica Beans Worldwide</th>
+                  <td class="heist-evidence__col"><svg class="heist-icon heist-icon--cross" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M25.4 6.6L6.6 25.4M6.6 6.6l18.8 18.8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><span class="visually-hidden">No</span></td>
+                  <td class="heist-evidence__col heist-evidence__col--heist"><svg class="heist-icon heist-icon--check" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="15" fill="currentColor"/><path d="M9 16.5l4.5 4.5L23 11.5" fill="none" stroke="var(--heist-cream)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="visually-hidden">Yes</span></td>
+                </tr><tr >
+                  <th scope="row" class="t-n1">Chemical Free Decaffeination</th>
+                  <td class="heist-evidence__col"><svg class="heist-icon heist-icon--cross" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M25.4 6.6L6.6 25.4M6.6 6.6l18.8 18.8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><span class="visually-hidden">No</span></td>
+                  <td class="heist-evidence__col heist-evidence__col--heist"><svg class="heist-icon heist-icon--check" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="15" fill="currentColor"/><path d="M9 16.5l4.5 4.5L23 11.5" fill="none" stroke="var(--heist-cream)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="visually-hidden">Yes</span></td>
+                </tr><tr >
+                  <th scope="row" class="t-n1">Independent lab-tested</th>
+                  <td class="heist-evidence__col"><svg class="heist-icon heist-icon--cross" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M25.4 6.6L6.6 25.4M6.6 6.6l18.8 18.8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><span class="visually-hidden">No</span></td>
+                  <td class="heist-evidence__col heist-evidence__col--heist"><svg class="heist-icon heist-icon--check" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="15" fill="currentColor"/><path d="M9 16.5l4.5 4.5L23 11.5" fill="none" stroke="var(--heist-cream)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="visually-hidden">Yes</span></td>
+                </tr><tr >
+                  <th scope="row" class="t-n1">Small-batch roasted</th>
+                  <td class="heist-evidence__col"><svg class="heist-icon heist-icon--cross" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M25.4 6.6L6.6 25.4M6.6 6.6l18.8 18.8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><span class="visually-hidden">No</span></td>
+                  <td class="heist-evidence__col heist-evidence__col--heist"><svg class="heist-icon heist-icon--check" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="15" fill="currentColor"/><path d="M9 16.5l4.5 4.5L23 11.5" fill="none" stroke="var(--heist-cream)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="visually-hidden">Yes</span></td>
+                </tr><tr >
+                  <th scope="row" class="t-n1">Mold + Mycotoxin Tested</th>
+                  <td class="heist-evidence__col"><svg class="heist-icon heist-icon--cross" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M25.4 6.6L6.6 25.4M6.6 6.6l18.8 18.8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><span class="visually-hidden">No</span></td>
+                  <td class="heist-evidence__col heist-evidence__col--heist"><svg class="heist-icon heist-icon--check" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="15" fill="currentColor"/><path d="M9 16.5l4.5 4.5L23 11.5" fill="none" stroke="var(--heist-cream)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="visually-hidden">Yes</span></td>
+                </tr><tr >
+                  <th scope="row" class="t-n1">99.9% decaf</th>
+                  <td class="heist-evidence__col"><svg class="heist-icon heist-icon--cross" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M25.4 6.6L6.6 25.4M6.6 6.6l18.8 18.8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><span class="visually-hidden">No</span></td>
+                  <td class="heist-evidence__col heist-evidence__col--heist"><svg class="heist-icon heist-icon--check" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="15" fill="currentColor"/><path d="M9 16.5l4.5 4.5L23 11.5" fill="none" stroke="var(--heist-cream)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="visually-hidden">Yes</span></td>
+                </tr></tbody>
+          </table>
+        </div>
+      </div>
+    </heist-tabs>
+  </div>
+</section>
+</div><div id="shopify-section-reviews" class="shopify-section heist-reviews-section"><section class="heist-reviews" id="HeistReviews-reviews">
+  <div class="heist-grain" aria-hidden="true"></div>
+  <div class="heist-container">
+    <h2 class="heist-reviews__heading t-h4">The receipts don’t lie.</h2>
+  </div>
+  <heist-carousel class="heist-carousel heist-reviews__carousel">
+    <ul class="heist-carousel__track" role="list" tabindex="0" aria-label="The receipts don’t lie."><li class="heist-review heist-review--video" >
+              <div class="heist-review__media">
+                <div class="heist-placeholder heist-review__video" role="img" aria-label="Customer video">
+    <svg class="heist-placeholder__svg" viewBox="0 0 525 525" preserveAspectRatio="xMidYMid slice"><rect width="525" height="525" fill-opacity=".04"/><path d="M0 525L525 0" stroke="currentColor" stroke-opacity=".25"/></svg><span class="heist-placeholder__label">Customer video</span></div>
+              </div>
+            </li><li class="heist-review heist-review--video" >
+              <div class="heist-review__media">
+                <div class="heist-placeholder heist-review__video" role="img" aria-label="Customer video">
+    <svg class="heist-placeholder__svg" viewBox="0 0 525 525" preserveAspectRatio="xMidYMid slice"><rect width="525" height="525" fill-opacity=".04"/><path d="M0 525L525 0" stroke="currentColor" stroke-opacity=".25"/></svg><span class="heist-placeholder__label">Customer video</span></div>
+              </div>
+            </li><li class="heist-review heist-review--text" >
+              <dl class="heist-review__meta t-n1">
+                <div><dt>Name:</dt><dd>Alyssa H.</dd></div>
+                <div>
+                  <dt>Rating:</dt>
+                  <dd class="heist-review__stars" aria-label="5 out of 5 stars"><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg></dd>
+                </div>
+                <div><dt>Product:</dt><dd>Smooth Talker (decaf)</dd></div>
+              </dl>
+              <blockquote class="heist-review__quote t-t2">“Love this coffee. Tastes like dessert but I still slept like a baby. Didn’t think decaf could actually hit this hard.”</blockquote>
+              <div class="heist-review__footer">
+                <div class="heist-review__bag">
+                  <img src="https://www.heist.co/cdn/shop/files/Review_DECAF.png?width=2400" srcset="https://www.heist.co/cdn/shop/files/Review_DECAF.png?width=360 360w, https://www.heist.co/cdn/shop/files/Review_DECAF.png?width=540 540w, https://www.heist.co/cdn/shop/files/Review_DECAF.png?width=720 720w, https://www.heist.co/cdn/shop/files/Review_DECAF.png?width=960 960w, https://www.heist.co/cdn/shop/files/Review_DECAF.png?width=1200 1200w, https://www.heist.co/cdn/shop/files/Review_DECAF.png?width=1600 1600w, https://www.heist.co/cdn/shop/files/Review_DECAF.png?width=2000 2000w, https://www.heist.co/cdn/shop/files/Review_DECAF.png?width=2400 2400w" sizes="96px" alt="" loading="lazy" class="heist-review__bag-image">
+                </div>
+                <div class="heist-review__verify">
+                  <span class="heist-barcode" aria-hidden="true"></span><span class="heist-review__verified t-n1"><svg class="heist-icon heist-icon--verified" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5 8.2l2 2 4-4.2" fill="none" stroke="var(--heist-paper)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified buyer</span></div>
+              </div>
+            </li><li class="heist-review heist-review--video" >
+              <div class="heist-review__media">
+                <div class="heist-placeholder heist-review__video" role="img" aria-label="Customer video">
+    <svg class="heist-placeholder__svg" viewBox="0 0 525 525" preserveAspectRatio="xMidYMid slice"><rect width="525" height="525" fill-opacity=".04"/><path d="M0 525L525 0" stroke="currentColor" stroke-opacity=".25"/></svg><span class="heist-placeholder__label">Customer video</span></div>
+              </div>
+            </li><li class="heist-review heist-review--text" >
+              <dl class="heist-review__meta t-n1">
+                <div><dt>Name:</dt><dd>Priya S.</dd></div>
+                <div>
+                  <dt>Rating:</dt>
+                  <dd class="heist-review__stars" aria-label="5 out of 5 stars"><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg></dd>
+                </div>
+                <div><dt>Product:</dt><dd>Smooth Talker (1/4 caf)</dd></div>
+              </dl>
+              <blockquote class="heist-review__quote t-t2">“Bought this for my friend who’s been trying to cut back on caffeine but refuses to give up good coffee. She’s now completely obsessed!”</blockquote>
+              <div class="heist-review__footer">
+                <div class="heist-review__bag">
+                  <img src="https://www.heist.co/cdn/shop/files/Review_1_2_CAF.png?width=2400" srcset="https://www.heist.co/cdn/shop/files/Review_1_2_CAF.png?width=360 360w, https://www.heist.co/cdn/shop/files/Review_1_2_CAF.png?width=540 540w, https://www.heist.co/cdn/shop/files/Review_1_2_CAF.png?width=720 720w, https://www.heist.co/cdn/shop/files/Review_1_2_CAF.png?width=960 960w, https://www.heist.co/cdn/shop/files/Review_1_2_CAF.png?width=1200 1200w, https://www.heist.co/cdn/shop/files/Review_1_2_CAF.png?width=1600 1600w, https://www.heist.co/cdn/shop/files/Review_1_2_CAF.png?width=2000 2000w, https://www.heist.co/cdn/shop/files/Review_1_2_CAF.png?width=2400 2400w" sizes="96px" alt="" loading="lazy" class="heist-review__bag-image">
+                </div>
+                <div class="heist-review__verify">
+                  <span class="heist-barcode" aria-hidden="true"></span><span class="heist-review__verified t-n1"><svg class="heist-icon heist-icon--verified" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5 8.2l2 2 4-4.2" fill="none" stroke="var(--heist-paper)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified buyer</span></div>
+              </div>
+            </li><li class="heist-review heist-review--text" >
+              <dl class="heist-review__meta t-n1">
+                <div><dt>Name:</dt><dd>Carissa L.</dd></div>
+                <div>
+                  <dt>Rating:</dt>
+                  <dd class="heist-review__stars" aria-label="5 out of 5 stars"><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg><svg class="heist-icon heist-icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor"/></svg></dd>
+                </div>
+                <div><dt>Product:</dt><dd>Blueprint</dd></div>
+              </dl>
+              <blockquote class="heist-review__quote t-t2">“My best hours are 10pm to 2am. Always have been. Heist is built for people like me. I finally have a coffee that gets it.”</blockquote>
+              <div class="heist-review__footer">
+                <div class="heist-review__bag">
+                  <img src="https://www.heist.co/cdn/shop/files/Review_BLUEPRINT.png?width=2400" srcset="https://www.heist.co/cdn/shop/files/Review_BLUEPRINT.png?width=360 360w, https://www.heist.co/cdn/shop/files/Review_BLUEPRINT.png?width=540 540w, https://www.heist.co/cdn/shop/files/Review_BLUEPRINT.png?width=720 720w, https://www.heist.co/cdn/shop/files/Review_BLUEPRINT.png?width=960 960w, https://www.heist.co/cdn/shop/files/Review_BLUEPRINT.png?width=1200 1200w, https://www.heist.co/cdn/shop/files/Review_BLUEPRINT.png?width=1600 1600w, https://www.heist.co/cdn/shop/files/Review_BLUEPRINT.png?width=2000 2000w, https://www.heist.co/cdn/shop/files/Review_BLUEPRINT.png?width=2400 2400w" sizes="96px" alt="" loading="lazy" class="heist-review__bag-image">
+                </div>
+                <div class="heist-review__verify">
+                  <span class="heist-barcode" aria-hidden="true"></span><span class="heist-review__verified t-n1"><svg class="heist-icon heist-icon--verified" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5 8.2l2 2 4-4.2" fill="none" stroke="var(--heist-paper)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified buyer</span></div>
+              </div>
+            </li></ul>
+  </heist-carousel>
+</section>
+</div><div id="shopify-section-late_night" class="shopify-section heist-late-night-section"><section class="heist-late-night" id="HeistLateNight-late_night">
+  <div class="heist-grain" aria-hidden="true"></div>
+  <div class="heist-container">
+    <h2 class="heist-late-night__heading t-h4"><p>For the late night conversations, and anyone who’s been told 1 pm is their last cup.<br>You now call the shots.</p></h2>
+    <div class="heist-collage"><div class="heist-collage__column heist-collage__column--1"><figure
+                class="heist-collage__tile heist-collage__tile--tall heist-collage__tile--drop-small"
+              >
+                <div class="heist-placeholder heist-collage__media" role="img" aria-label="Lifestyle portrait">
+    <svg class="heist-placeholder__svg" viewBox="0 0 525 525" preserveAspectRatio="xMidYMid slice"><rect width="525" height="525" fill-opacity=".04"/><path d="M0 525L525 0" stroke="currentColor" stroke-opacity=".25"/></svg><span class="heist-placeholder__label">Lifestyle portrait</span></div>
+              </figure></div><div class="heist-collage__column heist-collage__column--2"><figure
+                class="heist-collage__tile heist-collage__tile--short heist-collage__tile--drop-none"
+              >
+                <img src="https://www.heist.co/cdn/shop/files/LNC_2.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/LNC_2.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/LNC_2.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/LNC_2.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/LNC_2.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/LNC_2.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/LNC_2.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/LNC_2.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/LNC_2.jpg?width=2400 2400w" sizes="(max-width: 749px) 46vw, 22vw" alt="" loading="lazy" class="heist-collage__media">
+              </figure></div><div class="heist-collage__column heist-collage__column--3"><figure
+                class="heist-collage__tile heist-collage__tile--short heist-collage__tile--drop-large"
+              >
+                <div class="heist-placeholder heist-collage__media" role="img" aria-label="Late-night clip">
+    <svg class="heist-placeholder__svg" viewBox="0 0 525 525" preserveAspectRatio="xMidYMid slice"><rect width="525" height="525" fill-opacity=".04"/><path d="M0 525L525 0" stroke="currentColor" stroke-opacity=".25"/></svg><span class="heist-placeholder__label">Late-night clip</span></div>
+              </figure></div><div class="heist-collage__column heist-collage__column--4"><figure
+                class="heist-collage__tile heist-collage__tile--tall heist-collage__tile--drop-none"
+              >
+                <img src="https://www.heist.co/cdn/shop/files/LNC_4.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/LNC_4.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/LNC_4.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/LNC_4.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/LNC_4.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/LNC_4.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/LNC_4.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/LNC_4.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/LNC_4.jpg?width=2400 2400w" sizes="(max-width: 749px) 46vw, 22vw" alt="" loading="lazy" class="heist-collage__media">
+              </figure></div><div class="heist-collage__column heist-collage__column--5"><figure
+                class="heist-collage__tile heist-collage__tile--short heist-collage__tile--drop-none"
+              >
+                <div class="heist-placeholder heist-collage__media" role="img" aria-label="Late-night clip">
+    <svg class="heist-placeholder__svg" viewBox="0 0 525 525" preserveAspectRatio="xMidYMid slice"><rect width="525" height="525" fill-opacity=".04"/><path d="M0 525L525 0" stroke="currentColor" stroke-opacity=".25"/></svg><span class="heist-placeholder__label">Late-night clip</span></div>
+              </figure></div></div>
+  </div>
+</section>
+</div><div id="shopify-section-brewing" class="shopify-section heist-brewing-section"><section class="heist-brewing" id="HeistBrewing-brewing">
+  <div class="heist-grain" aria-hidden="true"></div>
+  <div class="heist-container">
+    <h2 class="heist-brewing__heading t-h4">Brewing Guide:</h2>
+  </div>
+  <heist-carousel class="heist-carousel heist-brewing__carousel">
+    <ul class="heist-carousel__track" role="list" tabindex="0" aria-label="Brewing Guide:"><li class="heist-brew-card" >
+          <button
+            type="button"
+            class="heist-brew-card__button"
+            aria-haspopup="dialog"
+            aria-controls="Recipe-drip"
+            data-recipe-open="Recipe-drip"
+          >
+            <span class="heist-brew-card__media">
+              <img src="https://www.heist.co/cdn/shop/files/1.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/1.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/1.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/1.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/1.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/1.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/1.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/1.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/1.jpg?width=2400 2400w" sizes="(max-width: 749px) 72vw, 320px" alt="Drip coffee" loading="lazy" class="heist-brew-card__image"><span class="heist-brew-card__hover" aria-hidden="true">
+                  <img src="https://www.heist.co/cdn/shop/files/1_H.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/1_H.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/1_H.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/1_H.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/1_H.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/1_H.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/1_H.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/1_H.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/1_H.jpg?width=2400 2400w" sizes="320px" alt="" loading="lazy" class="heist-brew-card__hover-media">
+                </span></span>
+            <span class="heist-brew-card__label t-n1">
+              <span class="heist-brew-card__title">Drip coffee</span>
+              <span class="heist-brew-card__cta">How to brew →</span>
+            </span>
+          </button>
+        </li><li class="heist-brew-card" >
+          <button
+            type="button"
+            class="heist-brew-card__button"
+            aria-haspopup="dialog"
+            aria-controls="Recipe-martini"
+            data-recipe-open="Recipe-martini"
+          >
+            <span class="heist-brew-card__media">
+              <img src="https://www.heist.co/cdn/shop/files/2.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/2.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/2.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/2.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/2.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/2.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/2.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/2.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/2.jpg?width=2400 2400w" sizes="(max-width: 749px) 72vw, 320px" alt="Espresso Martini" loading="lazy" class="heist-brew-card__image"></span>
+            <span class="heist-brew-card__label t-n1">
+              <span class="heist-brew-card__title">Espresso Martini</span>
+              <span class="heist-brew-card__cta">How to brew →</span>
+            </span>
+          </button>
+        </li><li class="heist-brew-card" >
+          <button
+            type="button"
+            class="heist-brew-card__button"
+            aria-haspopup="dialog"
+            aria-controls="Recipe-pour_over"
+            data-recipe-open="Recipe-pour_over"
+          >
+            <span class="heist-brew-card__media">
+              <img src="https://www.heist.co/cdn/shop/files/4.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/4.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/4.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/4.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/4.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/4.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/4.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/4.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/4.jpg?width=2400 2400w" sizes="(max-width: 749px) 72vw, 320px" alt="Pour over" loading="lazy" class="heist-brew-card__image"><span class="heist-brew-card__hover" aria-hidden="true">
+                  <img src="https://www.heist.co/cdn/shop/files/4_H.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/4_H.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/4_H.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/4_H.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/4_H.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/4_H.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/4_H.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/4_H.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/4_H.jpg?width=2400 2400w" sizes="320px" alt="" loading="lazy" class="heist-brew-card__hover-media">
+                </span></span>
+            <span class="heist-brew-card__label t-n1">
+              <span class="heist-brew-card__title">Pour over</span>
+              <span class="heist-brew-card__cta">How to brew →</span>
+            </span>
+          </button>
+        </li><li class="heist-brew-card" >
+          <button
+            type="button"
+            class="heist-brew-card__button"
+            aria-haspopup="dialog"
+            aria-controls="Recipe-espresso"
+            data-recipe-open="Recipe-espresso"
+          >
+            <span class="heist-brew-card__media">
+              <img src="https://www.heist.co/cdn/shop/files/5.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/5.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/5.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/5.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/5.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/5.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/5.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/5.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/5.jpg?width=2400 2400w" sizes="(max-width: 749px) 72vw, 320px" alt="Espresso" loading="lazy" class="heist-brew-card__image"><span class="heist-brew-card__hover" aria-hidden="true">
+                  <img src="https://www.heist.co/cdn/shop/files/5_H.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/5_H.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/5_H.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/5_H.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/5_H.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/5_H.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/5_H.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/5_H.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/5_H.jpg?width=2400 2400w" sizes="320px" alt="" loading="lazy" class="heist-brew-card__hover-media">
+                </span></span>
+            <span class="heist-brew-card__label t-n1">
+              <span class="heist-brew-card__title">Espresso</span>
+              <span class="heist-brew-card__cta">How to brew →</span>
+            </span>
+          </button>
+        </li><li class="heist-brew-card" >
+          <button
+            type="button"
+            class="heist-brew-card__button"
+            aria-haspopup="dialog"
+            aria-controls="Recipe-affogato"
+            data-recipe-open="Recipe-affogato"
+          >
+            <span class="heist-brew-card__media">
+              <img src="https://www.heist.co/cdn/shop/files/6.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/6.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/6.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/6.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/6.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/6.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/6.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/6.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/6.jpg?width=2400 2400w" sizes="(max-width: 749px) 72vw, 320px" alt="Affogato" loading="lazy" class="heist-brew-card__image"></span>
+            <span class="heist-brew-card__label t-n1">
+              <span class="heist-brew-card__title">Affogato</span>
+              <span class="heist-brew-card__cta">How to brew →</span>
+            </span>
+          </button>
+        </li><li class="heist-brew-card" >
+          <button
+            type="button"
+            class="heist-brew-card__button"
+            aria-haspopup="dialog"
+            aria-controls="Recipe-cold_brew"
+            data-recipe-open="Recipe-cold_brew"
+          >
+            <span class="heist-brew-card__media">
+              <img src="https://www.heist.co/cdn/shop/files/7.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/7.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/7.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/7.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/7.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/7.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/7.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/7.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/7.jpg?width=2400 2400w" sizes="(max-width: 749px) 72vw, 320px" alt="Cold brew" loading="lazy" class="heist-brew-card__image"><span class="heist-brew-card__hover" aria-hidden="true">
+                  <img src="https://www.heist.co/cdn/shop/files/7_H.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/7_H.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/7_H.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/7_H.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/7_H.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/7_H.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/7_H.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/7_H.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/7_H.jpg?width=2400 2400w" sizes="320px" alt="" loading="lazy" class="heist-brew-card__hover-media">
+                </span></span>
+            <span class="heist-brew-card__label t-n1">
+              <span class="heist-brew-card__title">Cold brew</span>
+              <span class="heist-brew-card__cta">How to brew →</span>
+            </span>
+          </button>
+        </li><li class="heist-brew-card" >
+          <button
+            type="button"
+            class="heist-brew-card__button"
+            aria-haspopup="dialog"
+            aria-controls="Recipe-aeropress"
+            data-recipe-open="Recipe-aeropress"
+          >
+            <span class="heist-brew-card__media">
+              <img src="https://www.heist.co/cdn/shop/files/8.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/8.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/8.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/8.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/8.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/8.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/8.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/8.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/8.jpg?width=2400 2400w" sizes="(max-width: 749px) 72vw, 320px" alt="AeroPress" loading="lazy" class="heist-brew-card__image"><span class="heist-brew-card__hover" aria-hidden="true">
+                  <img src="https://www.heist.co/cdn/shop/files/8_H.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/8_H.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/8_H.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/8_H.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/8_H.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/8_H.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/8_H.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/8_H.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/8_H.jpg?width=2400 2400w" sizes="320px" alt="" loading="lazy" class="heist-brew-card__hover-media">
+                </span></span>
+            <span class="heist-brew-card__label t-n1">
+              <span class="heist-brew-card__title">AeroPress</span>
+              <span class="heist-brew-card__cta">How to brew →</span>
+            </span>
+          </button>
+        </li><li class="heist-brew-card" >
+          <button
+            type="button"
+            class="heist-brew-card__button"
+            aria-haspopup="dialog"
+            aria-controls="Recipe-french_press"
+            data-recipe-open="Recipe-french_press"
+          >
+            <span class="heist-brew-card__media">
+              <img src="https://www.heist.co/cdn/shop/files/9.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/9.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/9.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/9.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/9.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/9.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/9.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/9.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/9.jpg?width=2400 2400w" sizes="(max-width: 749px) 72vw, 320px" alt="French press" loading="lazy" class="heist-brew-card__image"></span>
+            <span class="heist-brew-card__label t-n1">
+              <span class="heist-brew-card__title">French press</span>
+              <span class="heist-brew-card__cta">How to brew →</span>
+            </span>
+          </button>
+        </li></ul>
+  </heist-carousel><dialog class="heist-recipe" id="Recipe-drip" aria-labelledby="RecipeTitle-drip" data-heist-recipe>
+      <div class="heist-recipe__inner">
+        <button type="button" class="heist-recipe__close" data-recipe-close>
+          <svg class="heist-icon heist-icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+          <span class="visually-hidden">Close recipe</span>
+        </button>
+        <div class="heist-recipe__head">
+          <div class="heist-recipe__thumb">
+            <img src="https://www.heist.co/cdn/shop/files/1.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/1.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/1.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/1.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/1.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/1.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/1.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/1.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/1.jpg?width=2400 2400w" sizes="200px" alt="" loading="lazy" class="heist-recipe__thumb-image">
+          </div>
+          <div class="heist-recipe__summary">
+            <h3 class="heist-recipe__title t-h6" id="RecipeTitle-drip">Drip / Filter</h3>
+            <dl class="heist-recipe__details t-n2"><div><dt>Coffee: Water Ratio:</dt><dd>1:14.5</dd></div><div><dt>Make time:</dt><dd>5 min</dd></div><div><dt>Best served:</dt><dd>Hot · makes about 4 cups</dd></div><div><dt>Grind:</dt><dd>Medium, like table salt · C40 26-28</dd></div></dl>
+          </div>
+        </div><div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">Ingredients:</p>
+          <ul class="heist-recipe__ingredients t-t4" role="list"><li>
+                  <span>Filtered water</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="1000 g">1000 g</span>
+                </li><li>
+                  <span>Heist Coffee</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="69 g">69 g</span>
+                </li></ul>
+        </div>
+        <div class="heist-recipe__banner">
+          <div class="heist-recipe__banner-image">
+            <img src="https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2400 2400w" sizes="180px" alt="" loading="lazy" class="heist-recipe__banner-img">
+          </div>
+          <div class="heist-recipe__banner-copy">
+            <p class="heist-recipe__banner-title t-ui">Smooth Talker</p>
+            <p class="heist-recipe__banner-roast t-t1">Medium Roast</p>
+            <a class="heist-btn heist-btn--red" href="https://www.heist.co/products/smooth-talker">Shop 1/4 caf</a>
+          </div>
+        </div>
+        <div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">How to make:</p>
+          <ol class="heist-recipe__steps t-t4"><li>Grind to a medium, table-salt texture. Decaf throws more fines than caffeinated coffee, so if the brew stalls, go coarser before you change anything else.</li><li>Rinse a flat-bottom paper filter with hot water and discard the rinse water.</li><li>Add the grounds and level the bed flat. An uneven bed is the most common cause of a weak pot.</li><li>If your brewer has a pre-infusion setting, use it.</li><li>Brew. Most machines take four to six minutes on their own.</li><li>Stir the carafe before you pour. Batch brews stratify, and the first cup and the last cup are different coffees otherwise.</li><li>Drink within 30 minutes. Thermal carafe, never a hot plate.</li></ol>
+        </div></div>
+    </dialog><dialog class="heist-recipe" id="Recipe-martini" aria-labelledby="RecipeTitle-martini" data-heist-recipe>
+      <div class="heist-recipe__inner">
+        <button type="button" class="heist-recipe__close" data-recipe-close>
+          <svg class="heist-icon heist-icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+          <span class="visually-hidden">Close recipe</span>
+        </button>
+        <div class="heist-recipe__head">
+          <div class="heist-recipe__thumb">
+            <img src="https://www.heist.co/cdn/shop/files/2.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/2.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/2.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/2.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/2.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/2.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/2.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/2.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/2.jpg?width=2400 2400w" sizes="200px" alt="" loading="lazy" class="heist-recipe__thumb-image">
+          </div>
+          <div class="heist-recipe__summary">
+            <h3 class="heist-recipe__title t-h6" id="RecipeTitle-martini">Espresso Martini</h3>
+            <dl class="heist-recipe__details t-n2"><div><dt>Best made with:</dt><dd>Smooth Talker</dd></div><div><dt>Make time:</dt><dd>3 min</dd></div><div><dt>Best served:</dt><dd>Cold · up · coupe</dd></div><div><dt>Grind:</dt><dd>Fine (espresso)</dd></div></dl>
+          </div>
+        </div><div class="heist-recipe__servings t-n2">
+            <label for="Servings-martini">Serving size:</label>
+            <select id="Servings-martini" data-servings><option value="1">× 1 serving</option><option value="2">× 2 servings</option><option value="3">× 3 servings</option><option value="4">× 4 servings</option><option value="5">× 5 servings</option><option value="6">× 6 servings</option><option value="7">× 7 servings</option></select>
+          </div><div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">Ingredients:</p>
+          <ul class="heist-recipe__ingredients t-t4" role="list"><li>
+                  <span>Vodka</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="2 oz">2 oz</span>
+                </li><li>
+                  <span>Coffee Liqueur</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="0.5 oz">0.5 oz</span>
+                </li><li>
+                  <span>Smooth Talker espresso, fresh</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="1 oz (a double, 38-40 g)">1 oz (a double, 38-40 g)</span>
+                </li><li>
+                  <span>Demerara syrup (2:1)</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount=""></span>
+                </li><li>
+                  <span>Coffee beans, to garnish</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="3">3</span>
+                </li></ul>
+        </div>
+        <div class="heist-recipe__banner">
+          <div class="heist-recipe__banner-image">
+            <img src="https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2400 2400w" sizes="180px" alt="" loading="lazy" class="heist-recipe__banner-img">
+          </div>
+          <div class="heist-recipe__banner-copy">
+            <p class="heist-recipe__banner-title t-ui">Smooth Talker</p>
+            <p class="heist-recipe__banner-roast t-t1">Medium Roast</p>
+            <a class="heist-btn heist-btn--red" href="https://www.heist.co/products/smooth-talker">Shop 1/4 caf</a>
+          </div>
+        </div>
+        <div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">How to make:</p>
+          <ol class="heist-recipe__steps t-t4"><li>Chill the coupe.</li><li>Pull the espresso straight into the shaker.</li><li>Add the syrup and a full scoop of ice.</li><li>Shake as hard as you can for 15 seconds.</li><li>Fine strain into the chilled coupe.</li></ol>
+        </div><p class="heist-recipe__footnote t-t4">It should land with a dense, hazelnut-coloured foam on top.</p></div>
+    </dialog><dialog class="heist-recipe" id="Recipe-pour_over" aria-labelledby="RecipeTitle-pour_over" data-heist-recipe>
+      <div class="heist-recipe__inner">
+        <button type="button" class="heist-recipe__close" data-recipe-close>
+          <svg class="heist-icon heist-icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+          <span class="visually-hidden">Close recipe</span>
+        </button>
+        <div class="heist-recipe__head">
+          <div class="heist-recipe__thumb">
+            <img src="https://www.heist.co/cdn/shop/files/4.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/4.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/4.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/4.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/4.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/4.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/4.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/4.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/4.jpg?width=2400 2400w" sizes="200px" alt="" loading="lazy" class="heist-recipe__thumb-image">
+          </div>
+          <div class="heist-recipe__summary">
+            <h3 class="heist-recipe__title t-h6" id="RecipeTitle-pour_over">Pour Over</h3>
+            <dl class="heist-recipe__details t-n2"><div><dt>Coffee: Water Ratio:</dt><dd>1:16</dd></div><div><dt>Make time:</dt><dd>4 min</dd></div><div><dt>Best served:</dt><dd>Hot · 10 oz</dd></div><div><dt>Grind:</dt><dd>Medium-fine, like coarse sand · C40 20-22</dd></div></dl>
+          </div>
+        </div><div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">Ingredients:</p>
+          <ul class="heist-recipe__ingredients t-t4" role="list"><li>
+                  <span>Smooth Talker, whole bean</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="20 g">20 g</span>
+                </li><li>
+                  <span>Filtered water</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="320 g">320 g</span>
+                </li></ul>
+        </div>
+        <div class="heist-recipe__banner">
+          <div class="heist-recipe__banner-image">
+            <img src="https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2400 2400w" sizes="180px" alt="" loading="lazy" class="heist-recipe__banner-img">
+          </div>
+          <div class="heist-recipe__banner-copy">
+            <p class="heist-recipe__banner-title t-ui">Smooth Talker</p>
+            <p class="heist-recipe__banner-roast t-t1">Medium Roast</p>
+            <a class="heist-btn heist-btn--red" href="https://www.heist.co/products/smooth-talker">Shop 1/4 caf</a>
+          </div>
+        </div>
+        <div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">How to make:</p>
+          <ol class="heist-recipe__steps t-t4"><li>Boil, then let the kettle rest 30 seconds. You want 200-204 F / 94-96 C.</li><li>Rinse a V60 paper thoroughly and discard the rinse water. This is what removes the paper taste and preheats the brewer.</li><li>Add the grounds, tap the bed flat, and make a shallow well in the centre.</li><li>Bloom with 50 g of water. Swirl gently, then wait 45 seconds.</li><li>At 0:45, pour steadily to 200 g.</li><li>At 1:30, pour to 320 g. Keep the stream central and off the walls.</li><li>Swirl once to level the bed, then leave it alone.</li><li>Drawdown should finish between 2:45 and 3:00. Past 3:30, grind coarser next time.</li></ol>
+        </div></div>
+    </dialog><dialog class="heist-recipe" id="Recipe-espresso" aria-labelledby="RecipeTitle-espresso" data-heist-recipe>
+      <div class="heist-recipe__inner">
+        <button type="button" class="heist-recipe__close" data-recipe-close>
+          <svg class="heist-icon heist-icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+          <span class="visually-hidden">Close recipe</span>
+        </button>
+        <div class="heist-recipe__head">
+          <div class="heist-recipe__thumb">
+            <img src="https://www.heist.co/cdn/shop/files/5.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/5.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/5.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/5.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/5.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/5.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/5.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/5.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/5.jpg?width=2400 2400w" sizes="200px" alt="" loading="lazy" class="heist-recipe__thumb-image">
+          </div>
+          <div class="heist-recipe__summary">
+            <h3 class="heist-recipe__title t-h6" id="RecipeTitle-espresso">Espresso</h3>
+            <dl class="heist-recipe__details t-n2"><div><dt>Coffee: Water Ratio:</dt><dd>1:2.1</dd></div><div><dt>Make time:</dt><dd>30 sec</dd></div><div><dt>Best served:</dt><dd>Hot · straight or in milk</dd></div><div><dt>Grind:</dt><dd>Fine · 2-3 steps coarser than your usual medium roast</dd></div></dl>
+          </div>
+        </div><div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">Ingredients:</p>
+          <ul class="heist-recipe__ingredients t-t4" role="list"><li>
+                  <span>Smooth Talker, ground</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="18 g">18 g</span>
+                </li><li>
+                  <span>Yield in the cup</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="38-40 g">38-40 g</span>
+                </li></ul>
+        </div>
+        <div class="heist-recipe__banner">
+          <div class="heist-recipe__banner-image">
+            <img src="https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2400 2400w" sizes="180px" alt="" loading="lazy" class="heist-recipe__banner-img">
+          </div>
+          <div class="heist-recipe__banner-copy">
+            <p class="heist-recipe__banner-title t-ui">Smooth Talker</p>
+            <p class="heist-recipe__banner-roast t-t1">Medium Roast</p>
+            <a class="heist-btn heist-btn--red" href="https://www.heist.co/products/smooth-talker">Shop 1/4 caf</a>
+          </div>
+        </div>
+        <div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">How to make:</p>
+          <ol class="heist-recipe__steps t-t4"><li>Set the brew temperature to 200 F / 92-93 C. Lower than you would run a caffeinated medium roast.</li><li>Break up the clumps with a needle tool. Decaf pucks channel more than caffeinated ones, so this step is not optional.</li><li>Level, then tamp straight and light.</li><li>Pre-infuse for five to eight seconds, then run the shot.</li><li>Stop at 38-40 g in the cup, around 27 to 30 seconds total.</li><li>If the shot gushes or runs pale early, the puck channeled. Redistribute and re-tamp. Do not grind finer to chase it.</li></ol>
+        </div></div>
+    </dialog><dialog class="heist-recipe" id="Recipe-affogato" aria-labelledby="RecipeTitle-affogato" data-heist-recipe>
+      <div class="heist-recipe__inner">
+        <button type="button" class="heist-recipe__close" data-recipe-close>
+          <svg class="heist-icon heist-icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+          <span class="visually-hidden">Close recipe</span>
+        </button>
+        <div class="heist-recipe__head">
+          <div class="heist-recipe__thumb">
+            <img src="https://www.heist.co/cdn/shop/files/6.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/6.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/6.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/6.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/6.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/6.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/6.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/6.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/6.jpg?width=2400 2400w" sizes="200px" alt="" loading="lazy" class="heist-recipe__thumb-image">
+          </div>
+          <div class="heist-recipe__summary">
+            <h3 class="heist-recipe__title t-h6" id="RecipeTitle-affogato">Affogato</h3>
+            <dl class="heist-recipe__details t-n2"><div><dt>Make time:</dt><dd>1 min</dd></div><div><dt>Best served:</dt><dd>Cold glass, immediately</dd></div><div><dt>Grind:</dt><dd>Fine (espresso)</dd></div></dl>
+          </div>
+        </div><div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">Ingredients:</p>
+          <ul class="heist-recipe__ingredients t-t4" role="list"><li>
+                  <span>Vanilla gelato, high butterfat</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="85-100 g">85-100 g</span>
+                </li><li>
+                  <span>Smooth Talker espresso</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="38-40 g">38-40 g</span>
+                </li><li>
+                  <span>Flaky sea salt</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="a pinch">a pinch</span>
+                </li></ul>
+        </div>
+        <div class="heist-recipe__banner">
+          <div class="heist-recipe__banner-image">
+            <img src="https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2400 2400w" sizes="180px" alt="" loading="lazy" class="heist-recipe__banner-img">
+          </div>
+          <div class="heist-recipe__banner-copy">
+            <p class="heist-recipe__banner-title t-ui">Smooth Talker</p>
+            <p class="heist-recipe__banner-roast t-t1">Medium Roast</p>
+            <a class="heist-btn heist-btn--red" href="https://www.heist.co/products/smooth-talker">Shop 1/4 caf</a>
+          </div>
+        </div>
+        <div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">How to make:</p>
+          <ol class="heist-recipe__steps t-t4"><li>Put the glass in the freezer for a few minutes. A cold glass is what stops it turning to soup.</li><li>Scoop the gelato in. Use the highest butterfat you can find — cheap ice cream goes watery the second the espresso hits it.</li><li>Pull the espresso and pour it straight over, at the table.</li><li>Add a pinch of flaky salt. Optional, and also the best version.</li><li>Serve immediately, with a spoon.</li></ol>
+        </div></div>
+    </dialog><dialog class="heist-recipe" id="Recipe-cold_brew" aria-labelledby="RecipeTitle-cold_brew" data-heist-recipe>
+      <div class="heist-recipe__inner">
+        <button type="button" class="heist-recipe__close" data-recipe-close>
+          <svg class="heist-icon heist-icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+          <span class="visually-hidden">Close recipe</span>
+        </button>
+        <div class="heist-recipe__head">
+          <div class="heist-recipe__thumb">
+            <img src="https://www.heist.co/cdn/shop/files/7.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/7.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/7.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/7.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/7.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/7.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/7.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/7.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/7.jpg?width=2400 2400w" sizes="200px" alt="" loading="lazy" class="heist-recipe__thumb-image">
+          </div>
+          <div class="heist-recipe__summary">
+            <h3 class="heist-recipe__title t-h6" id="RecipeTitle-cold_brew">Cold Brew</h3>
+            <dl class="heist-recipe__details t-n2"><div><dt>Coffee: Water Ratio:</dt><dd>1:8 concentrate</dd></div><div><dt>Make time:</dt><dd>12 hr steep</dd></div><div><dt>Best served:</dt><dd>Cold · over ice · diluted 1:1</dd></div><div><dt>Grind:</dt><dd>Coarse, coarser than French press · C40 32-34</dd></div></dl>
+          </div>
+        </div><div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">Ingredients:</p>
+          <ul class="heist-recipe__ingredients t-t4" role="list"><li>
+                  <span>Smooth Talker, whole bean</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="150 g">150 g</span>
+                </li><li>
+                  <span>Cold filtered water</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="1200 g">1200 g</span>
+                </li><li>
+                  <span>Fine sea salt</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="a pinch">a pinch</span>
+                </li></ul>
+        </div>
+        <div class="heist-recipe__banner">
+          <div class="heist-recipe__banner-image">
+            <img src="https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2400 2400w" sizes="180px" alt="" loading="lazy" class="heist-recipe__banner-img">
+          </div>
+          <div class="heist-recipe__banner-copy">
+            <p class="heist-recipe__banner-title t-ui">Smooth Talker</p>
+            <p class="heist-recipe__banner-roast t-t1">Medium Roast</p>
+            <a class="heist-btn heist-btn--red" href="https://www.heist.co/products/smooth-talker">Shop 1/4 caf</a>
+          </div>
+        </div>
+        <div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">How to make:</p>
+          <ol class="heist-recipe__steps t-t4"><li>Grind coarse, coarser than you would for French press. Fines make cold brew muddy and they never settle out.</li><li>Combine the grounds and cold filtered water in a large jar.</li><li>Stir once, only until every ground is wet. Then leave it alone, stirring mid-steep pulls bitterness.</li><li>Steep 12 to 14 hours at room temperature, or 18 to 20 in the fridge. Decaf extracts faster than caffeinated coffee, so pull it earlier than a recipe you have used before.</li><li>Strain through a fine mesh.</li><li>Strain a second time through a paper filter or a clean cloth, and do not squeeze the bed. Two-stage filtering is the whole difference between cafe and home cold brew.</li><li>Add a two-finger pinch of fine salt per litre. It kills the residual bitterness and reads as sweetness. Try it before you dismiss it.</li><li>Dilute 1:1 with water, milk or oat milk over ice. Keeps 10 to 14 days sealed in the fridge.</li></ol>
+        </div></div>
+    </dialog><dialog class="heist-recipe" id="Recipe-aeropress" aria-labelledby="RecipeTitle-aeropress" data-heist-recipe>
+      <div class="heist-recipe__inner">
+        <button type="button" class="heist-recipe__close" data-recipe-close>
+          <svg class="heist-icon heist-icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+          <span class="visually-hidden">Close recipe</span>
+        </button>
+        <div class="heist-recipe__head">
+          <div class="heist-recipe__thumb">
+            <img src="https://www.heist.co/cdn/shop/files/8.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/8.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/8.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/8.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/8.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/8.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/8.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/8.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/8.jpg?width=2400 2400w" sizes="200px" alt="" loading="lazy" class="heist-recipe__thumb-image">
+          </div>
+          <div class="heist-recipe__summary">
+            <h3 class="heist-recipe__title t-h6" id="RecipeTitle-aeropress">AeroPress</h3>
+            <dl class="heist-recipe__details t-n2"><div><dt>Coffee: Water Ratio:</dt><dd>1:15</dd></div><div><dt>Make time:</dt><dd>2 min</dd></div><div><dt>Best served:</dt><dd>Hot · 8 oz</dd></div><div><dt>Grind:</dt><dd>Medium-fine · C40 18-20</dd></div></dl>
+          </div>
+        </div><div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">Ingredients:</p>
+          <ul class="heist-recipe__ingredients t-t4" role="list"><li>
+                  <span>Smooth Talker, whole bean</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="16 g">16 g</span>
+                </li></ul>
+        </div>
+        <div class="heist-recipe__banner">
+          <div class="heist-recipe__banner-image">
+            <img src="https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2400 2400w" sizes="180px" alt="" loading="lazy" class="heist-recipe__banner-img">
+          </div>
+          <div class="heist-recipe__banner-copy">
+            <p class="heist-recipe__banner-title t-ui">Smooth Talker</p>
+            <p class="heist-recipe__banner-roast t-t1">Medium Roast</p>
+            <a class="heist-btn heist-btn--red" href="https://www.heist.co/products/smooth-talker">Shop 1/4 caf</a>
+          </div>
+        </div>
+        <div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">How to make:</p>
+          <ol class="heist-recipe__steps t-t4"><li>Boil and rest the kettle to 200 F / 92-93 C.</li><li>Rinse one paper filter, cap it, and stand the AeroPress on your mug the normal way up. Use two papers if you want a cleaner cup.</li><li>Add the grounds, then pour all the water in one go, right to the top.</li><li>Stir for 10 seconds.</li><li>Cap it and steep until 1:30 on the clock.</li><li>Press slowly for 30 seconds. Stop the moment you hear the hiss, pushing past it only forces fines through.</li></ol>
+        </div></div>
+    </dialog><dialog class="heist-recipe" id="Recipe-french_press" aria-labelledby="RecipeTitle-french_press" data-heist-recipe>
+      <div class="heist-recipe__inner">
+        <button type="button" class="heist-recipe__close" data-recipe-close>
+          <svg class="heist-icon heist-icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+          <span class="visually-hidden">Close recipe</span>
+        </button>
+        <div class="heist-recipe__head">
+          <div class="heist-recipe__thumb">
+            <img src="https://www.heist.co/cdn/shop/files/9.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/9.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/9.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/9.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/9.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/9.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/9.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/9.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/9.jpg?width=2400 2400w" sizes="200px" alt="" loading="lazy" class="heist-recipe__thumb-image">
+          </div>
+          <div class="heist-recipe__summary">
+            <h3 class="heist-recipe__title t-h6" id="RecipeTitle-french_press">French Press</h3>
+            <dl class="heist-recipe__details t-n2"><div><dt>Coffee: Water Ratio:</dt><dd>1:15</dd></div><div><dt>Make time:</dt><dd>9 min</dd></div><div><dt>Grind:</dt><dd>Coarse, like rough breadcrumbs · C40 30-32</dd></div></dl>
+          </div>
+        </div><div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">Ingredients:</p>
+          <ul class="heist-recipe__ingredients t-t4" role="list"><li>
+                  <span>Smooth Talker, whole bean</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="30 g">30 g</span>
+                </li><li>
+                  <span>Filtered water</span>
+                  <span class="heist-recipe__leader" aria-hidden="true"></span>
+                  <span class="t-n2" data-amount="450 g">450 g</span>
+                </li></ul>
+        </div>
+        <div class="heist-recipe__banner">
+          <div class="heist-recipe__banner-image">
+            <img src="https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/Receipe_Drawer_product.jpg?width=2400 2400w" sizes="180px" alt="" loading="lazy" class="heist-recipe__banner-img">
+          </div>
+          <div class="heist-recipe__banner-copy">
+            <p class="heist-recipe__banner-title t-ui">Smooth Talker</p>
+            <p class="heist-recipe__banner-roast t-t1">Medium Roast</p>
+            <a class="heist-btn heist-btn--red" href="https://www.heist.co/products/smooth-talker">Shop 1/4 caf</a>
+          </div>
+        </div>
+        <div class="heist-recipe__row">
+          <p class="heist-recipe__row-label t-n2">How to make:</p>
+          <ol class="heist-recipe__steps t-t4"><li>Boil and rest the kettle to 200-203 F / 93-95 C.</li><li>Add the grounds, pour all the water, and start a timer.</li><li>At 4:00, break the crust with three gentle stirs.</li><li>Skim the foam and floating grounds off the top and throw them away.</li><li>Rest the plunger on the surface but do not press. Wait five more minutes — the fines settle on their own.</li><li>Press just to the surface, then pour out every drop immediately.</li><li>Never leave brewed coffee sitting on the bed. It keeps extracting and turns bitter.</li></ol>
+        </div></div>
+    </dialog></section>
+</div><div id="shopify-section-social" class="shopify-section heist-social-section"><section class="heist-social heist-paper" id="HeistSocial-social">
+  <div class="heist-grain" aria-hidden="true"></div>
+  <div class="heist-container heist-social__header">
+    <h2 class="heist-social__heading t-h4"><p>For those who are serious about coffee.</p></h2><a class="heist-btn heist-btn--cream heist-social__follow" href="https://www.instagram.com/drinkheist/" target="_blank" rel="noopener">
+        Follow @DrinkHeist<span class="visually-hidden">, opens in a new tab</span>
+      </a></div>
+  <heist-marquee class="heist-marquee" style="--marquee-duration: 60s;">
+    <ul class="heist-marquee__track" role="list"><li class="heist-marquee__item" >
+          <img src="https://www.heist.co/cdn/shop/files/Marque_1_e316bc57-6c8f-42ed-9dd8-74f5771bd394.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/Marque_1_e316bc57-6c8f-42ed-9dd8-74f5771bd394.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/Marque_1_e316bc57-6c8f-42ed-9dd8-74f5771bd394.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/Marque_1_e316bc57-6c8f-42ed-9dd8-74f5771bd394.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/Marque_1_e316bc57-6c8f-42ed-9dd8-74f5771bd394.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/Marque_1_e316bc57-6c8f-42ed-9dd8-74f5771bd394.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/Marque_1_e316bc57-6c8f-42ed-9dd8-74f5771bd394.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/Marque_1_e316bc57-6c8f-42ed-9dd8-74f5771bd394.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/Marque_1_e316bc57-6c8f-42ed-9dd8-74f5771bd394.jpg?width=2400 2400w" sizes="(max-width: 749px) 60vw, 320px" alt="" loading="lazy" class="heist-marquee__media">
+        </li><li class="heist-marquee__item" >
+          <img src="https://www.heist.co/cdn/shop/files/Marquee_2.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/Marquee_2.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/Marquee_2.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/Marquee_2.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/Marquee_2.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/Marquee_2.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/Marquee_2.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/Marquee_2.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/Marquee_2.jpg?width=2400 2400w" sizes="(max-width: 749px) 60vw, 320px" alt="" loading="lazy" class="heist-marquee__media">
+        </li><li class="heist-marquee__item" >
+          <div class="heist-placeholder heist-marquee__media" role="img" aria-label="Social post">
+    <svg class="heist-placeholder__svg" viewBox="0 0 525 525" preserveAspectRatio="xMidYMid slice"><rect width="525" height="525" fill-opacity=".04"/><path d="M0 525L525 0" stroke="currentColor" stroke-opacity=".25"/></svg><span class="heist-placeholder__label">Social post</span></div>
+        </li><li class="heist-marquee__item" >
+          <img src="https://www.heist.co/cdn/shop/files/Marquee_4.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/Marquee_4.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/Marquee_4.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/Marquee_4.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/Marquee_4.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/Marquee_4.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/Marquee_4.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/Marquee_4.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/Marquee_4.jpg?width=2400 2400w" sizes="(max-width: 749px) 60vw, 320px" alt="" loading="lazy" class="heist-marquee__media">
+        </li><li class="heist-marquee__item" >
+          <div class="heist-placeholder heist-marquee__media" role="img" aria-label="Social post">
+    <svg class="heist-placeholder__svg" viewBox="0 0 525 525" preserveAspectRatio="xMidYMid slice"><rect width="525" height="525" fill-opacity=".04"/><path d="M0 525L525 0" stroke="currentColor" stroke-opacity=".25"/></svg><span class="heist-placeholder__label">Social post</span></div>
+        </li><li class="heist-marquee__item" >
+          <img src="https://www.heist.co/cdn/shop/files/Marquee_6.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/Marquee_6.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/Marquee_6.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/Marquee_6.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/Marquee_6.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/Marquee_6.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/Marquee_6.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/Marquee_6.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/Marquee_6.jpg?width=2400 2400w" sizes="(max-width: 749px) 60vw, 320px" alt="" loading="lazy" class="heist-marquee__media">
+        </li><li class="heist-marquee__item" >
+          <img src="https://www.heist.co/cdn/shop/files/Marquee_7.jpg?width=2400" srcset="https://www.heist.co/cdn/shop/files/Marquee_7.jpg?width=360 360w, https://www.heist.co/cdn/shop/files/Marquee_7.jpg?width=540 540w, https://www.heist.co/cdn/shop/files/Marquee_7.jpg?width=720 720w, https://www.heist.co/cdn/shop/files/Marquee_7.jpg?width=960 960w, https://www.heist.co/cdn/shop/files/Marquee_7.jpg?width=1200 1200w, https://www.heist.co/cdn/shop/files/Marquee_7.jpg?width=1600 1600w, https://www.heist.co/cdn/shop/files/Marquee_7.jpg?width=2000 2000w, https://www.heist.co/cdn/shop/files/Marquee_7.jpg?width=2400 2400w" sizes="(max-width: 749px) 60vw, 320px" alt="" loading="lazy" class="heist-marquee__media">
+        </li></ul>
+  </heist-marquee>
+</section>
+</div>
+    </main>
+    <div id="shopify-section-heist-footer" class="shopify-section heist-footer-section"><footer class="heist-footer">
+  <div class="heist-container">
+    <a class="heist-footer__wordmark" href="https://www.heist.co/">
+      <img src="https://www.heist.co/cdn/shop/files/heist-logo-footer.svg?width=1800" srcset="https://www.heist.co/cdn/shop/files/heist-logo-footer.svg?width=240 240w, https://www.heist.co/cdn/shop/files/heist-logo-footer.svg?width=480 480w, https://www.heist.co/cdn/shop/files/heist-logo-footer.svg?width=900 900w, https://www.heist.co/cdn/shop/files/heist-logo-footer.svg?width=1400 1400w, https://www.heist.co/cdn/shop/files/heist-logo-footer.svg?width=1800 1800w" sizes="92vw" alt="" loading="lazy" class="heist-footer__wordmark-image">
+    </a><nav class="heist-footer__nav" aria-label="Footer">
+        <ul class="t-ui" role="list"><li><a href="https://www.heist.co/products/coffee-without-a-curfew">Shop now</a></li><li><a href="https://www.heist.co/pages/why-decaf">Why decaf?</a></li><li><a href="https://www.heist.co/pages/the-process">The process</a></li><li><a href="https://www.heist.co/pages/our-story">Our story</a></li><li><a href="https://www.heist.co/pages/faq">FAQs</a></li><li><a href="https://heistaffiliate.superfiliate.com/portal">Affiliates</a></li><li><a href="https://www.heist.co/pages/wholesale">Wholesale</a></li><li><a href="https://www.heist.co/pages/customer-support">Support</a></li></ul>
+      </nav><div class="heist-footer__signup">
+      <div class="heist-footer__signup-head">
+        <h2 class="heist-footer__signup-title t-h6">Join the Heist.</h2>
+        <ul class="heist-footer__social" role="list"><li><a href="https://www.instagram.com/drinkheist/" target="_blank" rel="noopener"><svg class="heist-icon heist-icon--instagram" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.75"/><circle cx="12" cy="12" r="3.8" fill="none" stroke="currentColor" stroke-width="1.75"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg><span class="visually-hidden">Instagram, opens in a new tab</span></a></li><li><a href="https://www.tiktok.com/@drinkheist" target="_blank" rel="noopener"><svg class="heist-icon heist-icon--tiktok" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.5 3h2.6a4.6 4.6 0 004 4.1v2.7a7.3 7.3 0 01-4-1.3v6.3a5.8 5.8 0 11-5.8-5.8c.3 0 .6 0 .9.1v2.8a3 3 0 102.3 2.9z" fill="currentColor"/></svg><span class="visually-hidden">TikTok, opens in a new tab</span></a></li></ul>
+      </div><form method="post" action="https://www.heist.co/contact#HeistFooterNewsletter" class="heist-footer__form"><input type="hidden" name="contact[tags]" value="newsletter">
+        <label class="visually-hidden" for="HeistFooterEmail">Email address</label>
+        <input
+          id="HeistFooterEmail"
+          class="heist-footer__input t-n1"
+          type="email"
+          name="contact[email]"
+          autocomplete="email"
+          placeholder="Email address"
+          required
+        >
+        <button type="submit" class="heist-footer__submit">
+          <svg class="heist-icon heist-icon--arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+          <span class="visually-hidden">Subscribe</span>
+        </button></form><span class="heist-barcode heist-barcode--wide" aria-hidden="true"></span>
+    </div>
+  </div>
+  <div class="heist-footer__legal">
+    <div class="heist-container heist-footer__legal-inner t-n3">
+      <p>Copyright © MCMLMMXXVI by Heist Coffee Co.</p><ul role="list"><li><a href="https://www.heist.co/policies/refund-policy">Refund Policy</a></li><li><a href="https://www.heist.co/pages/privacy-policy">Privacy Policy</a></li><li><a href="https://www.heist.co/policies/terms-of-service">Terms & Conditions</a></li><li><a href="https://www.heist.co/pages/accessibility-statement">Accessibility Statement</a></li><li><a href="https://www.heist.co/pages/privacy-choices">Privacy Choices</a></li></ul></div>
+  </div>
+</footer>
+</div>
+  <script>
+/* Heist homepage behaviour — paired with assets/heist.css */
+(() => {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const desktop = window.matchMedia('(min-width: 750px)');
+  const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+  const range = (value, start, end) => clamp((value - start) / (end - start));
+  const onVisible = (elements, callback, options = { threshold: 0.35 }) => {
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach((el) => callback(el, true));
+      return null;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => callback(entry.target, entry.isIntersecting, observer));
+    }, options);
+    elements.forEach((el) => observer.observe(el));
+    return observer;
+  };
+  /* Header: top / up / down states and the mobile menu drawer */
+  class HeistHeader extends HTMLElement {
+    connectedCallback() {
+      this.lastY = window.scrollY;
+      this.cta = this.querySelector('.heist-sticky-cta');
+      this.splitLinks = this.querySelectorAll('.heist-header__nav--left a, .heist-header__nav--right a');
+      this.centreLinks = this.querySelectorAll('.heist-header__nav--centre a');
+      this.onScroll = this.onScroll.bind(this);
+      window.addEventListener('scroll', this.onScroll, { passive: true });
+      this.onScroll();
+      const drawer = document.getElementById('HeistMenuDrawer');
+      const toggle = this.querySelector('[data-menu-open]');
+      if (drawer && toggle) {
+        toggle.addEventListener('click', () => {
+          drawer.showModal();
+          toggle.setAttribute('aria-expanded', 'true');
+        });
+        drawer.addEventListener('close', () => toggle.setAttribute('aria-expanded', 'false'));
+        drawer.querySelector('[data-menu-close]')?.addEventListener('click', () => drawer.close());
+        drawer.addEventListener('click', (event) => {
+          if (event.target === drawer) drawer.close();
+        });
+      }
+    }
+    disconnectedCallback() {
+      window.removeEventListener('scroll', this.onScroll);
+    }
+    onScroll() {
+      const y = window.scrollY;
+      const delta = y - this.lastY;
+      let state = this.dataset.state;
+      if (y < 24) state = 'top';
+      else if (delta > 4 && y > 240) state = 'down';
+      else if (delta < -4) state = 'up';
+      if (state !== this.dataset.state) this.setState(state);
+      this.lastY = y;
+    }
+    setState(state) {
+      this.dataset.state = state;
+      const sticky = state === 'down';
+      this.cta.setAttribute('aria-hidden', String(!sticky));
+      this.cta.querySelectorAll('a').forEach((a) => (a.tabIndex = sticky ? 0 : -1));
+      this.splitLinks.forEach((a) => (a.tabIndex = state === 'up' ? 0 : -1));
+      this.centreLinks.forEach((a) => (a.tabIndex = state === 'up' ? -1 : 0));
+    }
+  }
+  /* Hero: maps scroll progress through the section onto the timeline */
+  class HeistHero extends HTMLElement {
+    connectedCallback() {
+      this.frames = [...this.querySelectorAll('[data-hand-frame]')];
+      this.update = this.update.bind(this);
+      this.mode = this.mode.bind(this);
+      desktop.addEventListener('change', this.mode);
+      reducedMotion.addEventListener('change', this.mode);
+      this.mode();
+    }
+    disconnectedCallback() {
+      window.removeEventListener('scroll', this.update);
+      window.removeEventListener('resize', this.update);
+    }
+    mode() {
+      const animate = desktop.matches && !reducedMotion.matches;
+      window.removeEventListener('scroll', this.update);
+      window.removeEventListener('resize', this.update);
+      this.toggleAttribute('data-static', !animate);
+      if (animate) {
+        window.addEventListener('scroll', this.update, { passive: true });
+        window.addEventListener('resize', this.update);
+        this.update();
+      } else {
+        this.setFrame(this.frames.length - 1);
+        this.toggleAttribute('data-story-visible', true);
+      }
+    }
+    update() {
+      if (this.ticking) return;
+      this.ticking = true;
+      requestAnimationFrame(() => {
+        this.ticking = false;
+        const rect = this.getBoundingClientRect();
+        const travel = Math.max(1, rect.height - window.innerHeight);
+        const p = clamp(-rect.top / travel);
+        const story = range(p, 0.62, 0.9);
+        // Glass rises first, then the hand frames build the grip in place.
+        this.style.setProperty('--p', p.toFixed(4));
+        this.style.setProperty('--intro', range(p, 0, 0.3).toFixed(4));
+        this.style.setProperty('--glass', range(p, 0.04, 0.42).toFixed(4));
+        this.style.setProperty('--story', story.toFixed(4));
+        this.toggleAttribute('data-story-visible', story > 0.5);
+        const frameProgress = range(p, 0.4, 0.74);
+        const frame = frameProgress <= 0 ? -1 : Math.ceil(frameProgress * this.frames.length) - 1;
+        this.setFrame(Math.min(this.frames.length - 1, frame));
+      });
+    }
+    setFrame(index) {
+      if (index === this.activeFrame) return;
+      this.activeFrame = index;
+      this.frames.forEach((frame, i) => frame.classList.toggle('is-active', i === index));
+    }
+  }
+  /* Tabs with roving focus */
+  class HeistTabs extends HTMLElement {
+    connectedCallback() {
+      this.tabs = [...this.querySelectorAll('[role="tab"]')];
+      this.panels = [...this.querySelectorAll('[role="tabpanel"]')];
+      this.copy = [...this.querySelectorAll('[data-tab-copy]')];
+      this.tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => this.select(index));
+        tab.addEventListener('keydown', (event) => {
+          const keys = { ArrowRight: 1, ArrowLeft: -1 };
+          if (!(event.key in keys)) return;
+          event.preventDefault();
+          const next = (index + keys[event.key] + this.tabs.length) % this.tabs.length;
+          this.select(next);
+          this.tabs[next].focus();
+        });
+      });
+    }
+    select(index) {
+      this.tabs.forEach((tab, i) => {
+        tab.setAttribute('aria-selected', String(i === index));
+        tab.tabIndex = i === index ? 0 : -1;
+      });
+      this.panels.forEach((panel, i) => (panel.hidden = i !== index));
+      this.copy.forEach((el, i) => (el.hidden = i !== index));
+    }
+  }
+  /* Carousel: native scroll-snap plus mouse drag */
+  class HeistCarousel extends HTMLElement {
+    connectedCallback() {
+      const track = this.querySelector('.heist-carousel__track');
+      if (!track) return;
+      let startX = 0;
+      let startScroll = 0;
+      let moved = false;
+      track.addEventListener('pointerdown', (event) => {
+        if (event.pointerType !== 'mouse' || event.button !== 0) return;
+        startX = event.clientX;
+        startScroll = track.scrollLeft;
+        moved = false;
+        track.classList.add('is-dragging');
+        const move = (e) => {
+          const dx = e.clientX - startX;
+          if (Math.abs(dx) > 4) moved = true;
+          track.scrollLeft = startScroll - dx;
+        };
+        const up = () => {
+          track.classList.remove('is-dragging');
+          window.removeEventListener('pointermove', move);
+          window.removeEventListener('pointerup', up);
+        };
+        window.addEventListener('pointermove', move);
+        window.addEventListener('pointerup', up);
+      });
+      // Swallow the click that ends a drag so cards don't open.
+      track.addEventListener(
+        'click',
+        (event) => {
+          if (moved) {
+            event.preventDefault();
+            event.stopPropagation();
+            moved = false;
+          }
+        },
+        true
+      );
+    }
+  }
+  /* Marquee: duplicates items once so the -50% loop is seamless */
+  class HeistMarquee extends HTMLElement {
+    connectedCallback() {
+      const track = this.querySelector('.heist-marquee__track');
+      if (!track || track.dataset.cloned) return;
+      track.dataset.cloned = 'true';
+      [...track.children].forEach((item) => {
+        const clone = item.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.querySelectorAll('a, button, video').forEach((el) => el.setAttribute('tabindex', '-1'));
+        track.appendChild(clone);
+      });
+      initVideos(track);
+    }
+  }
+  customElements.define('heist-header', HeistHeader);
+  customElements.define('heist-hero', HeistHero);
+  customElements.define('heist-tabs', HeistTabs);
+  customElements.define('heist-carousel', HeistCarousel);
+  customElements.define('heist-marquee', HeistMarquee);
+  /* Videos: play only while visible; sound toggles */
+  function initVideos(root = document) {
+    const wrappers = [...root.querySelectorAll('[data-heist-video]:not([data-ready])')];
+    wrappers.forEach((wrapper) => {
+      wrapper.dataset.ready = 'true';
+      const video = wrapper.querySelector('video');
+      const sound = wrapper.querySelector('[data-sound-toggle]');
+      sound?.addEventListener('click', () => {
+        video.muted = !video.muted;
+        sound.setAttribute('aria-pressed', String(!video.muted));
+        sound.setAttribute('aria-label', video.muted ? 'Unmute video' : 'Mute video');
+        if (!video.muted) video.play().catch(() => {});
+      });
+    });
+    onVisible(
+      wrappers,
+      (wrapper, visible) => {
+        const video = wrapper.querySelector('video');
+        if (!video) return;
+        if (visible && !reducedMotion.matches) {
+          if (video.preload === 'none') video.preload = 'auto';
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.25 }
+    );
+  }
+  /* Product cards: option toggle updates price + link */
+  function initProductCards() {
+    document.querySelectorAll('[data-heist-product-card]').forEach((card) => {
+      const options = [...card.querySelectorAll('[role="radio"]')];
+      const link = card.querySelector('[data-buy-link]');
+      const price = card.querySelector('[data-price-label]');
+      const select = (option) => {
+        options.forEach((o) => {
+          o.setAttribute('aria-checked', String(o === option));
+          o.tabIndex = o === option ? 0 : -1;
+        });
+        if (option.dataset.url) link.href = option.dataset.url;
+        if (option.dataset.price) price.textContent = option.dataset.price;
+      };
+      options.forEach((option, index) => {
+        option.addEventListener('click', () => select(option));
+        option.addEventListener('keydown', (event) => {
+          const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[event.key];
+          if (!step) return;
+          event.preventDefault();
+          const next = options[(index + step + options.length) % options.length];
+          select(next);
+          next.focus();
+        });
+      });
+      const checked = options.find((o) => o.getAttribute('aria-checked') === 'true');
+      if (checked) select(checked);
+    });
+  }
+  /* Batch code: digits roll into place once */
+  function initRollers() {
+    const rollers = [...document.querySelectorAll('[data-heist-roller]')];
+    rollers.forEach((roller) => {
+      const value = roller.dataset.value || roller.textContent.trim();
+      roller.textContent = '';
+      [...value].forEach((char, i) => {
+        if (!/\d/.test(char)) {
+          roller.append(char === ' ' ? ' ' : char);
+          return;
+        }
+        const digit = document.createElement('span');
+        digit.className = 'heist-roller__digit';
+        digit.setAttribute('aria-hidden', 'true');
+        const strip = document.createElement('span');
+        strip.className = 'heist-roller__strip';
+        strip.style.transitionDelay = `${i * 45}ms`;
+        for (let n = 0; n <= 19; n++) {
+          const s = document.createElement('span');
+          s.textContent = String(n % 10);
+          strip.append(s);
+        }
+        strip.dataset.target = String(10 + Number(char));
+        digit.append(strip);
+        roller.append(digit);
+      });
+    });
+    onVisible(rollers, (roller, visible, observer) => {
+      if (!visible) return;
+      roller.querySelectorAll('.heist-roller__strip').forEach((strip) => {
+        strip.style.transform = `translateY(-${strip.dataset.target * 1.36}em)`;
+      });
+      observer?.unobserve(roller);
+    });
+  }
+  /* Chart: grow bars once in view */
+  function initCharts() {
+    const charts = [...document.querySelectorAll('[data-heist-chart]')];
+    if (reducedMotion.matches) {
+      charts.forEach((chart) => chart.classList.add('is-visible'));
+      return;
+    }
+    onVisible(charts, (chart, visible, observer) => {
+      if (!visible) return;
+      chart.classList.add('is-visible');
+      observer?.unobserve(chart);
+    });
+  }
+  /* Recipe drawers + serving scaler */
+  function initRecipes() {
+    document.addEventListener('click', (event) => {
+      const opener = event.target.closest('[data-recipe-open]');
+      if (opener) {
+        const dialog = document.getElementById(opener.dataset.recipeOpen);
+        if (dialog) {
+          dialog.showModal();
+          dialog.scrollTop = 0;
+          dialog._opener = opener;
+        }
+        return;
+      }
+      if (event.target.closest('[data-recipe-close]')) {
+        event.target.closest('dialog')?.close();
+      }
+    });
+    document.querySelectorAll('[data-heist-recipe]').forEach((dialog) => {
+      dialog.addEventListener('click', (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+      dialog.addEventListener('close', () => dialog._opener?.focus());
+      const servings = dialog.querySelector('[data-servings]');
+      if (!servings) return;
+      servings.addEventListener('change', () => {
+        const factor = Number(servings.value) || 1;
+        dialog.querySelectorAll('[data-amount]').forEach((el) => {
+          el.textContent = scaleAmount(el.dataset.amount, factor);
+        });
+      });
+    });
+  }
+  // Scales the leading number (or n-m range) of an amount, e.g. "38-40 g".
+  function scaleAmount(amount, factor) {
+    return amount.replace(/^(\d+(?:\.\d+)?)(?:\s*-\s*(\d+(?:\.\d+)?))?/, (match, a, b) => {
+      const fmt = (n) => String(Math.round(Number(n) * factor * 100) / 100);
+      return b ? `${fmt(a)}-${fmt(b)}` : fmt(a);
+    });
+  }
+  const init = () => {
+    initVideos();
+    initProductCards();
+    initRollers();
+    initCharts();
+    initRecipes();
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+  // Theme editor: re-run setup when a section is re-rendered.
+  document.addEventListener('shopify:section:load', () => {
+    initVideos();
+    initProductCards();
+    initRollers();
+    initCharts();
+  });
+})();
+</script>
+</body>
+</html>
