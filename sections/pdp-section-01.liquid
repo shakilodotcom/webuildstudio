@@ -13,10 +13,17 @@
   endif
   assign sid = 'pdp-' | append: section.id
   assign tiers = section.blocks | where: 'type', 'tier'
+  assign tier_count = tiers.size
+  assign use_default_tiers = false
+  if p != blank and tier_count == 0 and p.has_only_default_variant
+    # no "Bundle tier" blocks on a single-variant product: show Buy 1 Get 1 Free / Buy 2 Get 2 Free
+    assign use_default_tiers = true
+    assign tier_count = 2
+  endif
   assign default_pos = section.settings.default_variant
   if p != blank
-    if tiers.size > 0
-      if default_pos > tiers.size
+    if tier_count > 0
+      if default_pos > tier_count
         assign default_pos = 1
       endif
     elsif default_pos > p.variants.size
@@ -212,7 +219,7 @@
         {%- if section.settings.note != blank -%}<p class="pdp-note">{{ section.settings.note | escape }}</p>{%- endif -%}
 
         {%- comment -%} Low-stock headline above the bundle options. [stock] = the variant's real inventory (hidden when not tracked). {%- endcomment -%}
-        {%- assign stock_text = section.settings.stock_text -%}
+        {%- assign stock_text = section.settings.stock_headline -%}
         {%- if stock_text contains '[stock]' -%}
           {%- if cv.inventory_management == 'shopify' and cv.inventory_quantity > 0 -%}
             {%- assign stock_text = stock_text | replace: '[stock]', cv.inventory_quantity -%}
@@ -222,7 +229,7 @@
         {%- endif -%}
 
         {%- form 'product', p, novalidate: 'novalidate' -%}
-          {%- if tiers.size > 0 -%}
+          {%- if tier_count > 0 -%}
             {%- comment -%} Bundle tiers (Buy X Get Y Free): one variant, quantity = buy + free. {%- endcomment -%}
             {%- liquid
               assign sub_unit = cv.price
@@ -243,10 +250,22 @@
             {%- if stock_text != blank -%}<p class="pdp-div">{{ stock_text | escape }}</p>{%- endif -%}
             <fieldset>
               <legend>{{ section.settings.options_legend | escape }}</legend>
-              {%- for block in tiers -%}
+              {%- for i in (1..tier_count) -%}
                 {%- liquid
-                  assign buy = block.settings.buy_qty
-                  assign qty = buy | plus: block.settings.get_qty
+                  if use_default_tiers
+                    assign buy = i
+                    assign qty = i | times: 2
+                    assign t_title = 'Buy ' | append: i | append: ' Get ' | append: i | append: ' Free'
+                    assign t_sub = ''
+                    assign t_attrs = ''
+                  else
+                    assign block = tiers[forloop.index0]
+                    assign buy = block.settings.buy_qty
+                    assign qty = buy | plus: block.settings.get_qty
+                    assign t_title = block.settings.title
+                    assign t_sub = block.settings.subtitle
+                    assign t_attrs = block.shopify_attributes
+                  endif
                   assign price_otp = cv.price | times: buy
                   assign price_sub = sub_unit | times: buy
                   assign price_cmp = cmp_unit | times: qty
@@ -254,14 +273,14 @@
                     assign start_qty = qty
                   endif
                 -%}
-                <label class="pdp-opt{% unless cv.available %} is-unavailable{% endunless %}" {{ block.shopify_attributes }}>
+                <label class="pdp-opt{% unless cv.available %} is-unavailable{% endunless %}" {{ t_attrs }}>
                   <input type="radio" name="pdp-tier-{{ section.id }}" value="{{ qty }}" data-tier="{{ qty }}" {% if forloop.index == default_pos %}checked{% endif %} {% unless cv.available %}disabled{% endunless %}>
                   <span class="pdp-nm">
-                    <b>{{ block.settings.title | escape }}</b>
-                    {%- if block.settings.subtitle != blank -%}
+                    <b>{{ t_title | escape }}</b>
+                    {%- if t_sub != blank -%}
                       {%- assign pct = 0 -%}
                       {%- if price_cmp > price_otp -%}{%- assign pct = price_cmp | minus: price_otp | times: 100 | divided_by: price_cmp -%}{%- endif -%}
-                      <span>{{ block.settings.subtitle | replace: '[percent]', pct | escape }}</span>
+                      <span>{{ t_sub | replace: '[percent]', pct | escape }}</span>
                     {%- endif -%}
                   </span>
                   <span class="pdp-pr">
@@ -492,8 +511,8 @@
     { "type": "text", "id": "rating_text", "label": "Rating text", "default": "(4.9 stars) • 307 reviews" },
     { "type": "text", "id": "note", "label": "Size note", "default": "84g/2.96oz 60 patches" },
     { "type": "header", "content": "Bundle options" },
-    { "type": "paragraph", "content": "Add \"Bundle tier\" blocks for Buy X Get Y Free offers (quantity based, one variant). Without tier blocks, the product's variants are listed as the options." },
-    { "type": "text", "id": "stock_text", "label": "Headline above options", "default": "ONLY [stock] LEFT IN STOCK!", "info": "[stock] is replaced with the variant's inventory (headline hides if inventory isn't tracked). Type a fixed text to always show it. Leave empty to hide." },
+    { "type": "paragraph", "content": "Add \"Bundle tier\" blocks for Buy X Get Y Free offers (quantity based, one variant). Without tier blocks, single-variant products show Buy 1 Get 1 Free and Buy 2 Get 2 Free; products with variants list their variants." },
+    { "type": "text", "id": "stock_headline", "label": "Headline above options", "default": "ONLY 93 LEFT IN STOCK!", "info": "Leave empty to hide. Optional: [stock] is replaced with the real inventory count." },
     { "type": "text", "id": "options_legend", "label": "Options label (screen readers)", "default": "Choose a bundle" },
     { "type": "range", "id": "default_variant", "label": "Pre-selected option", "min": 1, "max": 10, "step": 1, "default": 2 },
     { "type": "text", "id": "badge_text", "label": "Badge text", "default": "Popular" },
