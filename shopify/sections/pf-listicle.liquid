@@ -542,7 +542,7 @@ data-shadow="none"
   
   
   
-><div
+>{%- assign pfb_side = current_variant.options[1] -%}{%- assign pfb_opt2 = product.options_with_values[1].name | downcase -%}{%- if pfb_opt2 == 'side' and product.options_with_values[1].values.size > 1 -%}{%- assign pfb_side = product.options_with_values[1].values[0] -%}{%- endif -%}<div
         data-bundle-unit
         data-unit-index="0"
         data-bar-id="bxgy-tier-1"
@@ -572,8 +572,8 @@ data-shadow="none"
                 data-variant-option-name="{{ product.options_with_values[1].name | escape }}"
                 aria-label="{{ product.options_with_values[1].name | escape }}"
                 
-              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if current_variant.options[1] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- endif -%}
-</div><div
+              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if pfb_side == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- endif -%}
+</div>{%- assign pfb_side = current_variant.options[1] -%}{%- assign pfb_opt2 = product.options_with_values[1].name | downcase -%}{%- if pfb_opt2 == 'side' and product.options_with_values[1].values.size > 1 -%}{%- assign pfb_side = product.options_with_values[1].values[1] -%}{%- endif -%}<div
         data-bundle-unit
         data-unit-index="1"
         data-bar-id="bxgy-tier-1"
@@ -603,7 +603,7 @@ data-shadow="none"
                 data-variant-option-name="{{ product.options_with_values[1].name | escape }}"
                 aria-label="{{ product.options_with_values[1].name | escape }}"
                 
-              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if current_variant.options[1] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- endif -%}
+              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if pfb_side == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- endif -%}
 </div></dm-bundle-units>
 
 
@@ -960,7 +960,7 @@ data-shadow="none"
   
   
   
-><div
+>{%- assign pfb_side = current_variant.options[1] -%}{%- assign pfb_opt2 = product.options_with_values[1].name | downcase -%}{%- if pfb_opt2 == 'side' and product.options_with_values[1].values.size > 1 -%}{%- assign pfb_side = product.options_with_values[1].values[0] -%}{%- endif -%}<div
         data-bundle-unit
         data-unit-index="0"
         data-bar-id="bxgy-tier-2"
@@ -991,7 +991,7 @@ data-shadow="none"
                 data-variant-option-name="{{ product.options_with_values[1].name | escape }}"
                 aria-label="{{ product.options_with_values[1].name | escape }}"
                 data-unit-proxy
-              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if current_variant.options[1] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- for value in product.options_with_values[1].values -%}<button type="button" data-unit-value="{{ value | escape }}"{% if current_variant.options[1] == value %} data-selected{% endif %}>{{ value | escape }}</button>{%- endfor -%}</span>{%- endif -%}</div><div
+              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if pfb_side == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- for value in product.options_with_values[1].values -%}<button type="button" data-unit-value="{{ value | escape }}"{% if pfb_side == value %} data-selected{% endif %}>{{ value | escape }}</button>{%- endfor -%}</span>{%- endif -%}</div>{%- assign pfb_side = current_variant.options[1] -%}{%- assign pfb_opt2 = product.options_with_values[1].name | downcase -%}{%- if pfb_opt2 == 'side' and product.options_with_values[1].values.size > 1 -%}{%- assign pfb_side = product.options_with_values[1].values[1] -%}{%- endif -%}<div
         data-bundle-unit
         data-unit-index="1"
         data-bar-id="bxgy-tier-2"
@@ -1022,7 +1022,7 @@ data-shadow="none"
                 data-variant-option-name="{{ product.options_with_values[1].name | escape }}"
                 aria-label="{{ product.options_with_values[1].name | escape }}"
                 data-unit-proxy
-              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if current_variant.options[1] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- for value in product.options_with_values[1].values -%}<button type="button" data-unit-value="{{ value | escape }}"{% if current_variant.options[1] == value %} data-selected{% endif %}>{{ value | escape }}</button>{%- endfor -%}</span>{%- endif -%}</div><div
+              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if pfb_side == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- for value in product.options_with_values[1].values -%}<button type="button" data-unit-value="{{ value | escape }}"{% if pfb_side == value %} data-selected{% endif %}>{{ value | escape }}</button>{%- endfor -%}</span>{%- endif -%}</div>{%- assign pfb_side = current_variant.options[1] -%}{%- assign pfb_opt2 = product.options_with_values[1].name | downcase -%}{%- if pfb_opt2 == 'side' and product.options_with_values[1].values.size > 1 -%}{%- assign pfb_side = product.options_with_values[1].values[0] -%}{%- endif -%}<div
         data-bundle-unit
         data-unit-index="2"
         data-bar-id="bxgy-tier-2"
@@ -1053,7 +1053,7 @@ data-shadow="none"
                 data-variant-option-name="{{ product.options_with_values[1].name | escape }}"
                 aria-label="{{ product.options_with_values[1].name | escape }}"
                 data-unit-proxy
-              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if current_variant.options[1] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- for value in product.options_with_values[1].values -%}<button type="button" data-unit-value="{{ value | escape }}"{% if current_variant.options[1] == value %} data-selected{% endif %}>{{ value | escape }}</button>{%- endfor -%}</span>{%- endif -%}</div><div
+              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if pfb_side == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- for value in product.options_with_values[1].values -%}<button type="button" data-unit-value="{{ value | escape }}"{% if pfb_side == value %} data-selected{% endif %}>{{ value | escape }}</button>{%- endfor -%}</span>{%- endif -%}</div>{%- assign pfb_side = current_variant.options[1] -%}{%- assign pfb_opt2 = product.options_with_values[1].name | downcase -%}{%- if pfb_opt2 == 'side' and product.options_with_values[1].values.size > 1 -%}{%- assign pfb_side = product.options_with_values[1].values[1] -%}{%- endif -%}<div
         data-bundle-unit
         data-unit-index="3"
         data-bar-id="bxgy-tier-2"
@@ -1084,7 +1084,7 @@ data-shadow="none"
                 data-variant-option-name="{{ product.options_with_values[1].name | escape }}"
                 aria-label="{{ product.options_with_values[1].name | escape }}"
                 data-unit-proxy
-              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if current_variant.options[1] == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- for value in product.options_with_values[1].values -%}<button type="button" data-unit-value="{{ value | escape }}"{% if current_variant.options[1] == value %} data-selected{% endif %}>{{ value | escape }}</button>{%- endfor -%}</span>{%- endif -%}</div></dm-bundle-units>
+              >{%- for value in product.options_with_values[1].values -%}<option value="{{ value | escape }}"{% if pfb_side == value %} selected{% endif %}>{{ value | escape }}</option>{%- endfor -%}</select>{%- for value in product.options_with_values[1].values -%}<button type="button" data-unit-value="{{ value | escape }}"{% if pfb_side == value %} data-selected{% endif %}>{{ value | escape }}</button>{%- endfor -%}</span>{%- endif -%}</div></dm-bundle-units>
 
 
 
