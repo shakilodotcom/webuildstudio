@@ -12,7 +12,10 @@ The section hides the theme's header and footer on any page it is on, like the o
 
 ## Add to cart
 
-Add to Cart posts to `/cart/add.js` and opens the cart drawer instead of going to `/cart`. It tries, in order: DropMagic's cart sheet (opens itself), a Dawn-style `<cart-drawer>`, Horizon's `<theme-drawer id="cart-drawer">`, cart app APIs (Rebuy Smart Cart, UpCart, Slide Cart and similar), the theme's cart icon, then common `cart:open` events.
+Add to Cart posts to `/cart/add.js`, then follows the section's **After add to cart** setting:
+
+- **Go to checkout** (default): sends the shopper straight to `/checkout`. The request skips cart-slider watchers (DropMagic), so no drawer pops open first.
+- **Open cart drawer**: opens the cart drawer instead of going to `/cart`. It tries, in order: DropMagic's cart sheet (opens itself), a Dawn-style `<cart-drawer>`, Horizon's `<theme-drawer id="cart-drawer">`, cart app APIs (Rebuy Smart Cart, UpCart, Slide Cart and similar), the theme's cart icon, then common `cart:open` events.
 
 ## What comes from the picked product
 

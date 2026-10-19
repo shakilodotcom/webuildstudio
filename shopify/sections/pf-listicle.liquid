@@ -1303,7 +1303,7 @@ data-shadow="none"
           >
             <div class="product-form__error-message-wrapper pfl-err" role="alert" hidden>
               <span class="product-form__error-message"></span>
-            </div><form method="post" action="{{ routes.cart_add_url }}" id="pfl-product-form-{{ section.id }}-offer" accept-charset="UTF-8" class="form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product" /><input type="hidden" name="utf8" value="✓" /><div class="hidden product-form__variants" id="product-form-{{ section.id }}-offer__variants" data-values=""></div>
+            </div><form method="post" action="{{ routes.cart_add_url }}" data-pfl-after-add="{{ section.settings.after_add | default: 'checkout' }}" id="pfl-product-form-{{ section.id }}-offer" accept-charset="UTF-8" class="form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product" /><input type="hidden" name="utf8" value="✓" /><div class="hidden product-form__variants" id="product-form-{{ section.id }}-offer__variants" data-values=""></div>
               <input type="hidden" name="id" value="{{ current_variant.id }}" class="product-variant-id">
               <button
                 id="ProductSubmitButton-{{ section.id }}-offer"
@@ -1644,7 +1644,7 @@ data-shadow="none"
   function run() { document.querySelectorAll('.pfl-dmb dm-bundle').forEach(init); }
   document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', run) : run();
 })();
-/* Add to cart over AJAX and open the store's cart drawer instead of going to /cart. */
+/* Add to cart over AJAX, then go to checkout (default) or open the store's cart drawer. */
 (function () {
   if (window.__pflCartLoaded) return;
   window.__pflCartLoaded = true;
@@ -1803,10 +1803,21 @@ data-shadow="none"
       if (sections) { body.append('sections', sections); body.append('sections_url', window.location.pathname); }
     }
 
-    fetch(root + 'cart/add.js', { method: 'POST', headers: headers, body: body })
+    // "checkout": add, then go straight to checkout. Uses the unwrapped fetch so cart sliders
+    // that watch /cart/add requests (DropMagic) don't pop open on the way out.
+    var toCheckout = form.getAttribute('data-pfl-after-add') !== 'drawer';
+    var send = toCheckout && window.__dmOrigFetch ? window.__dmOrigFetch : window.fetch;
+    var leaving = false;
+
+    send(root + 'cart/add.js', { method: 'POST', headers: headers, body: body })
       .then(function (r) { return r.json(); })
       .then(function (data) {
         if (data.status) { showError(form, data.description || data.message || 'Could not add to cart.'); return; }
+        if (toCheckout) {
+          leaving = true;
+          window.location.href = root + 'checkout';
+          return;
+        }
         return fetch(root + 'cart.js', { headers: { Accept: 'application/json' } })
           .then(function (r) { return r.json(); })
           .then(function (cart) {
@@ -1833,7 +1844,7 @@ data-shadow="none"
           });
       })
       .catch(function () { showError(form, 'Could not add to cart. Please try again.'); })
-      .finally(function () { setLoading(btn, false); });
+      .finally(function () { if (!leaving) setLoading(btn, false); });
   }, true);
 })();
 </script>
@@ -1849,6 +1860,22 @@ data-shadow="none"
       "id": "product",
       "label": "Product",
       "info": "Supplies the gallery, variants, price and cart button. Defaults to the page's product on product templates."
+    },
+    {
+      "type": "select",
+      "id": "after_add",
+      "label": "After add to cart",
+      "options": [
+        {
+          "value": "checkout",
+          "label": "Go to checkout"
+        },
+        {
+          "value": "drawer",
+          "label": "Open cart drawer"
+        }
+      ],
+      "default": "checkout"
     },
     {
       "type": "checkbox",
