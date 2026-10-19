@@ -1,0 +1,586 @@
+{%- comment -%}
+  Section #01 – Product / buy box (Elements of Cho – Hydrogel Eye Recovery Patch)
+  Self-contained: styles in the style block below (scoped to this section's id), behaviour in the inline <script>.
+  Uses the real Shopify product: images, variants (bundle options), prices and the add-to-cart form.
+  Bundle options come from "Bundle tier" blocks (Buy X Get Y, quantity based) when any are added,
+  otherwise from the product's variants. Subscribe & Save uses the product's first selling plan.
+  Other sections' buttons link here with #pdp-product.
+{%- endcomment -%}
+{%- liquid
+  assign p = section.settings.product
+  if p == blank
+    assign p = product
+  endif
+  assign sid = 'pdp-' | append: section.id
+  assign tiers = section.blocks | where: 'type', 'tier'
+  assign default_pos = section.settings.default_variant
+  if p != blank
+    if tiers.size > 0
+      if default_pos > tiers.size
+        assign default_pos = 1
+      endif
+    elsif default_pos > p.variants.size
+      assign default_pos = 1
+    endif
+  endif
+  assign accent = section.settings.accent_color
+  assign accent_soft = accent | color_modify: 'alpha', 0.35
+-%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+{%- style -%}
+  #{{ sid }}{font-family:'Onest',sans-serif;color:{{ section.settings.text_color }};background:{{ section.settings.bg_color }};padding:{{ section.settings.pad_top }}px 120px {{ section.settings.pad_bottom }}px;scroll-margin-top:80px;-webkit-font-smoothing:antialiased}
+  #{{ sid }} *,#{{ sid }} *::before,#{{ sid }} *::after{box-sizing:border-box}
+  #{{ sid }} h2,#{{ sid }} p,#{{ sid }} ul{margin:0}
+  #{{ sid }} img{display:block;max-width:100%;height:auto}
+  #{{ sid }} .pdp-grid{display:grid;grid-template-columns:572px minmax(0,1fr);gap:56px;max-width:1200px;margin:0 auto}
+  #{{ sid }} .pdp-grid>div{min-width:0}
+  #{{ sid }} .pdp-main{position:relative;background:#fff;touch-action:pan-y}
+  #{{ sid }} .pdp-slide img,#{{ sid }} .pdp-slide svg{width:100%;aspect-ratio:1/1;object-fit:cover}
+  #{{ sid }} .pdp-gprev,#{{ sid }} .pdp-gnext{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border:0;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  #{{ sid }} .pdp-gprev{left:26px;background:transparent}
+  #{{ sid }} .pdp-gnext{right:26px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+  #{{ sid }} .pdp-thumbs{display:flex;gap:18px;margin-top:22px;overflow-x:auto;scrollbar-width:none}
+  #{{ sid }} .pdp-thumbs::-webkit-scrollbar{display:none}
+  #{{ sid }} .pdp-thumbs button{flex:0 0 calc((100% - 54px)/4);padding:0;border:1px solid #e6e5e7;background:#fff;cursor:pointer}
+  #{{ sid }} .pdp-thumbs button[aria-current="true"]{border:2px solid #000}
+  #{{ sid }} .pdp-thumbs img{width:100%;aspect-ratio:1/1;object-fit:cover}
+  #{{ sid }} .pdp-title{font-size:40px;font-weight:700;line-height:52px}
+  #{{ sid }} .pdp-rating{margin-top:16px;display:flex;align-items:center;gap:8px}
+  #{{ sid }} .pdp-stars{display:flex;gap:2px;color:#dabd2f}
+  #{{ sid }} .pdp-stars svg{width:20px;height:20px;fill:currentColor}
+  #{{ sid }} .pdp-rating span{font-size:15px;font-weight:500;color:#222;letter-spacing:-.28px}
+  #{{ sid }} .pdp-benefits{list-style:none;padding:0;margin-top:18px;display:flex;flex-direction:column;gap:14px;font-size:16px;line-height:28.8px}
+  #{{ sid }} .pdp-benefits li{display:flex;gap:12px}
+  #{{ sid }} .pdp-benefits svg{flex:none;margin-top:4px}
+  #{{ sid }} .pdp-note{margin-top:14px;font-size:14px;font-weight:300;font-style:italic}
+  #{{ sid }} .pdp-div{display:flex;align-items:center;gap:16px;margin:24px 0 12px;color:{{ accent }};font-size:15px;font-weight:700;letter-spacing:.04em;line-height:1.3;text-align:center}
+  #{{ sid }} .pdp-div::before,#{{ sid }} .pdp-div::after{content:"";flex:1;height:2px;background:{{ accent_soft }}}
+  #{{ sid }} fieldset{border:0;padding:0;margin:22px 0 0;display:flex;flex-direction:column;gap:10px}
+  #{{ sid }} .pdp-div+fieldset{margin-top:0}
+  #{{ sid }} legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  #{{ sid }} .pdp-opt{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:14px;min-height:66px;padding:12px 18px 12px 16px;border:2px solid {{ accent_soft }};border-radius:11px;cursor:pointer;font-size:16px;line-height:1.35;background:{{ section.settings.option_bg }};transition:background-color .15s,border-color .15s}
+  #{{ sid }} .pdp-opt:has(input:checked){background:#fff;border-color:{{ accent }}}
+  #{{ sid }} .pdp-opt input{appearance:none;-webkit-appearance:none;width:24px;height:24px;margin:0;flex:none;border:3px solid {{ accent_soft }};border-radius:50%;background:#fff;cursor:inherit}
+  #{{ sid }} .pdp-opt input:checked{border-color:{{ accent }};background:{{ accent }};box-shadow:inset 0 0 0 4px #fff}
+  #{{ sid }} .pdp-opt input:focus-visible{outline:2px solid #000;outline-offset:2px}
+  #{{ sid }} .pdp-opt .pdp-nm{flex:1;min-width:0}
+  #{{ sid }} .pdp-opt .pdp-nm b{display:block;font-weight:500}
+  #{{ sid }} .pdp-opt .pdp-nm span{display:block;margin-top:2px;font-size:13px;color:#555}
+  #{{ sid }} .pdp-opt .pdp-pr{text-align:right;font-size:17px}
+  #{{ sid }} .pdp-opt .pdp-pr b{display:block;font-weight:500}
+  #{{ sid }} .pdp-opt s{display:block;font-size:14px;color:#555}
+  #{{ sid }} .pdp-opt .pdp-pr .pdp-p2{display:none}
+  #{{ sid }}.is-sub .pdp-opt .pdp-pr .pdp-p1{display:none}
+  #{{ sid }}.is-sub .pdp-opt .pdp-pr .pdp-p2{display:block}
+  #{{ sid }} .pdp-opt.is-unavailable{opacity:.5;cursor:not-allowed}
+  #{{ sid }} .pdp-badge{position:absolute;top:-10px;right:14px;background:#000;color:#fff;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px}
+  #{{ sid }} .pdp-plan .pdp-nm b{font-weight:700;font-size:16px}
+  #{{ sid }} .pdp-hl{list-style:none;padding:4px 0 2px 2px;flex-basis:100%;display:flex;flex-direction:column;gap:8px;font-size:16px;line-height:1.4}
+  #{{ sid }} .pdp-hl li{display:flex;align-items:center;gap:10px}
+  #{{ sid }} .pdp-hl svg{flex:none;width:22px;height:22px;fill:none;stroke:{{ section.settings.highlight_icon_color }};stroke-width:1.8;stroke-linejoin:round}
+  #{{ sid }} .pdp-atc{margin-top:26px;width:100%;height:42px;border:0;border-radius:8px;background:{{ section.settings.button_color }};color:{{ section.settings.button_text_color }};font:700 15px 'Onest',sans-serif;text-transform:uppercase;cursor:pointer}
+  #{{ sid }} .pdp-atc[disabled]{opacity:.5;cursor:not-allowed}
+  #{{ sid }} .pdp-acc{margin-top:16px}
+  #{{ sid }} .pdp-acc details{border-bottom:1px solid #e6e5e7}
+  #{{ sid }} .pdp-acc summary{list-style:none;display:flex;justify-content:space-between;align-items:center;padding:12px 0;font-size:15px;line-height:19.5px;font-weight:500;cursor:pointer}
+  #{{ sid }} .pdp-acc summary::-webkit-details-marker{display:none}
+  #{{ sid }} .pdp-acc summary svg{transition:transform .25s;flex:none}
+  #{{ sid }} .pdp-acc details[open] summary svg{transform:rotate(180deg)}
+  #{{ sid }} .pdp-acc .pdp-bd{padding:2px 0 16px;font-size:16px;line-height:28.8px}
+  #{{ sid }} .pdp-acc .pdp-bd ul{margin:8px 0 0;padding-left:21px}
+  #{{ sid }} .pdp-acc .pdp-bd p+p{margin-top:10px}
+  #{{ sid }} .pdp-popbtn{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:0;border:0;background:none;font:inherit;font-size:15px;text-decoration:underline;cursor:pointer;color:inherit}
+  #{{ sid }} dialog{max-width:940px;width:calc(100% - 48px);padding:44px 19px 24px;border:1px solid rgba(0,0,0,.2);font:14px/25px 'Onest',sans-serif}
+  #{{ sid }} dialog::backdrop{background:rgba(0,0,0,.3)}
+  #{{ sid }} dialog .pdp-x{position:absolute;top:10px;right:10px;width:32px;height:32px;border:0;background:none;cursor:pointer}
+  #{{ sid }} .pdp-badges{display:grid;grid-template-columns:1fr 1fr;row-gap:38px;margin-top:30px;text-align:center;font-size:16px;letter-spacing:.64px;color:#161616}
+  #{{ sid }} .pdp-badges div{display:flex;flex-direction:column;align-items:center;gap:8px}
+  #{{ sid }} .pdp-badges img{height:50px;width:auto;object-fit:contain}
+  #{{ sid }} .pdp-badges .pdp-bi{height:50px;width:50px;flex:none;fill:none;stroke:#000;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}
+  #{{ sid }} .pdp-badges .pdp-bi-bg{fill:{{ section.settings.bg_color }}}
+  #{{ sid }} .pdp-empty{max-width:640px;margin:0 auto;text-align:center;font-size:16px;padding:40px 0}
+
+  @media (max-width:1024px){
+    #{{ sid }}{padding-left:48px;padding-right:48px}
+    #{{ sid }} .pdp-title{font-size:34px;line-height:44px}
+    #{{ sid }} .pdp-grid{grid-template-columns:428px minmax(0,1fr)}
+  }
+  @media (max-width:768px){
+    #{{ sid }}{padding:32px 32px 48px}
+    #{{ sid }} .pdp-grid{grid-template-columns:minmax(0,1fr);gap:40px}
+    #{{ sid }} .pdp-title{font-size:40px;line-height:52px}
+    #{{ sid }} .pdp-thumbs button{flex:0 0 222px}
+  }
+  @media (max-width:575px){
+    #{{ sid }} .pdp-acc .pdp-bd{font-size:15px;line-height:27px}
+    #{{ sid }} .pdp-benefits{font-size:15px;line-height:27px}
+    #{{ sid }}{padding:32px 24px 40px}
+    #{{ sid }} .pdp-grid{gap:24px}
+    #{{ sid }} .pdp-thumbs{margin-top:17px}
+    #{{ sid }} .pdp-thumbs button{flex-basis:101px}
+    #{{ sid }} .pdp-title{font-size:30px;line-height:39px}
+    #{{ sid }} .pdp-rating span{font-size:14px}
+    #{{ sid }} .pdp-opt{font-size:15px;padding:10px 14px 10px 12px;gap:12px}
+    #{{ sid }} .pdp-opt .pdp-nm span{font-size:13px}
+    #{{ sid }} .pdp-opt .pdp-pr{font-size:16px}
+    #{{ sid }} .pdp-div{font-size:14px;gap:12px}
+    #{{ sid }} .pdp-hl{font-size:15px}
+    #{{ sid }} .pdp-atc{height:48px;font-size:14px}
+    #{{ sid }} .pdp-acc{margin-top:24px}
+  }
+{%- endstyle -%}
+
+{%- liquid
+  if p != blank
+    assign cv = p.selected_or_first_available_variant
+    assign has_plan = false
+    if section.settings.show_subscription and p.selling_plan_groups.size > 0
+      assign plan = p.selling_plan_groups.first.selling_plans.first
+      assign has_plan = true
+    endif
+    assign start_sub = false
+    if has_plan
+      if section.settings.subscribe_by_default or p.requires_selling_plan
+        assign start_sub = true
+      endif
+    endif
+  endif
+-%}
+
+<section id="{{ sid }}" class="pdp-product{% if start_sub %} is-sub{% endif %}">
+  <span id="pdp-product" style="position: relative; top: -80px; display: block; height: 0" aria-hidden="true"></span>
+  {%- if p == blank -%}
+    <p class="pdp-empty">Pick a product for this section in the theme editor.</p>
+  {%- else -%}
+    <div class="pdp-grid">
+      <pdp-gallery>
+        <div class="pdp-main" data-main>
+          {%- assign shown = 0 -%}
+          {%- for m in p.media -%}
+            {%- if m.media_type == 'image' -%}
+              <div class="pdp-slide" data-slide data-media-id="{{ m.id }}" {% if shown > 0 %}hidden{% endif %}>
+                {%- if shown == 0 -%}{%- assign ld = 'eager' -%}{%- else -%}{%- assign ld = 'lazy' -%}{%- endif -%}
+                {{ m | image_url: width: 1200 | image_tag: widths: '400, 600, 800, 1000, 1200', sizes: '(min-width: 769px) 50vw, 100vw', loading: ld, alt: m.alt | default: p.title }}
+              </div>
+              {%- assign shown = shown | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if shown == 0 -%}
+            <div class="pdp-slide" data-slide>{{ 'product-1' | placeholder_svg_tag }}</div>
+          {%- endif -%}
+          {%- if shown > 1 -%}
+            <button type="button" class="pdp-gprev" data-prev aria-label="Previous image"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.6" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+            <button type="button" class="pdp-gnext" data-next aria-label="Next image"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          {%- endif -%}
+        </div>
+        {%- if shown > 1 -%}
+          <div class="pdp-thumbs">
+            {%- assign t = 0 -%}
+            {%- for m in p.media -%}
+              {%- if m.media_type == 'image' -%}
+                <button type="button" data-thumb="{{ t }}" aria-label="Show image {{ t | plus: 1 }}" aria-current="{% if t == 0 %}true{% else %}false{% endif %}">
+                  {{ m | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}
+                </button>
+                {%- assign t = t | plus: 1 -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </pdp-gallery>
+
+      <div>
+        <h2 class="pdp-title">{{ p.title | escape }}</h2>
+        {%- if section.settings.rating_text != blank -%}
+          <div class="pdp-rating">
+            <div class="pdp-stars" role="img" aria-label="{{ section.settings.rating_text | escape }}">
+              {%- for i in (1..5) -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"/></svg>{%- endfor -%}
+            </div>
+            <span>{{ section.settings.rating_text | escape }}</span>
+          </div>
+        {%- endif -%}
+
+        <ul class="pdp-benefits">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'benefit' -%}
+              <li {{ block.shopify_attributes }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><span>{{ block.settings.text }}</span></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+        {%- if section.settings.note != blank -%}<p class="pdp-note">{{ section.settings.note | escape }}</p>{%- endif -%}
+
+        {%- comment -%} Low-stock headline above the bundle options. [stock] = the variant's real inventory (hidden when not tracked). {%- endcomment -%}
+        {%- assign stock_text = section.settings.stock_text -%}
+        {%- if stock_text contains '[stock]' -%}
+          {%- if cv.inventory_management == 'shopify' and cv.inventory_quantity > 0 -%}
+            {%- assign stock_text = stock_text | replace: '[stock]', cv.inventory_quantity -%}
+          {%- else -%}
+            {%- assign stock_text = '' -%}
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- form 'product', p, novalidate: 'novalidate' -%}
+          {%- if tiers.size > 0 -%}
+            {%- comment -%} Bundle tiers (Buy X Get Y Free): one variant, quantity = buy + free. {%- endcomment -%}
+            {%- liquid
+              assign sub_unit = cv.price
+              if has_plan
+                for a in cv.selling_plan_allocations
+                  if a.selling_plan.id == plan.id
+                    assign sub_unit = a.price
+                  endif
+                endfor
+              endif
+              assign cmp_unit = cv.compare_at_price | default: cv.price
+              if cmp_unit < cv.price
+                assign cmp_unit = cv.price
+              endif
+              assign start_qty = 1
+            -%}
+            <input type="hidden" name="id" value="{{ cv.id }}">
+            {%- if stock_text != blank -%}<p class="pdp-div">{{ stock_text | escape }}</p>{%- endif -%}
+            <fieldset>
+              <legend>{{ section.settings.options_legend | escape }}</legend>
+              {%- for block in tiers -%}
+                {%- liquid
+                  assign buy = block.settings.buy_qty
+                  assign qty = buy | plus: block.settings.get_qty
+                  assign price_otp = cv.price | times: buy
+                  assign price_sub = sub_unit | times: buy
+                  assign price_cmp = cmp_unit | times: qty
+                  if forloop.index == default_pos
+                    assign start_qty = qty
+                  endif
+                -%}
+                <label class="pdp-opt{% unless cv.available %} is-unavailable{% endunless %}" {{ block.shopify_attributes }}>
+                  <input type="radio" name="pdp-tier-{{ section.id }}" value="{{ qty }}" data-tier="{{ qty }}" {% if forloop.index == default_pos %}checked{% endif %} {% unless cv.available %}disabled{% endunless %}>
+                  <span class="pdp-nm">
+                    <b>{{ block.settings.title | escape }}</b>
+                    {%- if block.settings.subtitle != blank -%}
+                      {%- assign pct = 0 -%}
+                      {%- if price_cmp > price_otp -%}{%- assign pct = price_cmp | minus: price_otp | times: 100 | divided_by: price_cmp -%}{%- endif -%}
+                      <span>{{ block.settings.subtitle | replace: '[percent]', pct | escape }}</span>
+                    {%- endif -%}
+                  </span>
+                  <span class="pdp-pr">
+                    <b class="pdp-p1">{{ price_otp | money }}</b>
+                    {%- if has_plan -%}<b class="pdp-p2">{{ price_sub | money }}</b>{%- endif -%}
+                    {%- if price_cmp > price_otp -%}<s>{{ price_cmp | money }}</s>{%- endif -%}
+                  </span>
+                  {%- if section.settings.badge_text != blank and forloop.index == section.settings.badge_position -%}
+                    <span class="pdp-badge">{{ section.settings.badge_text | escape }}</span>
+                  {%- endif -%}
+                </label>
+              {%- endfor -%}
+            </fieldset>
+            <input type="hidden" name="quantity" value="{{ start_qty }}" data-qty-input>
+          {%- elsif p.has_only_default_variant -%}
+            <input type="hidden" name="id" value="{{ cv.id }}">
+            {%- if stock_text != blank -%}<p class="pdp-div">{{ stock_text | escape }}</p>{%- endif -%}
+          {%- else -%}
+            {%- if stock_text != blank -%}<p class="pdp-div">{{ stock_text | escape }}</p>{%- endif -%}
+            <fieldset>
+              <legend>{{ section.settings.options_legend | escape }}</legend>
+              {%- for v in p.variants -%}
+                {%- liquid
+                  assign v_sub = v.price
+                  if has_plan
+                    for a in v.selling_plan_allocations
+                      if a.selling_plan.id == plan.id
+                        assign v_sub = a.price
+                      endif
+                    endfor
+                  endif
+                -%}
+                <label class="pdp-opt{% unless v.available %} is-unavailable{% endunless %}">
+                  <input type="radio" name="id" value="{{ v.id }}" {% if forloop.index == default_pos %}checked{% endif %} {% unless v.available %}disabled{% endunless %} {% if v.featured_media %}data-media-id="{{ v.featured_media.id }}"{% endif %}>
+                  <span class="pdp-nm">
+                    <b>{{ v.title | escape }}</b>
+                    {%- if v.compare_at_price > v.price -%}
+                      {%- assign pct = v.compare_at_price | minus: v.price | times: 100 | divided_by: v.compare_at_price -%}
+                      <span>{{ section.settings.savings_label | replace: '[percent]', pct }}</span>
+                    {%- endif -%}
+                  </span>
+                  <span class="pdp-pr">
+                    <b class="pdp-p1">{{ v.price | money }}</b>
+                    {%- if has_plan -%}<b class="pdp-p2">{{ v_sub | money }}</b>{%- endif -%}
+                    {%- if v.compare_at_price > v.price -%}<s>{{ v.compare_at_price | money }}</s>{%- endif -%}
+                  </span>
+                  {%- if section.settings.badge_text != blank and forloop.index == section.settings.badge_position -%}
+                    <span class="pdp-badge">{{ section.settings.badge_text | escape }}</span>
+                  {%- endif -%}
+                </label>
+              {%- endfor -%}
+            </fieldset>
+          {%- endif -%}
+
+          {%- if has_plan -%}
+            {%- comment -%} Subscribe & Save (first selling plan of the product's first selling plan group). {%- endcomment -%}
+            {%- if section.settings.sub_heading != blank -%}<p class="pdp-div">{{ section.settings.sub_heading | escape }}</p>{%- endif -%}
+            <fieldset>
+              <legend>{{ section.settings.sub_heading | default: 'Purchase option' | escape }}</legend>
+              {%- unless p.requires_selling_plan -%}
+                <label class="pdp-opt pdp-plan">
+                  <input type="radio" name="pdp-plan-{{ section.id }}" value="" data-plan {% unless start_sub %}checked{% endunless %}>
+                  <span class="pdp-nm">
+                    <b>{{ section.settings.one_time_title | escape }}</b>
+                    {%- if section.settings.one_time_subtitle != blank -%}<span>{{ section.settings.one_time_subtitle | escape }}</span>{%- endif -%}
+                  </span>
+                </label>
+              {%- endunless -%}
+              <label class="pdp-opt pdp-plan">
+                <input type="radio" name="pdp-plan-{{ section.id }}" value="{{ plan.id }}" data-plan {% if start_sub %}checked{% endif %}>
+                <span class="pdp-nm">
+                  <b>{{ section.settings.sub_title | escape }}</b>
+                  {%- if section.settings.sub_subtitle != blank -%}<span>{{ section.settings.sub_subtitle | escape }}</span>{%- endif -%}
+                </span>
+                {%- assign hl = section.settings.sub_highlights | newline_to_br | split: '<br />' -%}
+                {%- if section.settings.sub_highlights != blank -%}
+                  <ul class="pdp-hl">
+                    {%- for h in hl -%}
+                      {%- assign h = h | strip -%}
+                      {%- if h != blank -%}
+                        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.3s-8-4.7-8-10.6A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.1c0 5.9-8 10.6-8 10.6z"/></svg>{{ h | escape }}</li>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </label>
+            </fieldset>
+            <input type="hidden" name="selling_plan" value="{{ plan.id }}" data-plan-input {% unless start_sub %}disabled{% endunless %}>
+          {%- endif -%}
+
+          <button type="submit" name="add" class="pdp-atc" {% unless p.available %}disabled{% endunless %}>
+            {%- if p.available -%}{{ section.settings.atc_label | escape }}{%- else -%}{{ section.settings.soldout_label | escape }}{%- endif -%}
+          </button>
+        {%- endform -%}
+
+        <div class="pdp-acc">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'collapsible' -%}
+              <details {{ block.shopify_attributes }} {% if block.settings.open %}open{% endif %}>
+                <summary>{{ block.settings.heading | escape }}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></summary>
+                <div class="pdp-bd">
+                  {%- if block.settings.use_description -%}{{ p.description }}{%- endif -%}
+                  {{ block.settings.content }}
+                  {%- if block.settings.popup_label != blank and block.settings.popup_content != blank -%}
+                    <button type="button" class="pdp-popbtn" data-open-dialog="dlg-{{ block.id }}">{{ block.settings.popup_label | escape }}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg></button>
+                    <dialog id="dlg-{{ block.id }}" aria-label="{{ block.settings.popup_label | escape }}">
+                      <button type="button" class="pdp-x" data-close-dialog aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+                      {{ block.settings.popup_content }}
+                    </dialog>
+                  {%- endif -%}
+                </div>
+              </details>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        <div class="pdp-badges">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'badge' -%}
+              <div {{ block.shopify_attributes }}>
+                {%- if block.settings.icon != blank -%}
+                  {{ block.settings.icon | image_url: width: 140 | image_tag: loading: 'lazy', alt: '' }}
+                {%- else -%}
+                  {%- assign bl = block.settings.label | downcase -%}
+                  <svg class="pdp-bi" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    {%- if bl contains 'risk' or bl contains 'trial' or bl contains 'guarantee' or bl contains 'return' -%}
+                      <rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8.6 15.2l2.4 2.3 4.6-4.8"/>
+                    {%- elsif bl contains 'melanin' or bl contains 'skin tone' or bl contains 'all skin' -%}
+                      <circle cx="12" cy="13.2" r="6.4"/><path d="M9.8 12.6v.01M14.2 12.6v.01" stroke-width="2.2"/><path d="M9.6 15.6c1.4 1.5 3.4 1.5 4.8 0"/><path d="M12 2.6v2M5.3 5.3l1.4 1.4M18.7 5.3l-1.4 1.4M2.6 12.2h2M19.4 12.2h2"/>
+                    {%- elsif bl contains 'needle' -%}
+                      <circle cx="12" cy="12" r="9.6"/><g transform="rotate(-45 12 12) translate(.5 0)"><rect x="8" y="10" width="8" height="4" rx=".8"/><path d="M8 12H4.2M16 12h3M19 9.6v4.8M8 10v4M10.4 10v1.3M12.4 10v1.3M14.4 10v1.3"/></g><path d="M5.2 5.2l13.6 13.6"/>
+                    {%- elsif bl contains 'sensitive' or bl contains 'gentle' or bl contains 'safe' -%}
+                      <path d="M12 3l7.5 2.8v5.6c0 4.4-3.1 8-7.5 9.6-4.4-1.6-7.5-5.2-7.5-9.6V5.8z"/><path d="M12 15.6s-3.4-2-3.4-4.5a1.9 1.9 0 0 1 3.4-1.2 1.9 1.9 0 0 1 3.4 1.2c0 2.5-3.4 4.5-3.4 4.5z"/>
+                    {%- elsif bl contains 'white cast' or bl contains 'cast' -%}
+                      <path d="M10 3.5s5.5 5.7 5.5 9.6a5.5 5.5 0 0 1-11 0C4.5 9.2 10 3.5 10 3.5z"/><path d="M7.6 13.6a2.6 2.6 0 0 0 2.5 2.5"/><path d="M18.5 3.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/>
+                    {%- else -%}
+                      <path d="M11 3.2c-3.6 0-6 2.8-6 6.8 0 4.6 2.6 9.8 6 9.8 1.2 0 2.3-.7 3.2-1.8"/><path d="M11 3.2c3.6 0 6 2.8 6 6.8"/><path d="M8.6 10v.01M13.4 10v.01" stroke-width="2"/><circle class="pdp-bi-bg" cx="17.4" cy="17.4" r="4"/><path d="M15.5 17.4l1.3 1.3 2.4-2.6"/>
+                    {%- endif -%}
+                  </svg>
+                {%- endif -%}
+                {{ block.settings.label | escape }}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+<script>
+  (function () {
+    if (!customElements.get('pdp-gallery')) {
+      class PdpGallery extends HTMLElement {
+        connectedCallback() {
+          this.slides = Array.from(this.querySelectorAll('[data-slide]'));
+          this.thumbs = Array.from(this.querySelectorAll('[data-thumb]'));
+          this.index = 0;
+          var prev = this.querySelector('[data-prev]'), next = this.querySelector('[data-next]'), main = this.querySelector('[data-main]');
+          if (prev) prev.addEventListener('click', () => this.show(this.index - 1));
+          if (next) next.addEventListener('click', () => this.show(this.index + 1));
+          this.thumbs.forEach((t) => t.addEventListener('click', () => this.show(Number(t.dataset.thumb))));
+          if (main) {
+            var x = null;
+            main.addEventListener('pointerdown', (e) => { x = e.clientX; });
+            main.addEventListener('pointerup', (e) => {
+              if (x === null) return;
+              var dx = e.clientX - x; x = null;
+              if (Math.abs(dx) > 40) this.show(this.index + (dx < 0 ? 1 : -1));
+            });
+          }
+        }
+        show(i) {
+          var n = this.slides.length;
+          if (!n) return;
+          this.index = (i + n) % n;
+          this.slides.forEach((s, k) => { s.hidden = k !== this.index; });
+          this.thumbs.forEach((t, k) => t.setAttribute('aria-current', k === this.index ? 'true' : 'false'));
+          var a = this.thumbs[this.index];
+          if (a) a.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+        }
+        showMedia(id) {
+          var i = this.slides.findIndex((s) => s.dataset.mediaId === String(id));
+          if (i > -1) this.show(i);
+        }
+      }
+      customElements.define('pdp-gallery', PdpGallery);
+    }
+
+    var root = document.getElementById('{{ sid }}');
+    if (!root) return;
+    // bundle tier -> cart quantity; Subscribe & Save -> selling_plan (and subscription prices)
+    function sync() {
+      var tier = root.querySelector('[data-tier]:checked'), qty = root.querySelector('[data-qty-input]');
+      if (tier && qty) qty.value = tier.dataset.tier;
+      var plan = root.querySelector('[data-plan]:checked'), sp = root.querySelector('[data-plan-input]');
+      var sub = !!(plan && plan.value);
+      if (sp) sp.disabled = !sub;
+      if (root.querySelector('[data-plan]')) root.classList.toggle('is-sub', sub);
+    }
+    sync();
+    window.addEventListener('pageshow', sync);
+    root.addEventListener('change', function (e) {
+      sync();
+      // selecting a bundle shows that variant's image (when the variant has one)
+      var id = e.target && e.target.dataset && e.target.dataset.mediaId;
+      var g = root.querySelector('pdp-gallery');
+      if (id && g && g.showMedia) g.showMedia(id);
+    });
+    // "Full ingredient list" style popups
+    root.addEventListener('click', function (e) {
+      var opener = e.target.closest('[data-open-dialog]');
+      if (opener) { var d = document.getElementById(opener.dataset.openDialog); if (d && d.showModal) d.showModal(); return; }
+      var closer = e.target.closest('[data-close-dialog]');
+      if (closer) { var dlg = closer.closest('dialog'); if (dlg) dlg.close(); return; }
+      if (e.target.tagName === 'DIALOG') e.target.close();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "PDP – Section #01",
+  "tag": "div",
+  "class": "pdp-section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product", "info": "Leave empty on a product template to use the page's product." },
+    { "type": "text", "id": "rating_text", "label": "Rating text", "default": "(4.9 stars) • 307 reviews" },
+    { "type": "text", "id": "note", "label": "Size note", "default": "84g/2.96oz 60 patches" },
+    { "type": "header", "content": "Bundle options" },
+    { "type": "paragraph", "content": "Add \"Bundle tier\" blocks for Buy X Get Y Free offers (quantity based, one variant). Without tier blocks, the product's variants are listed as the options." },
+    { "type": "text", "id": "stock_text", "label": "Headline above options", "default": "ONLY [stock] LEFT IN STOCK!", "info": "[stock] is replaced with the variant's inventory (headline hides if inventory isn't tracked). Type a fixed text to always show it. Leave empty to hide." },
+    { "type": "text", "id": "options_legend", "label": "Options label (screen readers)", "default": "Choose a bundle" },
+    { "type": "range", "id": "default_variant", "label": "Pre-selected option", "min": 1, "max": 10, "step": 1, "default": 2 },
+    { "type": "text", "id": "badge_text", "label": "Badge text", "default": "Popular" },
+    { "type": "range", "id": "badge_position", "label": "Badge on option", "min": 1, "max": 10, "step": 1, "default": 2 },
+    { "type": "text", "id": "savings_label", "label": "Savings line (variant options)", "default": "You save [percent]%", "info": "Shown when the variant has a compare-at price. [percent] is replaced automatically." },
+    { "type": "text", "id": "atc_label", "label": "Add to cart label", "default": "Add to cart" },
+    { "type": "text", "id": "soldout_label", "label": "Sold out label", "default": "Sold out" },
+    { "type": "header", "content": "Subscribe & Save" },
+    { "type": "paragraph", "content": "Shown when the product has a subscription selling plan (from a subscriptions app). Uses the first plan." },
+    { "type": "checkbox", "id": "show_subscription", "label": "Show subscription options", "default": true },
+    { "type": "checkbox", "id": "subscribe_by_default", "label": "Pre-select subscription", "default": false },
+    { "type": "text", "id": "sub_heading", "label": "Heading", "default": "Subscribe & Save" },
+    { "type": "text", "id": "one_time_title", "label": "One-time title", "default": "One-time purchase" },
+    { "type": "text", "id": "one_time_subtitle", "label": "One-time subtitle" },
+    { "type": "text", "id": "sub_title", "label": "Subscription title", "default": "SAVE 15% & Subscribe" },
+    { "type": "text", "id": "sub_subtitle", "label": "Subscription subtitle", "default": "Delivered every 30 days, Cancel Anytime" },
+    { "type": "textarea", "id": "sub_highlights", "label": "Subscription highlights", "info": "One per line.", "default": "Save 15% on every delivery\nNever run out - Consistent results\nPriority shipping\nSkip or cancel anytime" },
+    { "type": "color", "id": "highlight_icon_color", "label": "Highlight icon", "default": "#138906" },
+    { "type": "header", "content": "Colors and spacing" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#f4f4f4" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#000000" },
+    { "type": "color", "id": "accent_color", "label": "Option accent (borders, headlines)", "default": "#dabd2f" },
+    { "type": "color", "id": "option_bg", "label": "Unselected option background", "default": "#ededed" },
+    { "type": "color", "id": "button_color", "label": "Button", "default": "#dabd2f" },
+    { "type": "color", "id": "button_text_color", "label": "Button text", "default": "#FFFFFF" },
+    { "type": "range", "id": "pad_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 32 },
+    { "type": "range", "id": "pad_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        { "type": "inline_richtext", "id": "text", "label": "Text", "default": "<b>Instantly cools tired under-eyes</b> perfect after long days or sleepless nights." }
+      ]
+    },
+    {
+      "type": "tier",
+      "name": "Bundle tier",
+      "settings": [
+        { "type": "paragraph", "content": "Adds buy + free units to the cart. Price shown = buy × price; crossed-out = all units × compare-at price. Create a matching automatic \"Buy X get Y\" discount in Shopify admin so the free units are actually free at checkout." },
+        { "type": "text", "id": "title", "label": "Title", "default": "Buy 1 Get 1 Free" },
+        { "type": "text", "id": "subtitle", "label": "Subtitle", "info": "Optional. [percent] is replaced with the saving." },
+        { "type": "range", "id": "buy_qty", "label": "Paid units", "min": 1, "max": 10, "step": 1, "default": 1 },
+        { "type": "range", "id": "get_qty", "label": "Free units", "min": 0, "max": 10, "step": 1, "default": 1 }
+      ]
+    },
+    {
+      "type": "collapsible",
+      "name": "Collapsible tab",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Description" },
+        { "type": "checkbox", "id": "use_description", "label": "Show product description", "default": false },
+        { "type": "richtext", "id": "content", "label": "Content" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false },
+        { "type": "text", "id": "popup_label", "label": "Popup link label", "info": "Optional, e.g. Full Ingredient List" },
+        { "type": "richtext", "id": "popup_content", "label": "Popup content" }
+      ]
+    },
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Vegan" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP – Section #01",
+      "blocks": [
+        { "type": "benefit", "settings": { "text": "<b>Instantly cools tired under-eyes</b> perfect after long days or sleepless nights." } },
+        { "type": "benefit", "settings": { "text": "<b>Delivers deep hydration</b> for smoother-looking skin" } },
+        { "type": "benefit", "settings": { "text": "<b>Korean-made hydrogel technology</b> designed for effective ingredient absorption." } },
+        { "type": "tier", "settings": { "title": "Buy 1 Get 1 Free", "buy_qty": 1, "get_qty": 1 } },
+        { "type": "tier", "settings": { "title": "Buy 2 Get 2 Free", "buy_qty": 2, "get_qty": 2 } },
+        { "type": "collapsible", "settings": { "heading": "Description", "use_description": true } },
+        { "type": "collapsible", "settings": { "heading": "Key Ingredients", "content": "<ul><li>Caffeine & Cica + Snow Mushroom Botanical Complex</li><li>2% Niacinamide</li><li>2000 ppm Allantoin</li><li>7 Types of Hyaluronic Acid</li></ul>", "popup_label": "Full Ingredient List", "popup_content": "<p>Water, Glycerin, Niacinamide, Butylene Glycol, Carrageenan, 1,2-Hexanediol, Ceratonia Siliqua (Carob) Gum, Cyamopsis Tetragonoloba (Guar) Gum, Hydroxyacetophenone, Calcium Chloride, Dextrin, Allantoin, Potassium Chloride, Sucrose, Cyclodextrin, Boron Nitride, Caffeine, Propanediol, Polyglyceryl-10 Laurate, Calcium Lactate, Cellulose Gum, Caprylyl Glycol, Arginine, Synthetic Fluorphlogopite, Dipotassium Glycyrrhizate, Ethylhexylglycerin, Sodium Phytate, Ultramarines, Titanium Dioxide, Glyceryl Glucoside, Lecithin, Cucumis Sativus (Cucumber) Fruit Extract, Centella Asiatica Extract, Sodium Hyaluronate, Panax Ginseng Root Extract, Ceramide NP, Tocopheryl Acetate, Tremella Fuciformis Sporocarp Extract, Hydroxypropyltrimonium Hyaluronate, Sodium Acetylated Hyaluronate, Hydrolyzed Hyaluronic Acid, Hyaluronic Acid, Sodium Hyaluronate Crosspolymer, Hydrolyzed Sodium Hyaluronate, Potassium Hyaluronate, Madecassic Acid, Asiatic Acid, Asiaticoside</p>" } },
+        { "type": "collapsible", "settings": { "heading": "How to Use", "content": "<p>Apply to clean, dry under-eyes, leave on for 10–15 minutes, then gently tap in any remaining serum.</p><p>Smaller Patch can be use on fine lines or any spot that needs a quick refresh.</p>" } },
+        { "type": "collapsible", "settings": { "heading": "Shipping", "content": "<p>Order today and get your <strong>Hydrogel Eye Recovery Patches</strong> delivered within 2-4 business days (SG), 5-7 business days (MY). Your order is securely packed, and you will get an email with tracking as soon as it ships.</p>" } },
+        { "type": "badge", "settings": { "label": "Vegan" } },
+        { "type": "badge", "settings": { "label": "Cruelty-Free" } },
+        { "type": "badge", "settings": { "label": "Halal Friendly" } },
+        { "type": "badge", "settings": { "label": "Dermatologically Tested" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
