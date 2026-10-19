@@ -166,7 +166,7 @@
       {%- comment -%} Gallery: image URLs from the "Gallery image URLs" setting when filled in, otherwise the product's media. {%- endcomment -%}
       {%- liquid
         assign ext = ''
-        assign lines = section.settings.gallery_urls | newline_to_br | split: '<br />'
+        assign lines = section.settings.gallery_image_urls | newline_to_br | split: '<br />'
         for l in lines
           assign u = l | strip
           if u != blank
@@ -181,7 +181,11 @@
           {%- for u in ext -%}
             {%- if u contains '?' -%}{%- assign sep = '&' -%}{%- else -%}{%- assign sep = '?' -%}{%- endif -%}
             <div class="pdp-slide" data-slide {% if shown > 0 %}hidden{% endif %}>
+              {%- if u contains '.gif' -%}
+                <img src="{{ u }}" width="1200" height="1200" loading="{% if shown == 0 %}eager{% else %}lazy{% endif %}" alt="{{ p.title | escape }}">
+              {%- else -%}
               <img src="{{ u }}{{ sep }}width=1200" srcset="{{ u }}{{ sep }}width=400 400w, {{ u }}{{ sep }}width=600 600w, {{ u }}{{ sep }}width=800 800w, {{ u }}{{ sep }}width=1000 1000w, {{ u }}{{ sep }}width=1200 1200w" sizes="(min-width: 769px) 50vw, 100vw" width="1200" height="1200" loading="{% if shown == 0 %}eager{% else %}lazy{% endif %}" alt="{{ p.title | escape }}">
+              {%- endif -%}
             </div>
             {%- assign shown = shown | plus: 1 -%}
           {%- endfor -%}
@@ -209,7 +213,7 @@
             {%- for u in ext -%}
               {%- if u contains '?' -%}{%- assign sep = '&' -%}{%- else -%}{%- assign sep = '?' -%}{%- endif -%}
               <button type="button" data-thumb="{{ t }}" aria-label="Show image {{ t | plus: 1 }}" aria-current="{% if t == 0 %}true{% else %}false{% endif %}">
-                <img src="{{ u }}{{ sep }}width=300" width="300" height="300" loading="lazy" alt="">
+                <img src="{{ u }}{% unless u contains '.gif' %}{{ sep }}width=300{% endunless %}" width="300" height="300" loading="lazy" alt="">
               </button>
               {%- assign t = t | plus: 1 -%}
             {%- endfor -%}
@@ -538,7 +542,7 @@
     { "type": "product", "id": "product", "label": "Product", "info": "Leave empty on a product template to use the page's product." },
     { "type": "text", "id": "rating_text", "label": "Rating text", "default": "(4.9 stars) • 307 reviews" },
     { "type": "text", "id": "note", "label": "Size note", "default": "84g/2.96oz 60 patches" },
-    { "type": "textarea", "id": "gallery_urls", "label": "Gallery image URLs", "info": "One image URL per line. When filled in, the gallery shows these instead of the product's images. Leave empty to use the product's images.", "default": "https://cdn.shopify.com/s/files/1/0940/0660/8246/files/FREE_GIFT_66.png?v=1766080413\nhttps://cdn.shopify.com/s/files/1/0940/0660/8246/files/NAVARO_88.png?v=1791561988\nhttps://cdn.shopify.com/s/files/1/0940/0660/8246/files/3_a2e3cf40-2f82-40c5-8e7a-5bc745670143.png?v=1771381790\nhttps://cdn.shopify.com/s/files/1/0940/0660/8246/files/NAVARO_4_4f7ef5f6-813d-471a-8a1f-c9cae1eb5094.png?v=1779328568\nhttps://cdn.shopify.com/s/files/1/0940/0660/8246/files/4_c8c07dca-f33e-44f8-a022-1408cae23a5d.png?v=1778879542\nhttps://cdn.shopify.com/s/files/1/0940/0660/8246/files/ChatGPT_Image_Dec_30_2025_09_22_13_PM_85ddd026-2e67-4381-a471-1cfba3c27e32.png?v=1779328569\nhttps://cdn.shopify.com/s/files/1/0940/0660/8246/files/NAVARO_3.png?v=1769606261" },
+    { "type": "textarea", "id": "gallery_image_urls", "label": "Gallery image URLs", "info": "One image URL per line. When filled in, the gallery shows these instead of the product's images. Leave empty to use the product's images.", "default": "https://cdn.shopify.com/s/files/1/0940/0660/8246/files/image-234-2-6a6e4a5e89e00.webp?v=1785612921\nhttps://cdn.shopify.com/s/files/1/0940/0660/8246/files/diiigfg-ezgif.com-optimize.gif?v=1791562077\nhttps://cdn.shopify.com/s/files/1/0940/0660/8246/files/ChatGPT_Image_Dec_30_2025_08_46_02_PM.png?v=1771201739\nhttps://cdn.shopify.com/s/files/1/0940/0660/8246/files/3_a2e3cf40-2f82-40c5-8e7a-5bc745670143.png?v=1771381790\nhttps://cdn.shopify.com/s/files/1/0940/0660/8246/files/NAVARO_4_4f7ef5f6-813d-471a-8a1f-c9cae1eb5094.png?v=1779328568\nhttps://cdn.shopify.com/s/files/1/0940/0660/8246/files/4_c8c07dca-f33e-44f8-a022-1408cae23a5d.png?v=1778879542\nhttps://cdn.shopify.com/s/files/1/0940/0660/8246/files/ChatGPT_Image_Dec_30_2025_09_22_13_PM_85ddd026-2e67-4381-a471-1cfba3c27e32.png?v=1779328569\nhttps://cdn.shopify.com/s/files/1/0940/0660/8246/files/NAVARO_3.png?v=1769606261" },
     { "type": "header", "content": "Bundle options" },
     { "type": "paragraph", "content": "Add \"Bundle tier\" blocks for Buy X Get Y Free offers (quantity based, one variant). Without tier blocks, single-variant products show Buy 1 Get 1 Free and Buy 2 Get 2 Free; products with variants list their variants." },
     { "type": "text", "id": "stock_headline", "label": "Headline above options", "default": "ONLY 93 LEFT IN STOCK!", "info": "Leave empty to hide. Optional: [stock] is replaced with the real inventory count." },
