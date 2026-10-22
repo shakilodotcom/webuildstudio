@@ -1358,7 +1358,7 @@ fbq('track', 'PageView');
 #__framer-editorbar.status_measuring {
     clip-path: unset;
 }
-</style><style>/* Show the Revenue per session card before the ROAS card */.framer-1w3pfl>.framer-16sxm4o{order:-1}/* Let the testimonial cards grow to fit longer reviews on desktop */@media (min-width:1200px){.framer-52j9p .framer-184ewpe{grid-template-rows:none;grid-auto-rows:minmax(336px,auto);height:auto}.framer-52j9p .framer-1r5pr48,.framer-52j9p .framer-sd9vnb{gap:24px}}/* Book a call CTA: blackish grey instead of yellow */a.framer-13kvz{background-color:#1f2023!important;--border-color:#0d0e10!important;box-shadow:#0d0e10 0 -4px 0 0 inset,rgba(13,14,16,.35) 0 2px 4px 0!important}a.framer-13kvz p{--framer-text-color:#fff!important;color:#fff!important}a.framer-13kvz:hover{background-color:#2c2d31!important}/* Free website audit submit button: match the Book a call CTA */button.framer-1ntl2t5{background-color:#1f2023!important;box-shadow:#0d0e10 0 -4px 0 0 inset,rgba(13,14,16,.35) 0 2px 4px 0!important}button.framer-1ntl2t5 p{--framer-text-color:#fff!important;color:#fff!important}button.framer-1ntl2t5:hover{background-color:#2c2d31!important}/* Revenue proof line in place of "Trusted by" */.framer-1ufa0dz>p{display:none!important}.framer-1ufa0dz::before{content:"$2M+ in revenue through pages we\2019ve built";display:block;font-family:"Instrument Sans","Instrument Sans Placeholder",sans-serif;font-size:16px;font-weight:400;line-height:24px;color:var(--token-d52ae7c6-09d0-461e-9338-7cb16766a1b5,rgb(126,128,132));text-align:center}.framer-52j9p .framer-y8nmqe{height:auto!important;min-height:123px}.framer-52j9p .framer-1ufa0dz{display:flex;flex-direction:column;align-items:center}</style>
+</style><style>/* Show the Revenue per session card before the ROAS card */.framer-1w3pfl>.framer-16sxm4o{order:-1}/* Let the testimonial cards grow to fit longer reviews on desktop */@media (min-width:1200px){.framer-52j9p .framer-184ewpe{grid-template-rows:none;grid-auto-rows:minmax(336px,auto);height:auto}.framer-52j9p .framer-1r5pr48,.framer-52j9p .framer-sd9vnb{gap:24px}}/* Book a call CTA: blackish grey instead of yellow */a.framer-13kvz{background-color:#1f2023!important;--border-color:#0d0e10!important;box-shadow:#0d0e10 0 -4px 0 0 inset,rgba(13,14,16,.35) 0 2px 4px 0!important}a.framer-13kvz p{--framer-text-color:#fff!important;color:#fff!important}a.framer-13kvz:hover{background-color:#2c2d31!important}/* Free website audit submit button: match the Book a call CTA */button.framer-1ntl2t5{background-color:#1f2023!important;box-shadow:#0d0e10 0 -4px 0 0 inset,rgba(13,14,16,.35) 0 2px 4px 0!important}button.framer-1ntl2t5 p{--framer-text-color:#fff!important;color:#fff!important}button.framer-1ntl2t5:hover{background-color:#2c2d31!important}/* Revenue proof line in place of "Trusted by" */.framer-1ufa0dz>p{display:none!important}.framer-1ufa0dz::before{content:"$2M+ in revenue through pages we\2019ve built";display:block;font-family:"Instrument Sans","Instrument Sans Placeholder",sans-serif;font-size:16px;font-weight:400;line-height:24px;color:var(--token-d52ae7c6-09d0-461e-9338-7cb16766a1b5,rgb(126,128,132));text-align:center}.framer-52j9p .framer-y8nmqe{height:auto!important;min-height:123px}.framer-742lyl .framer-1ggm4wb{cursor:pointer}.framer-52j9p .framer-1ufa0dz{display:flex;flex-direction:column;align-items:center}</style>
 </head>
 <body>
 	
@@ -1399,6 +1399,17 @@ fbq('track', 'PageView');
     document.querySelectorAll('[data-framer-name="Bio"][data-wbs]').forEach(function(b){var p=b.querySelector("p");if(!p||p.textContent!==TEXT[0])b.removeAttribute("data-wbs");});
     apply();
   }).observe(document.documentElement,{childList:true,subtree:true,characterData:true});
+})();
+</script>
+<script>
+/* "What you get" cards scroll to the free audit form */
+(function(){
+  function card(t){return t&&t.closest&&t.closest('.framer-742lyl .framer-1ggm4wb');}
+  function go(){var f=document.getElementById("cta");if(f)f.scrollIntoView({behavior:"smooth",block:"start"});}
+  document.addEventListener("click",function(e){if(card(e.target)){e.preventDefault();go();}});
+  document.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&card(e.target)){e.preventDefault();go();}});
+  function mark(){document.querySelectorAll('.framer-742lyl .framer-1ggm4wb:not([tabindex])').forEach(function(c){c.setAttribute("tabindex","0");c.setAttribute("role","link");});}
+  mark();new MutationObserver(mark).observe(document.documentElement,{childList:true,subtree:true});
 })();
 </script>
 <!-- End of bodyEnd -->
